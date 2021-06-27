@@ -1,0 +1,102 @@
+alias c="clear" 
+alias ..="cd .."
+alias j="cd"
+alias v="nvim"
+alias l="royallist"
+alias ls="ls -lG --color --group-directories-first -A -v"
+alias cp="cp -i"    
+alias mv="mv -i"    
+alias df='df -h'    
+alias free='free -m'
+alias path="echo $PATH | sed -e 's/:/\n/g' | sort"
+alias t="tmux"
+
+#git aliases
+alias g='git'
+alias gp='git push'
+alias gphm='git push heroku main'
+alias gs='git status'
+alias ga='git add'
+alias gaa='git add --all'
+alias gc='git commit'
+alias gb='git branch'
+alias gbd='git branch -d'
+alias gcm="git checkout main"
+alias gco="git checkout"
+alias gcb="git checkout -b"
+
+alias parrot="curl parrot.live"
+
+###################################################################################################
+# FUNCTIONS
+###################################################################################################
+
+# [ -f "$HOME/Documents/Bash-programes/pinger.sh" ] && source "$HOME/Documents/Bash-programes/pinger.sh"
+[ -f "$HOME/Documents/Bash-programes/tshort.sh" ] && source "$HOME/Documents/Bash-programes/tshort.sh"
+
+function yt () {
+	bash ~/Documents/Bash-programes/yt $@
+}
+
+function musicdown () {
+	bash ~/Documents/Bash-programes/musicDownload.sh $@
+}
+
+sfind () {
+  local DIRECTORY=""
+  if [ "$#" -gt 0 ]; then
+    DIRECTORY="$1"
+  fi
+  find $DIRECTORY* \( -path '*/\.*' -o -name node_modules -o -name \.next -o -name libraries -o -name snap -o -name bin -o -name \.git -o -name \.cache -o -name dist -o -name build -o -name Apps -o -name pkg -o -name target \) -prune -o -type d -print -o -type l -print
+}
+
+function vf {
+  local FILE=$(rg --files --hidden | fzf --preview 'head -50 {}')
+
+  if [[ ! -z $FILE ]]; then
+    v $FILE
+  fi
+}
+
+function jf {
+  local NEXTDIR=$(sfind | fzf)
+  if [[ ! -z $NEXTDIR ]]; then
+    cd $NEXTDIR
+  fi
+}
+
+function extract {
+ if [ -z "$1" ]; then
+    # display usage if no parameters given
+    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+    echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
+    return 1
+ else
+    for n in $@
+    do
+      if [ -f "$n" ] ; then
+          case "${n%,}" in
+            *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar) 
+                         tar xvf "$n"       ;;
+            *.lzma)      unlzma ./"$n"      ;;
+            *.bz2)       bunzip2 ./"$n"     ;;
+            *.rar)       unrar x -ad ./"$n" ;;
+            *.gz)        gunzip ./"$n"      ;;
+            *.zip)       unzip ./"$n"       ;;
+            *.z)         uncompress ./"$n"  ;;
+            *.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar)
+                         7z x ./"$n"        ;;
+            *.xz)        unxz ./"$n"        ;;
+            *.exe)       cabextract ./"$n"  ;;
+            *)
+                         echo "extract: '$n' - unknown archive method"
+                         return 1
+                         ;;
+          esac
+      else
+          echo "'$n' - file does not exist"
+          return 1
+      fi
+    done
+fi
+}
