@@ -1,0 +1,6 @@
+require("wiz.telescope")
+require("wiz.treesitter")
+require("wiz.lspSaga")
+require("wiz.lsp")
+require("wiz.compe")
+require("wiz.lualine")
