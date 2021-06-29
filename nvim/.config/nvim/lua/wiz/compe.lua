@@ -12,17 +12,18 @@ require'compe'.setup {
   max_abbr_width = 20;
   max_kind_width = 100;
   max_menu_width = 60;
-  documentation = true;
+  -- idk what this is
+  documentation = false;
 
   source = {
     buffer = true;
     path = true;
     tags = true;
-    spell = true;
-    calc = true;
     nvim_lsp = true;
     vsnip = true;
-    nvim_lua = true;
+    -- nvim_lua = false;
+    -- calc = false;
+    -- spell = false;
   }
 }
 

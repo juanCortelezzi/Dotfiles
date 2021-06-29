@@ -3,7 +3,7 @@ call plug#begin('~/.config/nvim/plugged')
 " status line 
 Plug 'hoob3rt/lualine.nvim'
 " git
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive', {'on': 'G'}
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
@@ -26,12 +26,12 @@ Plug 'tpope/vim-commentary'
 " vim icons
 Plug 'kyazdani42/nvim-web-devicons'
 " prettier
-Plug 'sbdchd/neoformat'
+Plug 'sbdchd/neoformat', {'for': ['javascript', 'typescript', 'html', 'css']}
 " vim wiki
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', {'for': ['markdown', 'wiki']}
 " color schemes
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase', 'for': ['javascript', 'typescript', 'html', 'css']}
 Plug 'juancortelezzi/awesomecolors'
 Plug 'folke/tokyonight.nvim'
 
