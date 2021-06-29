@@ -19,6 +19,8 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
         [ -f "$HOME/.config/zsh/promptConfig/zsh-typewritten" ] && source "$HOME/.config/zsh/promptConfig/zsh-typewritten"
         autoload -U promptinit; promptinit
         prompt typewritten
+      elif [[ "$USE_PROMPT" == "wiz" ]]; then
+        [ -f "$HOME/.config/zsh/promptConfig/zsh-wiz" ] && source "$HOME/.config/zsh/promptConfig/zsh-wiz"
       else
         source /usr/share/zsh/zsh-maia-prompt
       fi

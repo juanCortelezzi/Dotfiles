@@ -1,5 +1,6 @@
 # Use powerline
-USE_PROMPT="spaceship" # spaceship or typewritten
+# USE_PROMPT="spaceship" # spaceship or typewritten
+USE_PROMPT="wiz" # spaceship or typewritten
 HISTFILE=~/.cache/zsh/.zhistory
 HISTSIZE=5000
 SAVEHIST=5000
