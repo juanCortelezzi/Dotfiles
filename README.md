@@ -10,6 +10,4 @@ These include:
 - alacritty
 - lf file manager
 
-Feel free to copy-paste them!
-
-### Use GNU (stow)[https://www.gnu.org/software/stow/] to selectively symlink the configs as you need
+#### Use GNU [stow](https://www.gnu.org/software/stow/) to selectively symlink the configs as you need
