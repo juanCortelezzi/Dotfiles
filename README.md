@@ -1,7 +1,6 @@
 # Dotfiles
 ## This are my dotfiles for a lot of programs that I use on Linux.
 
-These include:
 - nvim
 - zsh
 - bash
