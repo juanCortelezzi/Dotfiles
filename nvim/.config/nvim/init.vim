@@ -28,7 +28,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 " prettier
 Plug 'sbdchd/neoformat', {'for': ['javascript', 'typescript', 'html', 'css']}
 " vim wiki
-Plug 'vimwiki/vimwiki', {'for': ['markdown', 'wiki']}
+Plug 'vimwiki/vimwiki'
 " color schemes
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase', 'for': ['javascript', 'typescript', 'html', 'css']}
