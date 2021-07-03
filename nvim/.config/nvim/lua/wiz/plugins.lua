@@ -1,14 +1,16 @@
-return require("packer").startup(function()
+return require('packer').startup(function()
   -- packer autohandles itself
 	use {'wbthomason/packer.nvim'}
+  -- to use lua ft plugins TEMPORARY FIX
+  use {'tjdevries/astronauta.nvim'}
   -- statusline
   use {'hoob3rt/lualine.nvim'}
   -- git
   use {
     'tpope/vim-fugitive',
     cmd ={
-      "G",
-      "Git"
+      'G',
+      'Git'
     }
   }
   -- lsp
@@ -42,13 +44,13 @@ return require("packer").startup(function()
   -- misc
   use {
     'sbdchd/neoformat',
-    ft = {"ts", "tsx", "js", "jsx", "html", "css", "scss"}
+    ft = {'ts', 'tsx', 'js', 'jsx', 'html', 'css', 'scss'}
   }
   use {'kyazdani42/nvim-web-devicons'}
   use {'jiangmiao/auto-pairs'}
   use {'mhinz/vim-startify'}
   use {'tpope/vim-commentary'}
-  use {'vimwiki/vimwiki', ft = {"markdown"}}
+  use {'vimwiki/vimwiki', ft = {'markdown'}}
   -- colorschemes
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use {'juancortelezzi/awesomecolors'}
@@ -56,7 +58,7 @@ return require("packer").startup(function()
   use {
     'rrethy/vim-hexokinase',
     run = 'make hexokinase',
-    ft = {"css", "scss", "html", "tsx"}
+    ft = {'css', 'scss', 'html', 'tsx'}
   }
 end)
 
