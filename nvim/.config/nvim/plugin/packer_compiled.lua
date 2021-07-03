@@ -90,10 +90,12 @@ _G.packer_plugins = {
     path = "/home/wiz/.local/share/nvim/site/pack/packer/start/harpoon"
   },
   ["lspsaga.nvim"] = {
+    config = { 'require("wiz.lspsaga")' },
     loaded = true,
     path = "/home/wiz/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
   },
   ["lualine.nvim"] = {
+    config = { 'require("wiz.lualine")' },
     loaded = true,
     path = "/home/wiz/.local/share/nvim/site/pack/packer/start/lualine.nvim"
   },
@@ -103,6 +105,7 @@ _G.packer_plugins = {
     path = "/home/wiz/.local/share/nvim/site/pack/packer/opt/neoformat"
   },
   ["nvim-compe"] = {
+    config = { 'require("wiz.compe")' },
     loaded = true,
     path = "/home/wiz/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
@@ -111,6 +114,7 @@ _G.packer_plugins = {
     path = "/home/wiz/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
+    config = { 'require("wiz.treesitter")' },
     loaded = true,
     path = "/home/wiz/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
@@ -135,6 +139,7 @@ _G.packer_plugins = {
     path = "/home/wiz/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
   },
   ["telescope.nvim"] = {
+    config = { 'require("wiz.telescope")' },
     loaded = true,
     path = "/home/wiz/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
@@ -162,8 +167,9 @@ _G.packer_plugins = {
     path = "/home/wiz/.local/share/nvim/site/pack/packer/start/vim-startify"
   },
   ["vim-vsnip"] = {
-    loaded = true,
-    path = "/home/wiz/.local/share/nvim/site/pack/packer/start/vim-vsnip"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/wiz/.local/share/nvim/site/pack/packer/opt/vim-vsnip"
   },
   vimwiki = {
     loaded = false,
@@ -173,6 +179,26 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: nvim-compe
+time([[Config for nvim-compe]], true)
+require("wiz.compe")
+time([[Config for nvim-compe]], false)
+-- Config for: lspsaga.nvim
+time([[Config for lspsaga.nvim]], true)
+require("wiz.lspsaga")
+time([[Config for lspsaga.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require("wiz.lualine")
+time([[Config for lualine.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require("wiz.treesitter")
+time([[Config for nvim-treesitter]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require("wiz.telescope")
+time([[Config for telescope.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
@@ -184,15 +210,19 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vimwiki'}, { ft = "markdown" }, _G.packer_plugins)]]
-vim.cmd [[au FileType tsx ++once lua require("packer.load")({'vim-hexokinase', 'neoformat'}, { ft = "tsx" }, _G.packer_plugins)]]
 vim.cmd [[au FileType jsx ++once lua require("packer.load")({'neoformat'}, { ft = "jsx" }, _G.packer_plugins)]]
-vim.cmd [[au FileType html ++once lua require("packer.load")({'vim-hexokinase', 'neoformat'}, { ft = "html" }, _G.packer_plugins)]]
-vim.cmd [[au FileType css ++once lua require("packer.load")({'vim-hexokinase', 'neoformat'}, { ft = "css" }, _G.packer_plugins)]]
-vim.cmd [[au FileType scss ++once lua require("packer.load")({'vim-hexokinase', 'neoformat'}, { ft = "scss" }, _G.packer_plugins)]]
-vim.cmd [[au FileType js ++once lua require("packer.load")({'neoformat'}, { ft = "js" }, _G.packer_plugins)]]
 vim.cmd [[au FileType ts ++once lua require("packer.load")({'neoformat'}, { ft = "ts" }, _G.packer_plugins)]]
+vim.cmd [[au FileType css ++once lua require("packer.load")({'neoformat', 'vim-hexokinase'}, { ft = "css" }, _G.packer_plugins)]]
+vim.cmd [[au FileType scss ++once lua require("packer.load")({'neoformat', 'vim-hexokinase'}, { ft = "scss" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vimwiki'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType html ++once lua require("packer.load")({'neoformat', 'vim-hexokinase'}, { ft = "html" }, _G.packer_plugins)]]
+vim.cmd [[au FileType js ++once lua require("packer.load")({'neoformat'}, { ft = "js" }, _G.packer_plugins)]]
+vim.cmd [[au FileType tsx ++once lua require("packer.load")({'neoformat', 'vim-hexokinase'}, { ft = "tsx" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
+  -- Event lazy-loads
+time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'vim-vsnip'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end
 

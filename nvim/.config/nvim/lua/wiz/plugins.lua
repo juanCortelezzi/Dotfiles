@@ -1,4 +1,4 @@
-return require('packer').startup(function()
+return require('packer').startup(function(use)
   -- packer autohandles itself
 	use {'wbthomason/packer.nvim'}
   -- to use lua ft plugins TEMPORARY FIX
@@ -20,6 +20,7 @@ return require('packer').startup(function()
   -- snippets
   use {
     'hrsh7th/vim-vsnip',
+    event = "InsertEnter",
     requires = {
       {'rafamadriz/friendly-snippets'}
     }
@@ -50,9 +51,15 @@ return require('packer').startup(function()
   use {'jiangmiao/auto-pairs'}
   use {'mhinz/vim-startify'}
   use {'tpope/vim-commentary'}
-  use {'vimwiki/vimwiki', ft = {'markdown'}}
+  use {
+    'vimwiki/vimwiki',
+    ft = {'markdown'}
+  }
   -- colorschemes
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
   use {'juancortelezzi/awesomecolors'}
   use {'folke/tokyonight.nvim'}
   use {
