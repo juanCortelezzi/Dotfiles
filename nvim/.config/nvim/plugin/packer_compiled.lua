@@ -94,8 +94,9 @@ _G.packer_plugins = {
     path = "/home/wiz/.local/share/nvim/site/pack/packer/start/lualine.nvim"
   },
   neoformat = {
-    loaded = true,
-    path = "/home/wiz/.local/share/nvim/site/pack/packer/start/neoformat"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/wiz/.local/share/nvim/site/pack/packer/opt/neoformat"
   },
   ["nvim-compe"] = {
     loaded = true,
@@ -142,12 +143,15 @@ _G.packer_plugins = {
     path = "/home/wiz/.local/share/nvim/site/pack/packer/start/vim-commentary"
   },
   ["vim-fugitive"] = {
-    loaded = true,
-    path = "/home/wiz/.local/share/nvim/site/pack/packer/start/vim-fugitive"
+    commands = { "G", "Git" },
+    loaded = false,
+    needs_bufread = true,
+    path = "/home/wiz/.local/share/nvim/site/pack/packer/opt/vim-fugitive"
   },
   ["vim-hexokinase"] = {
-    loaded = true,
-    path = "/home/wiz/.local/share/nvim/site/pack/packer/start/vim-hexokinase"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/wiz/.local/share/nvim/site/pack/packer/opt/vim-hexokinase"
   },
   ["vim-startify"] = {
     loaded = true,
@@ -158,12 +162,34 @@ _G.packer_plugins = {
     path = "/home/wiz/.local/share/nvim/site/pack/packer/start/vim-vsnip"
   },
   vimwiki = {
-    loaded = true,
-    path = "/home/wiz/.local/share/nvim/site/pack/packer/start/vimwiki"
+    loaded = false,
+    needs_bufread = true,
+    path = "/home/wiz/.local/share/nvim/site/pack/packer/opt/vimwiki"
   }
 }
 
 time([[Defining packer_plugins]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+vim.cmd [[command! -nargs=* -range -bang -complete=file Git lua require("packer.load")({'vim-fugitive'}, { cmd = "Git", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file G lua require("packer.load")({'vim-fugitive'}, { cmd = "G", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+time([[Defining lazy-load commands]], false)
+
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType css ++once lua require("packer.load")({'vim-hexokinase', 'neoformat'}, { ft = "css" }, _G.packer_plugins)]]
+vim.cmd [[au FileType scss ++once lua require("packer.load")({'vim-hexokinase', 'neoformat'}, { ft = "scss" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vimwiki'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType jsx ++once lua require("packer.load")({'neoformat'}, { ft = "jsx" }, _G.packer_plugins)]]
+vim.cmd [[au FileType js ++once lua require("packer.load")({'neoformat'}, { ft = "js" }, _G.packer_plugins)]]
+vim.cmd [[au FileType tsx ++once lua require("packer.load")({'vim-hexokinase', 'neoformat'}, { ft = "tsx" }, _G.packer_plugins)]]
+vim.cmd [[au FileType ts ++once lua require("packer.load")({'neoformat'}, { ft = "ts" }, _G.packer_plugins)]]
+vim.cmd [[au FileType html ++once lua require("packer.load")({'vim-hexokinase', 'neoformat'}, { ft = "html" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)

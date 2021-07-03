@@ -3,9 +3,10 @@ local wiz_lsp = require("wiz.lsp")
 
 nvim_lsp.gopls.setup({
   capabilities = require("wiz.lsp").capabilities,
-  on_attatch = wiz_lsp.common_on_attatch
+  on_attatch = wiz_lsp.common_on_attatch,
 })
 
+-- root_dir = require("lspconfig").util.root_pattern(".git", "go.mod"),
 require('wiz.utils').define_augroups({
   _go = {
     -- Go generally requires Tabs instead of spaces.

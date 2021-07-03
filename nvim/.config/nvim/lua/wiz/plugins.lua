@@ -1,12 +1,28 @@
 return require("packer").startup(function()
+  -- packer autohandles itself
 	use {'wbthomason/packer.nvim'}
+  -- statusline
   use {'hoob3rt/lualine.nvim'}
-  use {'tpope/vim-fugitive'}
+  -- git
+  use {
+    'tpope/vim-fugitive',
+    cmd ={
+      "G",
+      "Git"
+    }
+  }
+  -- lsp
   use {'neovim/nvim-lspconfig'}
   use {'hrsh7th/nvim-compe'}
-  use {'hrsh7th/vim-vsnip'}
-  use {'rafamadriz/friendly-snippets'}
   use {'glepnir/lspsaga.nvim'}
+  -- snippets
+  use {
+    'hrsh7th/vim-vsnip',
+    requires = {
+      {'rafamadriz/friendly-snippets'}
+    }
+  }
+  -- telescopic jhonson teejdv
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
@@ -15,17 +31,33 @@ return require("packer").startup(function()
       {'nvim-telescope/telescope-fzy-native.nvim'}
     }
   }
-  use {'ThePrimeagen/harpoon'}
+  -- harpoon the primeagen is happy
+  use {
+    'ThePrimeagen/harpoon',
+    requires = {
+      {'nvim-lua/popup.nvim'},
+      {'nvim-lua/plenary.nvim'},
+    }
+  }
+  -- misc
+  use {
+    'sbdchd/neoformat',
+    ft = {"ts", "tsx", "js", "jsx", "html", "css", "scss"}
+  }
+  use {'kyazdani42/nvim-web-devicons'}
   use {'jiangmiao/auto-pairs'}
   use {'mhinz/vim-startify'}
   use {'tpope/vim-commentary'}
-  use {'kyazdani42/nvim-web-devicons'}
-  use {'sbdchd/neoformat'}
-  use {'vimwiki/vimwiki'}
+  use {'vimwiki/vimwiki', ft = {"markdown"}}
+  -- colorschemes
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-  use {'rrethy/vim-hexokinase', run = 'make hexokinase'}
   use {'juancortelezzi/awesomecolors'}
   use {'folke/tokyonight.nvim'}
+  use {
+    'rrethy/vim-hexokinase',
+    run = 'make hexokinase',
+    ft = {"css", "scss", "html", "tsx"}
+  }
 end)
 
 -- Plug 'stevearc/vim-arduino'
