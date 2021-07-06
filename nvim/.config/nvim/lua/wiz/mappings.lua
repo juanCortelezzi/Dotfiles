@@ -26,15 +26,15 @@ map("v", "<leader>/", "<cmd>CommentToggle<CR>", silentNoremap)
 map("n", "<TAB>", "<cmd>Telescope find_files<CR>", noremap)
 
 -- Harpoon
-map("n", "<leader>m", "<cmd>lua require('harpoon.mark').add_file()<CR>", noremap)
-map("n", "<leader>M", "<cmd>lua require('harpoon.mark').rm_file()<CR>", noremap)
-map("n", "<leader>ch", "<cmd>lua require('harpoon.mark').clear_all()<CR>", noremap)
-map("n", "<leader>;", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", noremap)
-map("n", "<leader>h", "<cmd>lua require('harpoon.ui').nav_file(1)<CR>", noremap)
-map("n", "<leader>j", "<cmd>lua require('harpoon.ui').nav_file(2)<CR>", noremap)
-map("n", "<leader>k", "<cmd>lua require('harpoon.ui').nav_file(3)<CR>", noremap)
-map("n", "<leader>l", "<cmd>lua require('harpoon.ui').nav_file(4)<CR>", noremap)
-map("n", "<leader>u", "<cmd>lua require('harpoon.term').gotoTerminal(1)<CR>", noremap)
+-- map("n", "<leader>m", "<cmd>lua require('harpoon.mark').add_file()<CR>", noremap)
+-- map("n", "<leader>M", "<cmd>lua require('harpoon.mark').rm_file()<CR>", noremap)
+-- map("n", "<leader>ch", "<cmd>lua require('harpoon.mark').clear_all()<CR>", noremap)
+-- map("n", "<leader>;", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", noremap)
+-- map("n", "<leader>h", "<cmd>lua require('harpoon.ui').nav_file(1)<CR>", noremap)
+-- map("n", "<leader>j", "<cmd>lua require('harpoon.ui').nav_file(2)<CR>", noremap)
+-- map("n", "<leader>k", "<cmd>lua require('harpoon.ui').nav_file(3)<CR>", noremap)
+-- map("n", "<leader>l", "<cmd>lua require('harpoon.ui').nav_file(4)<CR>", noremap)
+-- map("n", "<leader>u", "<cmd>lua require('harpoon.term').gotoTerminal(1)<CR>", noremap)
 map("t", "<leader>u", "<C-\\><C-n>", silentNoremap)
 
 -- LSP
@@ -77,8 +77,8 @@ local mappings = {
 
   ["/"] = "Comment",
   a = "Codeaction",
-  f = {"<cmd>Telescope find_files<CR>", "Telescope"},
-  g = {"<cmd>Telescope live_grep<CR>", "Telescope"},
+
+  -- Packer
   p = {
     name = "Packer",
     c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -87,18 +87,22 @@ local mappings = {
     s = { "<cmd>PackerSync<cr>", "Sync" },
     u = { "<cmd>PackerUpdate<cr>", "Update" },
   },
+
+  -- Telescope
+  f = {"<cmd>Telescope find_files<CR>", "Telescope files"},
+  g = {"<cmd>Telescope live_grep<CR>", "Telescope grep"},
   t = {"<cmd>Telescope<CR>", "Telescope"},
   m = {"<cmd>lua require('harpoon.mark').add_file()<CR>", "Harpoon add"},
-  M = {"<cmd>lua require('harpoon.mark').rm_file()<CR>", "Harpoon remove"},
-  c = {
-    h = {"<cmd>lua require('harpoon.mark').clear_all()<CR>", "Harpoon clean"}
-  },
-  [";"] = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon menu"},
-  h = {"<cmd>lua require('harpoon.ui').nav_file(1)<CR>", "Harpoon 1"},
+
+  -- Harpoon
   j = {"<cmd>lua require('harpoon.ui').nav_file(2)<CR>", "Harpoon 2"},
   k = {"<cmd>lua require('harpoon.ui').nav_file(3)<CR>", "Harpoon 3"},
   l = {"<cmd>lua require('harpoon.ui').nav_file(4)<CR>", "Harpoon 4"},
   u = {"<cmd>lua require('harpoon.term').gotoTerminal(1)<CR>", "Harpoon terminal"},
+  [";"] = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon menu"},
+  M = {"<cmd>lua require('harpoon.mark').rm_file()<CR>", "Harpoon remove"},
+  c = {"<cmd>lua require('harpoon.mark').clear_all()<CR>", "Harpoon clean"},
+  h = {"<cmd>lua require('harpoon.ui').nav_file(1)<CR>", "Harpoon 1"},
 }
 
 local opts = {

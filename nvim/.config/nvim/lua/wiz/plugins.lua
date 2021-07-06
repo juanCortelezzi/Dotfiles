@@ -74,7 +74,7 @@ return require('packer').startup(function(use)
     "terrortylor/nvim-comment",
     cmd = "CommentToggle",
     config = function()
-      require("nvim_comment").setup()
+      require("nvim_comment").setup({create_mappings = false})
     end,
   }
 
