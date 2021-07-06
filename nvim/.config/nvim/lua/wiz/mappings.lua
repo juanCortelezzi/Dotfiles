@@ -81,17 +81,24 @@ local mappings = {
   -- Packer
   p = {
     name = "Packer",
-    c = { "<cmd>PackerCompile<cr>", "Compile" },
-    i = { "<cmd>PackerInstall<cr>", "Install" },
-    r = { ":luafile %<cr>", "Reload" },
-    s = { "<cmd>PackerSync<cr>", "Sync" },
-    u = { "<cmd>PackerUpdate<cr>", "Update" },
+    c = { "<cmd>PackerCompile<CR>", "Compile" },
+    i = { "<cmd>PackerInstall<CR>", "Install" },
+    r = { ":luafile %<CR>", "Reload" },
+    s = { "<cmd>PackerSync<CR>", "Sync" },
+    u = { "<cmd>PackerUpdate<CR>", "Update" },
   },
 
   -- Telescope
-  f = {"<cmd>Telescope find_files<CR>", "Telescope files"},
-  g = {"<cmd>Telescope live_grep<CR>", "Telescope grep"},
-  t = {"<cmd>Telescope<CR>", "Telescope"},
+  f = {"<cmd>Telescope find_files<CR>", "Find files"},
+  g = {"<cmd>Telescope live_grep<CR>", "Project grep"},
+  t = {
+    name = "Telescope",
+    t = {"<cmd>Telescope<CR>", "Builtin"},
+    c = {"<cmd>Telescope colorscheme<CR>", "Colorscheme"},
+    f = {"<cmd>Telescope filetypes<CR>", "Filetypes"},
+    b = {"<cmd>Telescope buffers<CR>", "Buffers"},
+    z = {"<cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy find"},
+  },
 
   -- Colorizer
   c = {
@@ -102,6 +109,7 @@ local mappings = {
   },
 
   -- Harpoon
+  h = {"<cmd>lua require('harpoon.ui').nav_file(1)<CR>", "Harpoon 1"},
   j = {"<cmd>lua require('harpoon.ui').nav_file(2)<CR>", "Harpoon 2"},
   k = {"<cmd>lua require('harpoon.ui').nav_file(3)<CR>", "Harpoon 3"},
   l = {"<cmd>lua require('harpoon.ui').nav_file(4)<CR>", "Harpoon 4"},
@@ -109,7 +117,6 @@ local mappings = {
   [";"] = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon menu"},
   m = {"<cmd>lua require('harpoon.mark').add_file()<CR>", "Harpoon add"},
   M = {"<cmd>lua require('harpoon.mark').rm_file()<CR>", "Harpoon remove"},
-  h = {"<cmd>lua require('harpoon.ui').nav_file(1)<CR>", "Harpoon 1"},
 }
 
 local opts = {
