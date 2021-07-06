@@ -1,7 +1,5 @@
 require("wiz.plugins")
-require("wiz.compe")
 require("wiz.lualine")
-require("wiz.compe")
 require("wiz.lspsaga")
 require("wiz.treesitter")
 require("wiz.telescope")

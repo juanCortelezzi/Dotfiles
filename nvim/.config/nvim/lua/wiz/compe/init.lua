@@ -1,3 +1,5 @@
+-- TODO: remove this
+print("compe loaded")
 vim.o.completeopt = "menuone,noselect"
 
 require'compe'.setup {
