@@ -10,10 +10,10 @@ return require('packer').startup(function(use)
   use {'nvim-lua/popup.nvim'}
   use {'nvim-lua/plenary.nvim'}
 
-  -- statusline
+  -- Lualine statusline
   use {'hoob3rt/lualine.nvim'}
 
-  -- git
+  -- Fugitive git
   use {
     'tpope/vim-fugitive',
     cmd ={
@@ -22,9 +22,10 @@ return require('packer').startup(function(use)
     }
   }
 
-  -- lsp
+  -- Lsp
   use {'neovim/nvim-lspconfig'}
 
+  -- Compe completion
   use {
     "hrsh7th/nvim-compe",
     event = "InsertEnter",
@@ -33,9 +34,11 @@ return require('packer').startup(function(use)
     end,
   }
 
+  -- LspSaga lsp stuff
+  -- TODO: remove saga, maby not that useful
   use {'glepnir/lspsaga.nvim'}
 
-  -- snippets
+  -- Vsnip snippets
   use {
     'hrsh7th/vim-vsnip',
     event = "InsertEnter",
@@ -44,7 +47,7 @@ return require('packer').startup(function(use)
     }
   }
 
-  -- telescopic jhonson teejdv
+  -- Telescope teejdv
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
@@ -52,22 +55,32 @@ return require('packer').startup(function(use)
     }
   }
 
-  -- harpoon the primeagen is happy
+  -- Harpoon the primeagen is happy
   use {'ThePrimeagen/harpoon'}
 
-  -- autoformat
+  -- Icons
   use {'kyazdani42/nvim-web-devicons'}
 
+  -- Startify start screen
   use {'mhinz/vim-startify'}
 
-  use {'tpope/vim-commentary'}
+  -- Commentary comments
+  use {
+    "terrortylor/nvim-comment",
+    cmd = "CommentToggle",
+    config = function()
+      require("nvim_comment").setup()
+    end,
+  }
 
+  -- Neoformat autoformat
   use {
     'sbdchd/neoformat',
     ft = {'ts', 'tsx', 'js', 'jsx', 'html', 'css', 'scss', 'json'},
     event = "BufEnter"
   }
 
+  -- Autopairs
   use {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
@@ -77,27 +90,22 @@ return require('packer').startup(function(use)
     end,
   }
 
+  -- VimWiki
   use {
     'vimwiki/vimwiki',
     ft = {'markdown'}
   }
 
-  -- colorschemes
+  -- Treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
 
+  -- Colorschemes
   use {'juancortelezzi/awesomecolors'}
 
   use {'folke/tokyonight.nvim'}
-
-  use {
-    'rrethy/vim-hexokinase',
-    run = 'make hexokinase',
-    ft = {'css', 'scss', 'html', 'tsx'}
-  }
-
 end)
 
 -- Plug 'stevearc/vim-arduino'
