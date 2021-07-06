@@ -13,7 +13,7 @@ let g:startify_lists = [
 
 let g:startify_bookmarks = [
             \ { 'al': '~/Dotfiles/alacritty/.config/alacritty/alacritty.yml' },
-            \ { 'vi': '~/Dotfiles/nvim/.config/nvim/init.vim' },
+            \ { 'vi': '~/Dotfiles/nvim/.config/nvim/init.lua' },
             \ { 'zs': '~/Dotfiles/zsh/.config/zsh/.zshrc' },
             \ { 'za': '~/Dotfiles/zsh/.config/zsh/zsh-aliases' },
             \ { 'ze': '~/Dotfiles/zsh/.zshenv' },
