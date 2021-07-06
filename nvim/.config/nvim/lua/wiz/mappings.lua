@@ -92,7 +92,14 @@ local mappings = {
   f = {"<cmd>Telescope find_files<CR>", "Telescope files"},
   g = {"<cmd>Telescope live_grep<CR>", "Telescope grep"},
   t = {"<cmd>Telescope<CR>", "Telescope"},
-  m = {"<cmd>lua require('harpoon.mark').add_file()<CR>", "Harpoon add"},
+
+  -- Colorizer
+  c = {
+    name = "Colorizer",
+    a = {"<cmd>ColorizerAttachToBuffer<CR>", "Attatch"},
+    d = {"<cmd>ColorizerDetachFromBuffer<CR>", "Detach"},
+    r = {"<cmd>ColorizerReloadAllBuffers<CR>", "Reload"},
+  },
 
   -- Harpoon
   j = {"<cmd>lua require('harpoon.ui').nav_file(2)<CR>", "Harpoon 2"},
@@ -100,8 +107,8 @@ local mappings = {
   l = {"<cmd>lua require('harpoon.ui').nav_file(4)<CR>", "Harpoon 4"},
   u = {"<cmd>lua require('harpoon.term').gotoTerminal(1)<CR>", "Harpoon terminal"},
   [";"] = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon menu"},
+  m = {"<cmd>lua require('harpoon.mark').add_file()<CR>", "Harpoon add"},
   M = {"<cmd>lua require('harpoon.mark').rm_file()<CR>", "Harpoon remove"},
-  c = {"<cmd>lua require('harpoon.mark').clear_all()<CR>", "Harpoon clean"},
   h = {"<cmd>lua require('harpoon.ui').nav_file(1)<CR>", "Harpoon 1"},
 }
 

@@ -111,6 +111,17 @@ return require('packer').startup(function(use)
   use {'juancortelezzi/awesomecolors'}
 
   use {'folke/tokyonight.nvim'}
+
+  -- Colorizer
+  use {
+    "norcalli/nvim-colorizer.lua",
+    cmd = {
+      "ColorizerAttachToBuffer",
+      "ColorizerDetachFromBuffer",
+      "ColorizerReloadAllBuffers",
+    },
+    config = [[require("wiz.colorizer")]]
+  }
 end)
 
 -- Plug 'stevearc/vim-arduino'
