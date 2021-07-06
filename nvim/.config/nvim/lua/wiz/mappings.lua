@@ -1,3 +1,4 @@
+require("wiz.whichkey")
 local map = vim.api.nvim_set_keymap
 
 -- map leader -> <SPACE>
@@ -7,6 +8,7 @@ vim.g.mapleader = " "
 local noremap = {noremap = true}
 local silentNoremap = {noremap = true, silent = true}
 local silentExprNoremap = {noremap = true, silent = true, expr = true}
+
 -- esc esc -> jj not proud of this, but i got used to it
 map("i", "jj", "<ESC><ESC>", noremap)
 
@@ -14,14 +16,14 @@ map("i", "jj", "<ESC><ESC>", noremap)
 map("n", "<leader>vi", "<cmd>so ~/.config/nvim/init.vim<cr>", noremap)
 
 -- Comments
-map("n", "<leader>/", ":CommentToggle<CR>", silentNoremap)
-map("v", "<leader>/", ":CommentToggle<CR>", silentNoremap)
+map("n", "<leader>/", "<cmd>CommentToggle<CR>", silentNoremap)
+map("v", "<leader>/", "<cmd>CommentToggle<CR>", silentNoremap)
 
 -- Telescope
-map("n", "<leader>t", "<cmd>Telescope<cr>", noremap)
-map("n", "<TAB>", "<cmd>lua require('telescope.builtin').find_files()<cr>", noremap)
-map("n", "<leader>g", "<cmd>lua require('telescope.builtin').live_grep()<cr>", noremap)
-map("n", "<leader>f", "<cmd>lua require('telescope.builtin').file_browser()<cr>", noremap)
+-- map("n", "<leader>t", "<cmd>Telescope<CR>", noremap)
+-- map("n", "<leader>g", "<cmd>Telescope live_grep<CR>", noremap)
+-- map("n", "<leader>f", "<cmd>Telescope file_browser<CR>", noremap)
+map("n", "<TAB>", "<cmd>Telescope find_files<CR>", noremap)
 
 -- Harpoon
 map("n", "<leader>m", "<cmd>lua require('harpoon.mark').add_file()<CR>", noremap)
@@ -54,8 +56,7 @@ map("i", "<C-Space>", "compe#complete()", silentExprNoremap)
 map("i", "<CR>", "compe#confirm('<CR>')", silentExprNoremap)
 map("i", "<C-e>", "compe#close('<C-e>')", silentExprNoremap)
 
--- " FUCK ARROW KEYS
--- noremap <Up> <Nop>
+-- FUCK ARROW KEYS
 map("n", "<Up>", "<Nop>", noremap)
 map("n", "<Down>", "<Nop>", noremap)
 map("n", "<Left>", "<Nop>", noremap)
@@ -72,9 +73,42 @@ map("v", "<Right>", "<Nop>", noremap)
 -- " idk what this is but it scares me
 map("n", "Q", "<Nop>", noremap)
 
--- " Arduino
--- " autocmd FileType ino nnoremap <buffer><leader>am :ArduinoVerify<CR>
--- " autocmd FileType ino nnoremap <buffer><leader>au :ArduinoUpload<CR>
--- " autocmd FileType ino nnoremap <buffer><leader>ad :ArduinoUploadAndSerial<CR>
--- " autocmd FileType ino nnoremap <buffer><leader>ab :ArduinoChooseBoard<CR>
--- " autocmd FileType ino nnoremap <buffer><leader>ap :ArduinoChooseProgrammer<CR>
+local mappings = {
+
+  ["/"] = "Comment",
+  a = "Codeaction",
+  f = {"<cmd>Telescope find_files<CR>", "Telescope"},
+  g = {"<cmd>Telescope live_grep<CR>", "Telescope"},
+  p = {
+    name = "Packer",
+    c = { "<cmd>PackerCompile<cr>", "Compile" },
+    i = { "<cmd>PackerInstall<cr>", "Install" },
+    r = { ":luafile %<cr>", "Reload" },
+    s = { "<cmd>PackerSync<cr>", "Sync" },
+    u = { "<cmd>PackerUpdate<cr>", "Update" },
+  },
+  t = {"<cmd>Telescope<CR>", "Telescope"},
+  m = {"<cmd>lua require('harpoon.mark').add_file()<CR>", "Harpoon add"},
+  M = {"<cmd>lua require('harpoon.mark').rm_file()<CR>", "Harpoon remove"},
+  c = {
+    h = {"<cmd>lua require('harpoon.mark').clear_all()<CR>", "Harpoon clean"}
+  },
+  [";"] = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon menu"},
+  h = {"<cmd>lua require('harpoon.ui').nav_file(1)<CR>", "Harpoon 1"},
+  j = {"<cmd>lua require('harpoon.ui').nav_file(2)<CR>", "Harpoon 2"},
+  k = {"<cmd>lua require('harpoon.ui').nav_file(3)<CR>", "Harpoon 3"},
+  l = {"<cmd>lua require('harpoon.ui').nav_file(4)<CR>", "Harpoon 4"},
+  u = {"<cmd>lua require('harpoon.term').gotoTerminal(1)<CR>", "Harpoon terminal"},
+}
+
+local opts = {
+  mode = "n", -- NORMAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = false, -- use `nowait` when creating keymaps
+}
+
+local wk = require "which-key"
+wk.register(mappings, opts)

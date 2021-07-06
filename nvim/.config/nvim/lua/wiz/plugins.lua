@@ -13,6 +13,9 @@ return require('packer').startup(function(use)
   -- Lualine statusline
   use {'hoob3rt/lualine.nvim'}
 
+  -- Wich-key key help
+  use { "folke/which-key.nvim" }
+
   -- Fugitive git
   use {
     'tpope/vim-fugitive',
@@ -50,6 +53,8 @@ return require('packer').startup(function(use)
   -- Telescope teejdv
   use {
     'nvim-telescope/telescope.nvim',
+    config = [[require('wiz.telescope')]],
+    cmd = "Telescope",
     requires = {
       {'nvim-telescope/telescope-fzy-native.nvim'}
     }
