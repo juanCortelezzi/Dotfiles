@@ -1,7 +1,7 @@
 return require('packer').startup(function(use)
 
   -- packer autohandles itself
-	use {'wbthomason/packer.nvim'}
+  use {'wbthomason/packer.nvim'}
 
   -- to use lua ft plugins TEMPORARY FIX
   use {'tjdevries/astronauta.nvim'}
@@ -109,8 +109,6 @@ return require('packer').startup(function(use)
 
   -- Colorschemes
   use {'juancortelezzi/awesomecolors'}
-
-  use {'folke/tokyonight.nvim'}
 
   -- Colorizer
   use {

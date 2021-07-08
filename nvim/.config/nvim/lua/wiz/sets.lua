@@ -41,7 +41,7 @@ opt.relativenumber = true
 -- UI
 opt.mouse = "a"
 opt.cmdheight = 1
-opt.signcolumn = "yes"
+opt.signcolumn = "no"
 opt.showmode = false
 opt.cursorline = true
 opt.scrolloff = 4
