@@ -1,27 +1,18 @@
 # load zsh prompts
 fpath=($fpath "/home/wiz/.config/zsh/.zfunctions")
 
-case $(basename "$(cat "/proc/$PPID/comm")") in
-  login)
-        [ -f "$HOME/.config/zsh/promptConfig/zsh-wiz" ] && source "$HOME/.config/zsh/promptConfig/zsh-wiz"
-    	alias x='startx ~/.xinitrc'
-    ;;
-  *)
-      if [[ $TERM == "linux" ]]; then
-        # TTY does not have powerline fonts
-        source /usr/share/zsh/zsh-maia-prompt
-        alias x='startx ~/.xinitrc'
-      elif [[ "$USE_PROMPT" == "spaceship" ]]; then
-        [ -f "$HOME/.config/zsh/promptConfig/zsh-spaceship" ] && source "$HOME/.config/zsh/promptConfig/zsh-spaceship"
-        autoload -U promptinit; promptinit
-        prompt spaceship
-      elif [[ "$USE_PROMPT" == "typewritten" ]]; then
-        [ -f "$HOME/.config/zsh/promptConfig/zsh-typewritten" ] && source "$HOME/.config/zsh/promptConfig/zsh-typewritten"
-        autoload -U promptinit; promptinit
-        prompt typewritten
-      elif [[ "$USE_PROMPT" == "wiz" ]]; then
-        [ -f "$HOME/.config/zsh/promptConfig/zsh-wiz" ] && source "$HOME/.config/zsh/promptConfig/zsh-wiz"
-      fi
-    ;;
-esac
+if [[ "$(tty)" = "/dev/tty1" ]]; then 
+    [ -f "$HOME/.config/zsh/promptConfig/zsh-wiz" ] && source "$HOME/.config/zsh/promptConfig/zsh-wiz"
+    alias x='startx ~/.config/X11/xinitrc'
+elif [[ "$USE_PROMPT" == "spaceship" ]]; then
+    [ -f "$HOME/.config/zsh/promptConfig/zsh-spaceship" ] && source "$HOME/.config/zsh/promptConfig/zsh-spaceship"
+    autoload -U promptinit; promptinit
+    prompt spaceship
+elif [[ "$USE_PROMPT" == "typewritten" ]]; then
+    [ -f "$HOME/.config/zsh/promptConfig/zsh-typewritten" ] && source "$HOME/.config/zsh/promptConfig/zsh-typewritten"
+    autoload -U promptinit; promptinit
+    prompt typewritten
+else
+    [ -f "$HOME/.config/zsh/promptConfig/zsh-wiz" ] && source "$HOME/.config/zsh/promptConfig/zsh-wiz"
+fi
 

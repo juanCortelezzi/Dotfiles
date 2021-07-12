@@ -17,7 +17,7 @@ setopt histignorealldups      # If a new command is a duplicate, remove the olde
 setopt inc_append_history     # save commands are added to the history immediately, otherwise only when shell exits.
 
 # Theming section  
-autoload -U compinit && compinit -d
+autoload -U compinit && compinit -d ~/.config/zsh/zcompdump
 autoload -U colors && colors
 autoload -U zcalc
 
@@ -79,8 +79,3 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 
 # INSTALL NEOFETCH OR REMOVE THIS LINE
 # neofetch
-fpath=($fpath "/home/wiz/.config/zsh/.zfunctions")
-
-# Set typewritten ZSH as a prompt
-autoload -U promptinit; promptinit
-prompt typewritten

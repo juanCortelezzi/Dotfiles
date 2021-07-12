@@ -1,5 +1,5 @@
 # add bin to path
-export PATH="/home/wiz/.local/bin/:$PATH"
+export PATH="/home/wiz/.local/bin:$PATH"
 # add npm globals to path
 export NPM_CONFIG_PREFIX="/home/wiz/.config/npm/npm-global"
 export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
@@ -8,13 +8,13 @@ export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
 # export CARGO_HOME="/home/wiz/.config/rust/cargo"
 # export PATH="/home/wiz/.config/rust/cargo/bin:$PATH"
 # add go to path
-export GOPATH="/home/wiz/Documents/Golang-programes/"
+export GOPATH="/home/wiz/Documents/Golang-programes"
 export PATH="$GOPATH/bin:$PATH"
-export PATH="/usr/local/go/bin/:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
 # ripgrep config
 # export RIPGREP_CONFIG_PATH="/home/wiz/.config/ripgrep/.ripgreprc"
 # pass password storage
-export PASSWORD_STORE_DIR="/home/wiz/Documents/Password-store/"
+export PASSWORD_STORE_DIR="/home/wiz/Documents/Password-store"
 # Color man pages
 export LESS_TERMCAP_mb=$'\E[01;32m'
 export LESS_TERMCAP_md=$'\E[01;32m'
