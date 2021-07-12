@@ -111,6 +111,7 @@ shopt -s expand_aliases
 # export QT_SELECT=4
 
 # Enable history appending instead of overwriting.  #139609
+HISTFILE=~/.cache/bash/bash_history
 shopt -s histappend
 
 #
@@ -137,3 +138,4 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
+

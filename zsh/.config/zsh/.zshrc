@@ -1,5 +1,5 @@
 USE_PROMPT="typewritten" # spaceship, typewritten or wiz
-HISTFILE=~/.cache/zsh/.zhistory
+HISTFILE=~/.cache/zsh/zhistory
 HISTSIZE=5000
 SAVEHIST=5000
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word

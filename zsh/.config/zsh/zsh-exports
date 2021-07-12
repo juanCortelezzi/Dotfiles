@@ -1,18 +1,18 @@
 # add bin to path
 export PATH="/home/wiz/.local/bin/:$PATH"
 # add npm globals to path
-export PATH="/home/wiz/.npm-global/bin:$PATH"
-export NPM_CONFIG_PREFIX="/home/wiz/.npm-global"
+export NPM_CONFIG_PREFIX="/home/wiz/.config/npm/npm-global"
+export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
 # add cargo/rust to path
-export RUSTUP_HOME="/home/wiz/.config/rust/rustup"
-export CARGO_HOME="/home/wiz/.config/rust/cargo"
-export PATH="/home/wiz/.config/rust/cargo/bin:$PATH"
+# export RUSTUP_HOME="/home/wiz/.config/rust/rustup"
+# export CARGO_HOME="/home/wiz/.config/rust/cargo"
+# export PATH="/home/wiz/.config/rust/cargo/bin:$PATH"
 # add go to path
 export GOPATH="/home/wiz/Documents/Golang-programes/"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="/usr/local/go/bin/:$PATH"
 # ripgrep config
-export RIPGREP_CONFIG_PATH="/home/wiz/.config/ripgrep/.ripgreprc"
+# export RIPGREP_CONFIG_PATH="/home/wiz/.config/ripgrep/.ripgreprc"
 # pass password storage
 export PASSWORD_STORE_DIR="/home/wiz/Documents/Password-store/"
 # Color man pages
@@ -24,6 +24,8 @@ export LESS_TERMCAP_so=$'\E[01;47;34m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-R
+# No hist file
+export LESSHISTFILE="-"
 # LF icons
 export LF_ICONS="\
 tw=:\
