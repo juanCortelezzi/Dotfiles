@@ -44,8 +44,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/wiz/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/wiz/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/wiz/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/wiz/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/wiz/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/wiz/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/?.lua;/home/wiz/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/?/init.lua;/home/wiz/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/?.lua;/home/wiz/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/wiz/.cache/nvim/packer_hererocks/2.0.5/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -100,7 +100,7 @@ _G.packer_plugins = {
     path = "/home/wiz/.local/share/nvim/site/pack/packer/opt/neoformat"
   },
   ["nvim-autopairs"] = {
-    config = { "\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18wiz.autopairs\frequire\0" },
+    config = { "\27LJ\1\2-\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\18wiz.autopairs\frequire\0" },
     load_after = {
       ["nvim-compe"] = true,
       ["telescope.nvim"] = true
@@ -118,7 +118,7 @@ _G.packer_plugins = {
   },
   ["nvim-comment"] = {
     commands = { "CommentToggle" },
-    config = { "\27LJ\2\nR\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\20create_mappings\1\nsetup\17nvim_comment\frequire\0" },
+    config = { "\27LJ\1\2R\0\0\2\0\4\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0>\0\2\1G\0\1\0\1\0\1\20create_mappings\1\nsetup\17nvim_comment\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/wiz/.local/share/nvim/site/pack/packer/opt/nvim-comment"
@@ -126,7 +126,7 @@ _G.packer_plugins = {
   ["nvim-compe"] = {
     after = { "nvim-autopairs" },
     after_files = { "/home/wiz/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe.vim" },
-    config = { "\27LJ\2\n)\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\14wiz.compe\frequire\0" },
+    config = { "\27LJ\1\2)\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\14wiz.compe\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/wiz/.local/share/nvim/site/pack/packer/opt/nvim-compe"
@@ -197,13 +197,13 @@ time([[Defining packer_plugins]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-vim.cmd [[command! -nargs=* -range -bang -complete=file CommentToggle lua require("packer.load")({'nvim-comment'}, { cmd = "CommentToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file ColorizerReloadAllBuffers lua require("packer.load")({'nvim-colorizer.lua'}, { cmd = "ColorizerReloadAllBuffers", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file G lua require("packer.load")({'vim-fugitive'}, { cmd = "G", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file ColorizerAttachToBuffer lua require("packer.load")({'nvim-colorizer.lua'}, { cmd = "ColorizerAttachToBuffer", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file ColorizerDetachFromBuffer lua require("packer.load")({'nvim-colorizer.lua'}, { cmd = "ColorizerDetachFromBuffer", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file ColorizerAttachToBuffer lua require("packer.load")({'nvim-colorizer.lua'}, { cmd = "ColorizerAttachToBuffer", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Git lua require("packer.load")({'vim-fugitive'}, { cmd = "Git", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file CommentToggle lua require("packer.load")({'nvim-comment'}, { cmd = "CommentToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file G lua require("packer.load")({'vim-fugitive'}, { cmd = "G", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 time([[Defining lazy-load commands]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
@@ -211,18 +211,18 @@ vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
 vim.cmd [[au FileType jsx ++once lua require("packer.load")({'neoformat'}, { ft = "jsx" }, _G.packer_plugins)]]
-vim.cmd [[au FileType ts ++once lua require("packer.load")({'neoformat'}, { ft = "ts" }, _G.packer_plugins)]]
-vim.cmd [[au FileType js ++once lua require("packer.load")({'neoformat'}, { ft = "js" }, _G.packer_plugins)]]
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vimwiki'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType scss ++once lua require("packer.load")({'neoformat'}, { ft = "scss" }, _G.packer_plugins)]]
 vim.cmd [[au FileType json ++once lua require("packer.load")({'neoformat'}, { ft = "json" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vimwiki'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType tsx ++once lua require("packer.load")({'neoformat'}, { ft = "tsx" }, _G.packer_plugins)]]
+vim.cmd [[au FileType js ++once lua require("packer.load")({'neoformat'}, { ft = "js" }, _G.packer_plugins)]]
 vim.cmd [[au FileType html ++once lua require("packer.load")({'neoformat'}, { ft = "html" }, _G.packer_plugins)]]
 vim.cmd [[au FileType css ++once lua require("packer.load")({'neoformat'}, { ft = "css" }, _G.packer_plugins)]]
-vim.cmd [[au FileType tsx ++once lua require("packer.load")({'neoformat'}, { ft = "tsx" }, _G.packer_plugins)]]
-vim.cmd [[au FileType scss ++once lua require("packer.load")({'neoformat'}, { ft = "scss" }, _G.packer_plugins)]]
+vim.cmd [[au FileType ts ++once lua require("packer.load")({'neoformat'}, { ft = "ts" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'vim-vsnip', 'nvim-autopairs', 'nvim-compe', 'friendly-snippets'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-autopairs', 'friendly-snippets', 'vim-vsnip', 'nvim-compe'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au BufEnter * ++once lua require("packer.load")({'neoformat'}, { event = "BufEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")

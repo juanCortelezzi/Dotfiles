@@ -3,7 +3,7 @@ fpath=($fpath "/home/wiz/.config/zsh/.zfunctions")
 
 case $(basename "$(cat "/proc/$PPID/comm")") in
   login)
-        source /usr/share/zsh/zsh-maia-prompt
+        [ -f "$HOME/.config/zsh/promptConfig/zsh-wiz" ] && source "$HOME/.config/zsh/promptConfig/zsh-wiz"
     	alias x='startx ~/.xinitrc'
     ;;
   *)
@@ -21,8 +21,6 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
         prompt typewritten
       elif [[ "$USE_PROMPT" == "wiz" ]]; then
         [ -f "$HOME/.config/zsh/promptConfig/zsh-wiz" ] && source "$HOME/.config/zsh/promptConfig/zsh-wiz"
-      else
-        source /usr/share/zsh/zsh-maia-prompt
       fi
     ;;
 esac

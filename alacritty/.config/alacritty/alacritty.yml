@@ -37,24 +37,19 @@ scrolling:
 
 font:
   normal:
-    #family: "UbuntuMono Nerd Font"
-    family: "Hack Nerd Font Mono"
+    family: Hack Nerd Font Mono
     style: Regular
   bold:
-    #family: "UbuntuMono Nerd Font"
-    family: "Hack Nerd Font Mono"
+    family: Hack Nerd Font Mono
     style: Bold
   italic:
-    #family: "UbuntuMono Nerd Font"
-    family: "Hack Nerd Font Mono"
+    family: Hack Nerd Font Mono
     style: Italic
   bold_italic:
-    #family: "UbuntuMono Nerd Font"
-    family: "Hack Nerd Font Mono"
+    family: Hack Nerd Font Mono
     style: Bold Italic
 
   # Point size
-    #size: 18
     size: 14
 
   offset:
@@ -148,8 +143,8 @@ colors: *gruvbox
 #colors: *nord
 #colors: *gnome
 
-# background_opacity: 1.0
-background_opacity: 0.8
+background_opacity: 1.0
+# background_opacity: 0.8
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

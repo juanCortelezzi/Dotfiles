@@ -1,4 +1,4 @@
-USE_PROMPT="spaceship" # spaceship, typewritten or wiz
+USE_PROMPT="typewritten" # spaceship, typewritten or wiz
 HISTFILE=~/.cache/zsh/.zhistory
 HISTSIZE=5000
 SAVEHIST=5000
@@ -79,3 +79,8 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 
 # INSTALL NEOFETCH OR REMOVE THIS LINE
 # neofetch
+fpath=($fpath "/home/wiz/.config/zsh/.zfunctions")
+
+# Set typewritten ZSH as a prompt
+autoload -U promptinit; promptinit
+prompt typewritten
