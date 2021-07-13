@@ -15,6 +15,10 @@ export PATH="/usr/local/go/bin:$PATH"
 # export RIPGREP_CONFIG_PATH="/home/wiz/.config/ripgrep/.ripgreprc"
 # pass password storage
 export PASSWORD_STORE_DIR="/home/wiz/Documents/Password-store"
+# gtk2rc to .config
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+# gnupg to .config
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 # Color man pages
 export LESS_TERMCAP_mb=$'\E[01;32m'
 export LESS_TERMCAP_md=$'\E[01;32m'
