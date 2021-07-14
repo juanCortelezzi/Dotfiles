@@ -24,3 +24,5 @@ _darcs
 ^/README.*
 ^/LICENSE.*
 ^/COPYING
+
+./pacman-programs.txt
