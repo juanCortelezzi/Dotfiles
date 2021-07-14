@@ -12,44 +12,11 @@ local silentExprNoremap = {noremap = true, silent = true, expr = true}
 -- esc esc -> jj not proud of this, but i got used to it
 map("i", "jj", "<ESC><ESC>", noremap)
 
--- leader vi -> re source vimrc
-map("n", "<leader>vi", "<cmd>so ~/.config/nvim/init.vim<cr>", noremap)
-
--- Comments
-map("n", "<leader>/", "<cmd>CommentToggle<CR>", silentNoremap)
-map("v", "<leader>/", "<cmd>CommentToggle<CR>", silentNoremap)
-
--- Telescope
--- map("n", "<leader>t", "<cmd>Telescope<CR>", noremap)
--- map("n", "<leader>g", "<cmd>Telescope live_grep<CR>", noremap)
--- map("n", "<leader>f", "<cmd>Telescope file_browser<CR>", noremap)
 map("n", "<TAB>", "<cmd>Telescope find_files<CR>", noremap)
 
--- Harpoon
--- map("n", "<leader>m", "<cmd>lua require('harpoon.mark').add_file()<CR>", noremap)
--- map("n", "<leader>M", "<cmd>lua require('harpoon.mark').rm_file()<CR>", noremap)
--- map("n", "<leader>ch", "<cmd>lua require('harpoon.mark').clear_all()<CR>", noremap)
--- map("n", "<leader>;", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", noremap)
--- map("n", "<leader>h", "<cmd>lua require('harpoon.ui').nav_file(1)<CR>", noremap)
--- map("n", "<leader>j", "<cmd>lua require('harpoon.ui').nav_file(2)<CR>", noremap)
--- map("n", "<leader>k", "<cmd>lua require('harpoon.ui').nav_file(3)<CR>", noremap)
--- map("n", "<leader>l", "<cmd>lua require('harpoon.ui').nav_file(4)<CR>", noremap)
--- map("n", "<leader>u", "<cmd>lua require('harpoon.term').gotoTerminal(1)<CR>", noremap)
 map("t", "<leader>u", "<C-\\><C-n>", silentNoremap)
 
 -- LSP
-map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", silentNoremap)
-map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", silentNoremap)
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", silentNoremap)
-map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", silentNoremap)
-map("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", silentNoremap)
-map("n", "gs", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", silentNoremap)
-map("n", "K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", silentNoremap)
-map("n", "rn", "<cmd>lua require('lspsaga.rename').rename()<CR>", silentNoremap)
-map("n", "<leader>a", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", silentNoremap)
-map("v", "<leader>a", "<cmd><C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", silentNoremap)
-map("n", "[g", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", silentNoremap)
-map("n", "]g", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", silentNoremap)
 map("n", "<A-t>", "<cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>", silentNoremap)
 map("t", "<A-t>", "<cmd>lua require('lspsaga.floaterm').close_float_terminal()<CR>", silentNoremap)
 map("i", "<C-Space>", "compe#complete()", silentExprNoremap)
@@ -75,15 +42,15 @@ map("n", "Q", "<Nop>", noremap)
 
 local mappings = {
 
-  ["/"] = "Comment",
-  a = "Codeaction",
+  ["/"] = { "<cmd>CommentToggle<CR>", "Comment" },
+  a = {"<cmd>lua require('lspsaga.codeaction').code_action()<CR>", "Codeaction"},
 
   -- Packer
   p = {
     name = "Packer",
     c = { "<cmd>PackerCompile<CR>", "Compile" },
     i = { "<cmd>PackerInstall<CR>", "Install" },
-    r = { ":luafile %<CR>", "Reload" },
+    r = { "<cmd>luafile %<CR>", "Reload" },
     s = { "<cmd>PackerSync<CR>", "Sync" },
     u = { "<cmd>PackerUpdate<CR>", "Update" },
   },
@@ -117,6 +84,40 @@ local mappings = {
   [";"] = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon menu"},
   m = {"<cmd>lua require('harpoon.mark').add_file()<CR>", "Harpoon add"},
   M = {"<cmd>lua require('harpoon.mark').rm_file()<CR>", "Harpoon remove"},
+
+  v = {
+      name = "Vim",
+      i = {"<cmd>luafile ~/.config/nvim/init.lua<CR>", "Reload"},
+  },
+
+  g = {
+      name = "Getters",
+      d = {"<cmd>lua vim.lsp.buf.definition()<CR>", "Definition"},
+      D = {"<cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration"},
+      r = {"<cmd>lua vim.lsp.buf.references()<CR>", "References"},
+      i = {"<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation"},
+      h = {"<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", "Finder"},
+      s = {"<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", "Signature"},
+  },
+
+  K = {"<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", "Docs"},
+
+  r = {
+      n = {"<cmd>lua require('lspsaga.rename').rename()<CR>", "Rename"},
+  },
+
+  d = {
+      name = "Diagnostics",
+      ["["] = {"<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", "Next"},
+      ["]"] = {"<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", "Prev"},
+  },
+}
+
+-- : doesent get you out of visual mode
+-- <cmd> does
+local vmappings = {
+  ["/"] = { ":CommentToggle<CR>", "Comment" },
+  a = {":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", "Codeaction"}
 }
 
 local opts = {
@@ -128,5 +129,15 @@ local opts = {
   nowait = false, -- use `nowait` when creating keymaps
 }
 
-local wk = require "which-key"
+local vopts = {
+      mode = "v", -- VISUAL mode
+      prefix = "<leader>",
+      buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+      silent = true, -- use `silent` when creating keymaps
+      noremap = true, -- use `noremap` when creating keymaps
+      nowait = true, -- use `nowait` when creating keymaps
+}
+
+local wk = require("which-key")
 wk.register(mappings, opts)
+wk.register(vmappings, vopts)

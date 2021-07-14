@@ -10,6 +10,8 @@ alias df='df -h'
 alias free='free -m'
 alias path="echo $PATH | sed -e 's/:/\n/g' | sort"
 alias t="tmux"
+alias sucklessinstall="rm -rf config.h && sudo make clean install"
+alias startssh="eval \"$(ssh-agent -s)\""
 
 #git aliases
 alias g='git'
@@ -32,7 +34,7 @@ alias parrot="curl parrot.live"
 ###################################################################################################
 
 # [ -f "$HOME/Documents/Bash-programes/pinger.sh" ] && source "$HOME/Documents/Bash-programes/pinger.sh"
-[ -f "$HOME/Documents/Bash-programes/tshort.sh" ] && source "$HOME/Documents/Bash-programes/tshort.sh"
+# [ -f "$HOME/Documents/Bash-programes/tshort.sh" ] && source "$HOME/Documents/Bash-programes/tshort.sh"
 
 function yt () {
 	bash ~/Documents/Bash-programes/yt $@
