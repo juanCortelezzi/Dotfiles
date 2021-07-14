@@ -46,7 +46,6 @@ pacman
 pass
 pass-otp
 patch
-picom-ibhagwan-git
 pkgconf
 ripgrep
 sed
