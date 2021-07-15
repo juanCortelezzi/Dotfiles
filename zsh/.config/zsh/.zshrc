@@ -79,8 +79,4 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 
 # INSTALL NEOFETCH OR REMOVE THIS LINE
 # neofetch
-fpath=($fpath "/home/wiz/.config/zsh/.zfunctions")
 
-# Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
-prompt spaceship
