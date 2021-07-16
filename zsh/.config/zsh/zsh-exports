@@ -1,5 +1,3 @@
-# add bin to path
-export PATH="/home/wiz/.local/bin:$PATH"
 # add npm globals to path
 export NPM_CONFIG_PREFIX="/home/wiz/.config/npm/npm-global"
 export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"

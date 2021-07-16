@@ -12,6 +12,7 @@ alias path="echo $PATH | sed -e 's/:/\n/g' | sort"
 alias t="tmux"
 alias sucklessinstall="rm -rf config.h && sudo make clean install"
 alias startssh="eval \"$(ssh-agent -s)\""
+alias getkc="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", \$5, \$8 }'"
 
 #git aliases
 alias g='git'
@@ -33,18 +34,10 @@ alias parrot="curl parrot.live"
 # FUNCTIONS
 ###################################################################################################
 
-# [ -f "$HOME/Documents/Bash-programes/pinger.sh" ] && source "$HOME/Documents/Bash-programes/pinger.sh"
-# [ -f "$HOME/Documents/Bash-programes/tshort.sh" ] && source "$HOME/Documents/Bash-programes/tshort.sh"
+[ -f "$HOME/Documents/Bash-programes/tshort.sh" ] && source "$HOME/Documents/Bash-programes/tshort.sh"
 
-function yt () {
-	bash ~/Documents/Bash-programes/yt $@
-}
 
-function musicdown () {
-	bash ~/Documents/Bash-programes/musicDownload.sh $@
-}
-
-sfind () {
+function sfind {
   local DIRECTORY=""
   if [ "$#" -gt 0 ]; then
     DIRECTORY="$1"
