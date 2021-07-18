@@ -8,6 +8,7 @@ export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 
 export LANG=en_US.UTF-8
 export TERM='tmux-256color'
+export TERMINAL="st"
 export VISUAL="nvim"
 export EDITOR="nvim"
 export BROWSER="firefox"

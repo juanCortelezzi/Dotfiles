@@ -13,6 +13,7 @@ alias t="tmux"
 alias sucklessinstall="rm -rf config.h && sudo make clean install"
 alias startssh="eval \"$(ssh-agent -s)\""
 alias getkc="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", \$5, \$8 }'"
+alias wallpaper="sxiv -t ~/Pictures/Wallpapers"
 
 #git aliases
 alias g='git'
