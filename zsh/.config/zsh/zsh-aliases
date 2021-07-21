@@ -35,7 +35,7 @@ alias parrot="curl parrot.live"
 # FUNCTIONS
 ###################################################################################################
 
-[ -f "$HOME/Documents/Bash-programes/tshort.sh" ] && source "$HOME/Documents/Bash-programes/tshort.sh"
+[ -f "$HOME/Documents/Bash-programes/tmux-short.sh" ] && source "$HOME/Documents/Bash-programes/tmux-short.sh"
 
 
 function sfind {
