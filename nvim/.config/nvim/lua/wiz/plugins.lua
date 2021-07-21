@@ -23,29 +23,8 @@ return require('packer').startup(function(use)
   -- Lualine statusline
   use {'hoob3rt/lualine.nvim'}
 
-  -- Wich-key key help
-  use { "folke/which-key.nvim" }
-
-  -- Fugitive git
-  use {
-    'tpope/vim-fugitive',
-    cmd ={
-      'G',
-      'Git'
-    }
-  }
-
   -- Lsp
   use {'neovim/nvim-lspconfig'}
-
-  -- Compe completion
-  use {
-    "hrsh7th/nvim-compe",
-    event = "InsertEnter",
-    config = function()
-      require("wiz.compe")
-    end,
-  }
 
   -- LspSaga lsp stuff
   -- TODO: remove saga, maby not that useful
@@ -60,6 +39,21 @@ return require('packer').startup(function(use)
     }
   }
 
+  -- Compe completion
+  use {
+    "hrsh7th/nvim-compe",
+    event = "InsertEnter",
+    config = function()
+      require("wiz.compe")
+    end,
+  }
+
+  -- Treesitter
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
+
   -- Telescope teejdv
   use {
     'nvim-telescope/telescope.nvim',
@@ -70,15 +64,6 @@ return require('packer').startup(function(use)
     }
   }
 
-  -- Harpoon the primeagen is happy
-  use {'ThePrimeagen/harpoon'}
-
-  -- Icons
-  use {'kyazdani42/nvim-web-devicons'}
-
-  -- Startify start screen
-  use {'mhinz/vim-startify'}
-
   -- Commentary comments
   use {
     "terrortylor/nvim-comment",
@@ -88,6 +73,31 @@ return require('packer').startup(function(use)
     end,
   }
 
+  -- Wich-key key help
+  use { "folke/which-key.nvim" }
+
+  -- Fugitive git
+  use {
+    'tpope/vim-fugitive',
+    cmd ={
+      'G',
+      'Git'
+    }
+  }
+
+  -- Autopairs
+  use {
+    "windwp/nvim-autopairs",
+    after = { "nvim-compe", "nvim-treesitter" },
+    config = function ()
+        print("calling autopairs")
+        require("wiz.autopairs")
+    end,
+  }
+
+  -- Harpoon the primeagen is happy
+  use {'ThePrimeagen/harpoon'}
+
   -- Neoformat autoformat
   use {
     'sbdchd/neoformat',
@@ -95,26 +105,16 @@ return require('packer').startup(function(use)
     event = "BufEnter"
   }
 
-  -- Autopairs
-  use {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    after = { "telescope.nvim", "nvim-compe" },
-    config = function()
-      require("wiz.autopairs")
-    end,
-  }
+  -- Icons
+  use {'kyazdani42/nvim-web-devicons'}
+
+  -- Startify start screen
+  use {'mhinz/vim-startify'}
 
   -- VimWiki
   use {
     'vimwiki/vimwiki',
     ft = {'markdown'}
-  }
-
-  -- Treesitter
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
   }
 
   -- Colorschemes

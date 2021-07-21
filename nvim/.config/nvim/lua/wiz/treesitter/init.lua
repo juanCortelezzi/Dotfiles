@@ -3,4 +3,5 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
     disable = { "markdown" },
   },
+  autopairs = { enable = false },
 }
