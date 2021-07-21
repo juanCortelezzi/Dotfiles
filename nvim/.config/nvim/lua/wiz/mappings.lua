@@ -17,6 +17,16 @@ map("n", "<TAB>", "<cmd>Telescope find_files<CR>", noremap)
 map("t", "<leader>u", "<C-\\><C-n>", silentNoremap)
 
 -- LSP
+
+map("n", "<A-t>", "<cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>", silentNoremap)
+
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", silentNoremap)
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", silentNoremap)
+map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", silentNoremap)
+map("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", silentNoremap)
+map("n", "gs", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", silentNoremap)
+map("n", "K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", silentNoremap)
+
 map("n", "<A-t>", "<cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>", silentNoremap)
 map("t", "<A-t>", "<cmd>lua require('lspsaga.floaterm').close_float_terminal()<CR>", silentNoremap)
 map("i", "<C-Space>", "compe#complete()", silentExprNoremap)
@@ -40,6 +50,24 @@ map("v", "<Right>", "<Nop>", noremap)
 -- " idk what this is but it scares me
 map("n", "Q", "<Nop>", noremap)
 
+local opts = {
+  mode = "n", -- NORMAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = false, -- use `nowait` when creating keymaps
+}
+
+local vopts = {
+      mode = "v", -- VISUAL mode
+      prefix = "<leader>",
+      buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+      silent = true, -- use `silent` when creating keymaps
+      noremap = true, -- use `noremap` when creating keymaps
+      nowait = true, -- use `nowait` when creating keymaps
+}
+
 local mappings = {
 
   ["/"] = { "<cmd>CommentToggle<CR>", "Comment" },
@@ -56,7 +84,7 @@ local mappings = {
   },
 
   -- Telescope
-  f = {"<cmd>Telescope find_files<CR>", "Find files"},
+  f = {"<cmd>Telescope file_browser<CR>", "Find files"},
   g = {"<cmd>Telescope live_grep<CR>", "Project grep"},
   t = {
     name = "Telescope",
@@ -90,18 +118,6 @@ local mappings = {
       i = {"<cmd>luafile ~/.config/nvim/init.lua<CR>", "Reload"},
   },
 
-  g = {
-      name = "Getters",
-      d = {"<cmd>lua vim.lsp.buf.definition()<CR>", "Definition"},
-      D = {"<cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration"},
-      r = {"<cmd>lua vim.lsp.buf.references()<CR>", "References"},
-      i = {"<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation"},
-      h = {"<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", "Finder"},
-      s = {"<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", "Signature"},
-  },
-
-  K = {"<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", "Docs"},
-
   r = {
       n = {"<cmd>lua require('lspsaga.rename').rename()<CR>", "Rename"},
   },
@@ -119,25 +135,6 @@ local vmappings = {
   ["/"] = { ":CommentToggle<CR>", "Comment" },
   a = {":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", "Codeaction"}
 }
-
-local opts = {
-  mode = "n", -- NORMAL mode
-  prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = false, -- use `nowait` when creating keymaps
-}
-
-local vopts = {
-      mode = "v", -- VISUAL mode
-      prefix = "<leader>",
-      buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true, -- use `silent` when creating keymaps
-      noremap = true, -- use `noremap` when creating keymaps
-      nowait = true, -- use `nowait` when creating keymaps
-}
-
 local wk = require("which-key")
 wk.register(mappings, opts)
 wk.register(vmappings, vopts)
