@@ -11,4 +11,4 @@ export TERM='tmux-256color'
 export TERMINAL="st"
 export VISUAL="nvim"
 export EDITOR="nvim"
-export BROWSER="firefox"
+export BROWSER="librewolf"

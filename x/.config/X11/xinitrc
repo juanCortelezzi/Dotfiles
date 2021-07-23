@@ -33,7 +33,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 # set wallpaper
-xwallpaper --focus ~/Pictures/Wallpapers/rxjs-logo.png &
+xwallpaper --zoom ~/Pictures/Wallpapers/rxjs-logo.png &
 
 # set display brightness
 xbacklight -set 40 &
