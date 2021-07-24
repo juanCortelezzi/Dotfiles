@@ -1,4 +1,4 @@
-USE_PROMPT="typewritten" # spaceship, typewritten or wiz
+USE_PROMPT="" # spaceship, typewritten or wiz
 HISTFILE=~/.cache/zsh/zhistory
 HISTSIZE=5000
 SAVEHIST=5000
