@@ -32,11 +32,14 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+# set display brightness
+xbacklight -set 40 &
+
 # set wallpaper
 xwallpaper --zoom ~/Pictures/Wallpapers/rxjs-logo.png &
 
-# set display brightness
-xbacklight -set 40 &
+# start ssh agent
+eval $(ssh-agent -s)
 
 # top bar
 dwmblocks &
@@ -44,10 +47,12 @@ dwmblocks &
 # start st on startup
 st &
 
+dwm
+
 # do this to be able to refresh dwm instead of killing the X server
-while true; do
-    # Log stderror to a file 
-    dwm 2> ~/.config/dwm/dwm.log
-    # No error logging
-    # dwm >/dev/null 2>&1
-done
+# while true; do
+#     # Log stderror to a file 
+#     dwm 2> ~/.config/dwm/dwm.log
+#     # No error logging
+#     # dwm >/dev/null 2>&1
+# done
