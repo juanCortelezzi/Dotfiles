@@ -7,13 +7,11 @@ alias ls="ls -lhG --color --group-directories-first -A -v"
 alias cp="cp -i"    
 alias mv="mv -i"    
 alias df='df -h'    
-alias free='free -m'
+alias free='free -hm'
 alias path="echo $PATH | sed -e 's/:/\n/g' | sort"
 alias t="tmux"
 alias sucklessinstall="rm -rf config.h && sudo make clean install"
-alias startssh="eval \"$(ssh-agent -s)\""
 alias getkc="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", \$5, \$8 }'"
-alias wallpaper="sxiv -ft ~/Pictures/Wallpapers"
 
 #git aliases
 alias g='git'
