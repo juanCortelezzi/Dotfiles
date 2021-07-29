@@ -47,12 +47,10 @@ dwmblocks &
 # start st on startup
 st &
 
-dwm
-
 # do this to be able to refresh dwm instead of killing the X server
-# while true; do
-#     # Log stderror to a file 
-#     dwm 2> ~/.config/dwm/dwm.log
-#     # No error logging
-#     # dwm >/dev/null 2>&1
-# done
+while true; do
+    # Log stderror to a file 
+    # dwm 2> ~/.config/dwm/dwm.log
+    # No error logging
+    dwm >/dev/null 2>&1
+done
