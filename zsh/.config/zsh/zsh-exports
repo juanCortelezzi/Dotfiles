@@ -2,9 +2,9 @@
 export NPM_CONFIG_PREFIX="/home/wiz/.config/npm/npm-global"
 export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
 # add cargo/rust to path
-# export RUSTUP_HOME="/home/wiz/.config/rust/rustup"
-# export CARGO_HOME="/home/wiz/.config/rust/cargo"
-# export PATH="/home/wiz/.config/rust/cargo/bin:$PATH"
+export RUSTUP_HOME="/home/wiz/.config/rust/rustup"
+export CARGO_HOME="/home/wiz/.config/rust/cargo"
+export PATH="$CARGO_HOME/bin:$PATH"
 # add go to path
 export GOPATH="/home/wiz/Documents/Golang-programes"
 export PATH="$GOPATH/bin:$PATH"
