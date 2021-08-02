@@ -90,7 +90,6 @@ return require('packer').startup(function(use)
     "windwp/nvim-autopairs",
     after = { "nvim-compe", "nvim-treesitter" },
     config = function ()
-        print("calling autopairs")
         require("wiz.autopairs")
     end,
   }
