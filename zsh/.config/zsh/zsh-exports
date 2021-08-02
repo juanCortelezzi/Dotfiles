@@ -12,7 +12,7 @@ export PATH="/usr/local/go/bin:$PATH"
 # ripgrep config
 # export RIPGREP_CONFIG_PATH="/home/wiz/.config/ripgrep/.ripgreprc"
 # pass password storage
-export PASSWORD_STORE_DIR="/home/wiz/Documents/Password-store"
+export PASSWORD_STORE_DIR="/home/wiz/.config/pass-store"
 # gtk2rc to .config
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 # gnupg to .config

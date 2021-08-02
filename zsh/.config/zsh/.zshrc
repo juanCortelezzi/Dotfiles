@@ -45,6 +45,9 @@ lfcd () {
 }
 bindkey -s '^o' 'lfcd\n'
 
+# Proper delete key
+bindkey -a '^[[3~' vi-delete-char
+
 # Useful funcions
 source "$ZDOTDIR/zsh-functions"
 
