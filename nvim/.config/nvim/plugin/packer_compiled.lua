@@ -100,7 +100,7 @@ _G.packer_plugins = {
     path = "/home/wiz/.local/share/nvim/site/pack/packer/opt/neoformat"
   },
   ["nvim-autopairs"] = {
-    config = { "\27LJ\1\2Q\0\0\2\0\4\0\a4\0\0\0%\1\1\0>\0\2\0014\0\2\0%\1\3\0>\0\2\1G\0\1\0\18wiz.autopairs\frequire\22calling autopairs\nprint\0" },
+    config = { "\27LJ\1\2-\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\18wiz.autopairs\frequire\0" },
     load_after = {
       ["nvim-compe"] = true
     },
