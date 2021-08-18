@@ -1,0 +1,14 @@
+#!/bin/bash
+
+opts=(
+    "librewolf"
+    "firefox"
+    "alacritty"
+    "st"
+    "thunar"
+    "lxappearance"
+    "zathura"
+)
+
+echo "${opts[@]}" | tr ' ' '\n' | dmenu "$@" | ${SHELL:-"/bin/sh"} &
+

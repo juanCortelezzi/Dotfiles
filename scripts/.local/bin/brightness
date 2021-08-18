@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# no args
+if [[ ${#} -lt 2 ]]; then
+    echo "error in arguments, up | down, dwmblock signal ID"
+    exit
+fi
+
+action="$1"
+signalID="$2"
+
+case "$action" in
+    up)
+        xbacklight -inc 10
+        ;;
+    down)
+        xbacklight -dec 10
+        ;;
+    *)
+        echo "argument is not up | down"
+        exit
+        ;;
+esac
+pkill -RTMIN+"$signalID" dwmblocks

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+selection=$(echo -e "Shutdown\nReboot" | dmenu -i -p "Select:")
+
+case "$selection" in
+    Shutdown)
+        doas shutdown now
+        ;;
+    Reboot)
+        doas reboot
+        ;;
+esac
