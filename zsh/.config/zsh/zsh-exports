@@ -1,5 +1,3 @@
-# add .local/bin scripts to path
-export PATH="/home/wiz/.local/bin:$PATH"
 # add virtualenvwrapper vars to path
 export WORKON_HOME="/home/wiz/Documents/Python-programes/.venvs"
 export PROJECT_HOME="/home/wiz/Documents/Python-programes"
