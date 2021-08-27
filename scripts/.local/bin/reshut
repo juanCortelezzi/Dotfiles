@@ -1,6 +1,6 @@
 #!/bin/bash
 
-selection=$(echo -e "Shutdown\nReboot" | dmenu -i -p "Select:")
+selection=$(echo -e "Shutdown\nReboot" | dmenu "$@" -i -p "Select:")
 
 case "$selection" in
     Shutdown)
