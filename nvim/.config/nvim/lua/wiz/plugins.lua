@@ -13,8 +13,8 @@ return require('packer').startup(function(use)
   -- packer autohandles itself
   use {'wbthomason/packer.nvim'}
 
-  -- to use lua ft plugins TEMPORARY FIX
-  use {'tjdevries/astronauta.nvim'}
+  -- temporary fix
+  use {'antoinemadec/FixCursorHold.nvim'}
 
   -- useful for other plugins
   use {'nvim-lua/popup.nvim'}
@@ -26,9 +26,13 @@ return require('packer').startup(function(use)
   -- Lsp
   use {'neovim/nvim-lspconfig'}
 
-  -- LspSaga lsp stuff
-  -- TODO: remove saga, maby not that useful
-  use {'glepnir/lspsaga.nvim'}
+  -- Formatting with lsp
+  use { 
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+        require("wiz.null-ls")
+    end,
+  }
 
   -- Vsnip snippets
   use {
@@ -48,6 +52,15 @@ return require('packer').startup(function(use)
     end,
   }
 
+  -- Trouble error info
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup()
+    end,
+  }
+
   -- Treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -57,7 +70,9 @@ return require('packer').startup(function(use)
   -- Telescope teejdv
   use {
     'nvim-telescope/telescope.nvim',
-    config = [[require('wiz.telescope')]],
+    config = function()
+      require('wiz.telescope')
+    end,
     cmd = "Telescope",
     requires = {
       {'nvim-telescope/telescope-fzy-native.nvim'}
@@ -69,7 +84,9 @@ return require('packer').startup(function(use)
     "terrortylor/nvim-comment",
     cmd = "CommentToggle",
     config = function()
-      require("nvim_comment").setup({create_mappings = false})
+      require("nvim_comment").setup{
+	      create_mappings = false
+      }
     end,
   }
 
@@ -97,17 +114,11 @@ return require('packer').startup(function(use)
   -- Harpoon the primeagen is happy
   use {'ThePrimeagen/harpoon'}
 
-  -- Neoformat autoformat
-  use {
-    'sbdchd/neoformat',
-    ft = {'ts', 'tsx', 'js', 'jsx', 'html', 'css', 'scss', 'json'},
-    event = "BufEnter"
-  }
-
   -- Icons
   use {'kyazdani42/nvim-web-devicons'}
 
   -- Startify start screen
+  -- https://github.com/goolord/alpha-nvim (replace soon)
   use {'mhinz/vim-startify'}
 
   -- VimWiki
@@ -118,16 +129,20 @@ return require('packer').startup(function(use)
 
   -- Colorschemes
   use {'juancortelezzi/awesomecolors'}
+  use {'LunarVim/Colorschemes'}
+  use {'folke/tokyonight.nvim'}
 
   -- Colorizer
   use {
     "norcalli/nvim-colorizer.lua",
+    config = function()
+        require("wiz.colorizer")
+    end,
     cmd = {
       "ColorizerAttachToBuffer",
       "ColorizerDetachFromBuffer",
       "ColorizerReloadAllBuffers",
     },
-    config = [[require("wiz.colorizer")]]
   }
 end)
 

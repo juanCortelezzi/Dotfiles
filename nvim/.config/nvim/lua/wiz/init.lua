@@ -1,5 +1,5 @@
+require("wiz.lsp")
 require("wiz.lualine")
-require("wiz.lspsaga")
 require("wiz.treesitter")
 require("wiz.plugins")
 require("wiz.mappings")

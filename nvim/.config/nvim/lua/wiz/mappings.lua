@@ -18,17 +18,13 @@ map("t", "<leader>u", "<C-\\><C-n>", silentNoremap)
 
 -- LSP
 
-map("n", "<A-t>", "<cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>", silentNoremap)
-
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", silentNoremap)
+map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", silentNoremap)
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", silentNoremap)
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", silentNoremap)
-map("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", silentNoremap)
-map("n", "gs", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", silentNoremap)
-map("n", "K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", silentNoremap)
+map("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", silentNoremap)
+map("n", "K",  "<cmd>lua vim.lsp.buf.hover()<CR>", silentNoremap)
 
-map("n", "<A-t>", "<cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>", silentNoremap)
-map("t", "<A-t>", "<cmd>lua require('lspsaga.floaterm').close_float_terminal()<CR>", silentNoremap)
 map("i", "<C-Space>", "compe#complete()", silentExprNoremap)
 map("i", "<CR>", "compe#confirm('<CR>')", silentExprNoremap)
 map("i", "<C-e>", "compe#close('<C-e>')", silentExprNoremap)
@@ -71,7 +67,7 @@ local vopts = {
 local mappings = {
 
   ["/"] = { "<cmd>CommentToggle<CR>", "Comment" },
-  a = {"<cmd>lua require('lspsaga.codeaction').code_action()<CR>", "Codeaction"},
+  a = {"<cmd>lua vim.lsp.buf.code_action()<CR>", "Codeaction"},
 
   -- Packer
   p = {
@@ -119,22 +115,22 @@ local mappings = {
   },
 
   r = {
-      n = {"<cmd>lua require('lspsaga.rename').rename()<CR>", "Rename"},
+      n = {"<cmd>lua vim.lsp.buf.rename()<CR>", "Rename"},
   },
 
   d = {
       name = "Diagnostics",
-      ["["] = {"<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", "Next"},
-      ["]"] = {"<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", "Prev"},
+      ["["] = {"<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Prev"},
+      ["]"] = {"<cmd>lua vim.lsp.diagnostic.goto_next()()<CR>", "Next"},
   },
 }
 
--- : doesent get you out of visual mode
+-- : doesnt get you out of visual mode
 -- <cmd> does
 local vmappings = {
   ["/"] = { ":CommentToggle<CR>", "Comment" },
-  a = {":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", "Codeaction"}
 }
+
 local wk = require("which-key")
 wk.register(mappings, opts)
 wk.register(vmappings, vopts)
