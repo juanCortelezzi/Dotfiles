@@ -24,7 +24,7 @@ local Kinds = {
   " ﳤ  (Struct)",
   "   (Event)",
   "   (Operator)",
-  "   (TypeParameter)"
+  "   (TypeParameter)",
 }
 
 return Kinds

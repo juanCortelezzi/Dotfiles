@@ -1,149 +1,159 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-  execute 'packadd packer.nvim'
+  fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
+  execute("packadd packer.nvim")
 end
 
-return require('packer').startup(function(use)
-
+return require("packer").startup(function(use)
   -- packer autohandles itself
-  use {'wbthomason/packer.nvim'}
+  use({ "wbthomason/packer.nvim" })
 
   -- temporary fix
-  use {'antoinemadec/FixCursorHold.nvim'}
+  use({ "antoinemadec/FixCursorHold.nvim" })
 
   -- useful for other plugins
-  use {'nvim-lua/popup.nvim'}
-  use {'nvim-lua/plenary.nvim'}
+  use({ "nvim-lua/popup.nvim" })
+  use({ "nvim-lua/plenary.nvim" })
 
   -- Lualine statusline
-  use {'hoob3rt/lualine.nvim'}
+  use({ "hoob3rt/lualine.nvim" })
 
   -- Lsp
-  use {'neovim/nvim-lspconfig'}
+  use({
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("wiz.lsp")
+    end,
+  })
 
   -- Formatting with lsp
-  use { 
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-        require("wiz.null-ls")
-    end,
-  }
+  use({ "jose-elias-alvarez/null-ls.nvim" })
 
   -- Vsnip snippets
-  use {
-    'hrsh7th/vim-vsnip',
+  use({
+    "hrsh7th/vim-vsnip",
     event = "InsertEnter",
     requires = {
-      {'rafamadriz/friendly-snippets', event = "InsertEnter"}
-    }
-  }
+      { "rafamadriz/friendly-snippets", event = "InsertEnter" },
+    },
+  })
 
   -- Compe completion
-  use {
+  -- REPLACE for cmp
+  use({
     "hrsh7th/nvim-compe",
     event = "InsertEnter",
     config = function()
       require("wiz.compe")
     end,
-  }
+  })
 
   -- Trouble error info
-  use {
+  use({
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
       require("trouble").setup()
     end,
-  }
+  })
 
   -- Treesitter
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+  })
 
   -- Telescope teejdv
-  use {
-    'nvim-telescope/telescope.nvim',
+  use({
+    "nvim-telescope/telescope.nvim",
     config = function()
-      require('wiz.telescope')
+      require("wiz.telescope")
     end,
     cmd = "Telescope",
     requires = {
-      {'nvim-telescope/telescope-fzy-native.nvim'}
-    }
-  }
+      { "nvim-telescope/telescope-fzy-native.nvim" },
+    },
+  })
 
   -- Commentary comments
-  use {
+  use({
     "terrortylor/nvim-comment",
     cmd = "CommentToggle",
     config = function()
-      require("nvim_comment").setup{
-	      create_mappings = false
-      }
+      require("nvim_comment").setup({
+        create_mappings = false,
+      })
     end,
-  }
+  })
 
   -- Wich-key key help
-  use { "folke/which-key.nvim" }
+  use({ "folke/which-key.nvim" })
 
   -- Fugitive git
-  use {
-    'tpope/vim-fugitive',
-    cmd ={
-      'G',
-      'Git'
-    }
-  }
+  use({
+    "tpope/vim-fugitive",
+    cmd = {
+      "G",
+      "Git",
+    },
+  })
 
   -- Autopairs
-  use {
+  use({
     "windwp/nvim-autopairs",
     after = { "nvim-compe", "nvim-treesitter" },
-    config = function ()
-        require("wiz.autopairs")
+    config = function()
+      require("wiz.autopairs")
     end,
-  }
+  })
 
   -- Harpoon the primeagen is happy
-  use {'ThePrimeagen/harpoon'}
+  use({ "ThePrimeagen/harpoon" })
 
   -- Icons
-  use {'kyazdani42/nvim-web-devicons'}
+  use({ "kyazdani42/nvim-web-devicons" })
 
   -- Startify start screen
-  -- https://github.com/goolord/alpha-nvim (replace soon)
-  use {'mhinz/vim-startify'}
+  -- REPLACE https://github.com/goolord/alpha-nvim
+  use({ "mhinz/vim-startify" })
 
   -- VimWiki
-  use {
-    'vimwiki/vimwiki',
-    ft = {'markdown'}
-  }
+  use({
+    "vimwiki/vimwiki",
+    ft = { "markdown" },
+  })
+
+  -- Indent line
+  use({
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("indent_blankline").setup({
+        show_current_context = true,
+      })
+    end,
+  })
 
   -- Colorschemes
-  use {'juancortelezzi/awesomecolors'}
-  use {'LunarVim/Colorschemes'}
-  use {'folke/tokyonight.nvim'}
+  use({ "juancortelezzi/awesomecolors" })
+  use({ "LunarVim/Colorschemes" })
+  use({ "folke/tokyonight.nvim" })
 
   -- Colorizer
-  use {
+  use({
     "norcalli/nvim-colorizer.lua",
     config = function()
-        require("wiz.colorizer")
+      require("wiz.colorizer")
     end,
     cmd = {
       "ColorizerAttachToBuffer",
       "ColorizerDetachFromBuffer",
       "ColorizerReloadAllBuffers",
     },
-  }
+  })
 end)
 
 -- Plug 'stevearc/vim-arduino'

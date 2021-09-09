@@ -1,6 +1,6 @@
 require("wiz")
 
-vim.g.colors_name = "nord"
+vim.g.colors_name = "tokyonight"
 
 -- Tokyonight
 vim.g.tokyonight_style = "night"

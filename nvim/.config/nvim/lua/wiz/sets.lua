@@ -1,7 +1,7 @@
 local cmd = vim.cmd
 local opt = vim.opt
 
-cmd "filetype plugin on"
+cmd("filetype plugin on")
 
 opt.hidden = true
 opt.termguicolors = true
@@ -20,7 +20,7 @@ opt.tabstop = 4
 opt.softtabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true
-opt.shortmess:append "c"
+opt.shortmess:append("c")
 opt.smartindent = true
 opt.colorcolumn = "81"
 opt.textwidth = 80

@@ -1,4 +1,3 @@
-require("wiz.lsp")
 require("wiz.lualine")
 require("wiz.treesitter")
 require("wiz.plugins")
