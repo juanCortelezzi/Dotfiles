@@ -33,28 +33,11 @@ return require("packer").startup(function(use)
   -- Formatting with lsp
   use({ "jose-elias-alvarez/null-ls.nvim" })
 
-  -- Vsnip snippets
-  use({
-    "hrsh7th/vim-vsnip",
-    event = "InsertEnter",
-    requires = {
-      { "rafamadriz/friendly-snippets", event = "InsertEnter" },
-    },
-  })
-
-  -- Compe completion
-  -- REPLACE for cmp
-  -- use({
-  --   "hrsh7th/nvim-compe",
-  --   event = "InsertEnter",
-  --   config = function()
-  --     require("wiz.compe")
-  --   end,
-  -- })
-
   use({
     "hrsh7th/nvim-cmp",
     requires = {
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
@@ -64,6 +47,9 @@ return require("packer").startup(function(use)
       require("wiz.cmp")
     end,
   })
+
+  -- Vsnip snippets
+  use({ "rafamadriz/friendly-snippets" })
 
   -- Trouble error info
   use({

@@ -4,7 +4,7 @@ local lspconfig = require("lspconfig")
 local lsp_config = {}
 
 -- symbols for autocomplete
-vim.lsp.protocol.CompletionItemKind = require("wiz.lsp.kinds")
+vim.lsp.protocol.CompletionItemKind = require("wiz.lsp.kind")
 
 lsp_config.capabilities = vim.lsp.protocol.make_client_capabilities()
 -- add snippet support
