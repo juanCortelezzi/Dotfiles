@@ -7,7 +7,6 @@ vim.g.mapleader = " "
 
 local noremap = { noremap = true }
 local silentNoremap = { noremap = true, silent = true }
-local silentExprNoremap = { noremap = true, silent = true, expr = true }
 
 -- esc esc -> jj not proud of this, but i got used to it
 map("i", "jj", "<ESC><ESC>", noremap)
@@ -24,10 +23,6 @@ map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", silentNoremap)
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", silentNoremap)
 map("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", silentNoremap)
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", silentNoremap)
-
-map("i", "<C-Space>", "compe#complete()", silentExprNoremap)
-map("i", "<CR>", "compe#confirm('<CR>')", silentExprNoremap)
-map("i", "<C-e>", "compe#close('<C-e>')", silentExprNoremap)
 
 -- FUCK ARROW KEYS
 map("n", "<Up>", "<Nop>", noremap)
@@ -108,11 +103,6 @@ local mappings = {
   [";"] = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Harpoon menu" },
   m = { "<cmd>lua require('harpoon.mark').add_file()<CR>", "Harpoon add" },
   M = { "<cmd>lua require('harpoon.mark').rm_file()<CR>", "Harpoon remove" },
-
-  v = {
-    name = "Vim",
-    i = { "<cmd>luafile ~/.config/nvim/init.lua<CR>", "Reload" },
-  },
 
   r = {
     n = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },

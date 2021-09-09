@@ -44,11 +44,24 @@ return require("packer").startup(function(use)
 
   -- Compe completion
   -- REPLACE for cmp
+  -- use({
+  --   "hrsh7th/nvim-compe",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("wiz.compe")
+  --   end,
+  -- })
+
   use({
-    "hrsh7th/nvim-compe",
-    event = "InsertEnter",
+    "hrsh7th/nvim-cmp",
+    requires = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lua",
+    },
     config = function()
-      require("wiz.compe")
+      require("wiz.cmp")
     end,
   })
 
@@ -105,7 +118,7 @@ return require("packer").startup(function(use)
   -- Autopairs
   use({
     "windwp/nvim-autopairs",
-    after = { "nvim-compe", "nvim-treesitter" },
+    after = "nvim-cmp",
     config = function()
       require("wiz.autopairs")
     end,
