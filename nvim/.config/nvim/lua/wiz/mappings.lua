@@ -1,12 +1,11 @@
 require("wiz.whichkey")
 local map = vim.api.nvim_set_keymap
+local noremap = { noremap = true }
+local silentNoremap = { noremap = true, silent = true }
 
 -- map leader -> <SPACE>
 map("n", "<Space>", "", {})
 vim.g.mapleader = " "
-
-local noremap = { noremap = true }
-local silentNoremap = { noremap = true, silent = true }
 
 -- esc esc -> jj not proud of this, but i got used to it
 map("i", "jj", "<ESC><ESC>", noremap)
@@ -16,10 +15,9 @@ map("n", "<TAB>", "<cmd>Telescope find_files<CR>", noremap)
 map("t", "<leader>u", "<C-\\><C-n>", silentNoremap)
 
 -- LSP
-
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", silentNoremap)
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", silentNoremap)
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", silentNoremap)
+map("n", "gR", "<cmd>TroubleToggle lsp_references<CR>", silentNoremap)
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", silentNoremap)
 map("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", silentNoremap)
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", silentNoremap)
@@ -67,10 +65,12 @@ local mappings = {
   -- Packer
   p = {
     name = "Packer",
+    C = { "<cmd>PackerClean<CR>", "Clean" },
     c = { "<cmd>PackerCompile<CR>", "Compile" },
     i = { "<cmd>PackerInstall<CR>", "Install" },
     r = { "<cmd>luafile %<CR>", "Reload" },
-    s = { "<cmd>PackerSync<CR>", "Sync" },
+    S = { "<cmd>PackerSync<CR>", "Sync" },
+    s = { "<cmd>PackerStatus<CR>", "Status" },
     u = { "<cmd>PackerUpdate<CR>", "Update" },
   },
 
@@ -108,11 +108,18 @@ local mappings = {
     n = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
   },
 
+  -- Diagnostics
   d = {
     name = "Diagnostics",
     ["["] = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Prev" },
-    ["]"] = { "<cmd>lua vim.lsp.diagnostic.goto_next()()<CR>", "Next" },
+    ["]"] = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Next" },
+    l = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Line" },
+    d = { "<cmd>TroubleToggle lsp_document_diagnostics<CR>", "Document" },
+    p = { "<cmd>TroubleToggle lsp_workspace_diagnostics<CR>", "Project" },
   },
+
+  -- Formatting
+  ["="] = { "<cmd>lua vim.lsp.buf.formatting_sync(nil, 1000)<CR>", "Formatting" },
 }
 
 -- : doesnt get you out of visual mode

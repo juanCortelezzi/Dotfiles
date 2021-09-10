@@ -33,6 +33,7 @@ return require("packer").startup(function(use)
   -- Formatting with lsp
   use({ "jose-elias-alvarez/null-ls.nvim" })
 
+  -- Completion cmp
   use({
     "hrsh7th/nvim-cmp",
     requires = {
@@ -55,6 +56,9 @@ return require("packer").startup(function(use)
   use({
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
+    cmd = {
+      "TroubleToggle",
+    },
     config = function()
       require("trouble").setup()
     end,
@@ -81,6 +85,7 @@ return require("packer").startup(function(use)
   -- Commentary comments
   use({
     "terrortylor/nvim-comment",
+    event = "BufRead",
     cmd = "CommentToggle",
     config = function()
       require("nvim_comment").setup({
@@ -113,12 +118,24 @@ return require("packer").startup(function(use)
   -- Harpoon the primeagen is happy
   use({ "ThePrimeagen/harpoon" })
 
+  -- Terminal
+  use({
+    "akinsho/toggleterm.nvim",
+    event = "BufWinEnter",
+    config = function()
+      require("wiz.toggleterm")
+    end,
+  })
+
   -- Icons
   use({ "kyazdani42/nvim-web-devicons" })
 
   -- Startify start screen
   -- REPLACE https://github.com/goolord/alpha-nvim
-  use({ "mhinz/vim-startify" })
+  use({
+    "mhinz/vim-startify",
+    event = "BufWinEnter",
+  })
 
   -- VimWiki
   use({
@@ -155,5 +172,11 @@ return require("packer").startup(function(use)
   })
 end)
 
--- Plug 'stevearc/vim-arduino'
--- Plug 'jpalardy/vim-slime'
+-- TODO:
+
+-- Toggleterm
+-- https://github.com/akinsho/toggleterm.nvim
+-- BarBar
+-- https://github.com/romgrk/barbar.nvim
+-- TodoComments
+-- https://github.com/folke/todo-comments.nvim
