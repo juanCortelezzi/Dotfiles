@@ -143,6 +143,14 @@ return require("packer").startup(function(use)
     ft = { "markdown" },
   })
 
+  use({
+    "romgrk/barbar.nvim",
+    config = function()
+      require("wiz.barbar")
+    end,
+    event = "BufWinEnter",
+  })
+
   -- Indent line
   use({
     "lukas-reineke/indent-blankline.nvim",
