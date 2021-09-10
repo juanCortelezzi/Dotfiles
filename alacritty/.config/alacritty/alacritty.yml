@@ -37,16 +37,24 @@ scrolling:
 
 font:
   normal:
-    family: Hack Nerd Font Mono
+    # family: "Hack Nerd Font Mono"
+    # family: "Iosevka Nerd Font Mono"
+    family: "JetBrains Mono Nerd Font Mono"
     style: Regular
   bold:
-    family: Hack Nerd Font Mono
+    # family: "Hack Nerd Font Mono"
+    # family: "Iosevka Nerd Font Mono"
+    family: "JetBrains Mono Nerd Font Mono"
     style: Bold
   italic:
-    family: Hack Nerd Font Mono
+    # family: "Hack Nerd Font Mono"
+    # family: "Iosevka Nerd Font Mono"
+    family: "JetBrains Mono Nerd Font Mono"
     style: Italic
   bold_italic:
-    family: Hack Nerd Font Mono
+    # family: "Hack Nerd Font Mono"
+    # family: "Iosevka Nerd Font Mono"
+    family: "JetBrains Mono Nerd Font Mono"
     style: Bold Italic
 
   # Point size
@@ -59,7 +67,6 @@ font:
   draw_bold_text_with_bright_colors: false
 
 schemes:
-
   Nord: &nord
     primary:
         background: '#2e3440'

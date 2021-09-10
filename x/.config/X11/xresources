@@ -1,8 +1,11 @@
 xterm*selectToClipboard: true
 xterm*disallowedWindowOps: 20,21,SetXProp
-*.font:	Hack Nerd Font Mono:pixelsize=16:antialias=true:autohint=true;
-! *.fontalt0:Braille:pixelsize=13:antialias=true:autohint=true;
-*.alpha: 0.95
+
+*.font:	JetBrains Mono Nerd Font Mono:pixelsize=16:antialias=true:autohint=true;
+*.fontalt0:Braille:pixelsize=13:antialias=true:autohint=true;
+!*.font: Iosevka Nerd Font Mono:pixelsize=16:antialias=true:autohint=true;
+!*.font: Hack Nerd Font Mono:pixelsize=16:antialias=true:autohint=true;
+!*.alpha: 0.95
 
 ! colors
 
