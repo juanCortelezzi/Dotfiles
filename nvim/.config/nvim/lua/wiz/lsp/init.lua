@@ -3,12 +3,73 @@ local null_ls = require("null-ls")
 local lspconfig = require("lspconfig")
 local lsp_config = {}
 
+-- FIX: lsp diagnostic signs
+
+local config = {
+  signs = {
+    active = true,
+    values = {
+      { name = "LspDiagnosticsSignError", text = "" },
+      { name = "LspDiagnosticsSignWarning", text = "" },
+      { name = "LspDiagnosticsSignHint", text = "" },
+      { name = "LspDiagnosticsSignInformation", text = "" },
+    },
+  },
+  virtual_text = {
+    prefix = "",
+    spacing = 0,
+  },
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+}
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, _, params, client_id, _)
+  local uri = params.uri
+  local bufnr = vim.uri_to_bufnr(uri)
+  if not bufnr then
+    return
+  end
+
+  local diagnostics = params.diagnostics
+  vim.lsp.diagnostic.save(diagnostics, bufnr, client_id)
+  if not vim.api.nvim_buf_is_loaded(bufnr) then
+    return
+  end
+  vim.lsp.diagnostic.display(diagnostics, bufnr, client_id, config)
+end
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = "single",
+})
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  border = "single",
+})
+
+for _, sign in ipairs(config.signs.values) do
+  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
+end
+
 -- symbols for autocomplete
 vim.lsp.protocol.CompletionItemKind = require("wiz.lsp.kind")
 
-lsp_config.capabilities = vim.lsp.protocol.make_client_capabilities()
--- add snippet support
-lsp_config.capabilities.textDocument.completion.completionItem.snippetSupport = true
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    "documentation",
+    "detail",
+    "additionalTextEdits",
+  },
+}
+
+local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if status_ok then
+  capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+end
+
+lsp_config.capabilities = capabilities
 
 function lsp_config.common_on_attach(client)
   require("wiz.lsp.dochighlight").lsp_highlight_document(client)

@@ -88,6 +88,7 @@ local mappings = {
     l = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Line" },
     d = { "<cmd>TroubleToggle lsp_document_diagnostics<CR>", "Document" },
     p = { "<cmd>TroubleToggle lsp_workspace_diagnostics<CR>", "Project" },
+    n = { "<cmd>TodoTrouble<CR>", "Notes" },
   },
 
   -- Telescope

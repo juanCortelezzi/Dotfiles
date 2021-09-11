@@ -1,6 +1,5 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
-
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -127,6 +126,17 @@ return require("packer").startup(function(use)
     end,
   })
 
+  -- TodoComments
+  use({
+    "folke/todo-comments.nvim",
+    cmd = {
+      "TodoTrouble",
+    },
+    config = function()
+      require("wiz.todocomments")
+    end,
+  })
+
   -- Icons
   use({ "kyazdani42/nvim-web-devicons" })
 
@@ -179,12 +189,3 @@ return require("packer").startup(function(use)
     },
   })
 end)
-
--- TODO:
-
--- Toggleterm
--- https://github.com/akinsho/toggleterm.nvim
--- BarBar
--- https://github.com/romgrk/barbar.nvim
--- TodoComments
--- https://github.com/folke/todo-comments.nvim
