@@ -76,9 +76,6 @@ return require("packer").startup(function(use)
       require("wiz.telescope")
     end,
     cmd = "Telescope",
-    requires = {
-      { "nvim-telescope/telescope-fzy-native.nvim" },
-    },
   })
 
   -- Commentary comments
@@ -90,6 +87,14 @@ return require("packer").startup(function(use)
       require("nvim_comment").setup({
         create_mappings = false,
       })
+    end,
+  })
+
+  -- Project jumping
+  use({
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("wiz.project")
     end,
   })
 

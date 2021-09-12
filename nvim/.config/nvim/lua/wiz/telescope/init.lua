@@ -4,12 +4,6 @@ require("nvim-web-devicons").setup({
   default = true,
 })
 
-vim.cmd([[
-autocmd ColorScheme * lua require'nvim-web-devicons'.setup()
-]])
-
-require("telescope").load_extension("fzy_native")
-
 require("telescope").setup({
   defaults = {
     mappings = {
@@ -58,4 +52,5 @@ require("telescope").setup({
     buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
   },
 })
-require("telescope").load_extension("fzy_native")
+
+require("telescope").load_extension("projects")
