@@ -19,7 +19,12 @@ return require("packer").startup(function(use)
   use({ "nvim-lua/plenary.nvim" })
 
   -- Lualine statusline
-  use({ "hoob3rt/lualine.nvim" })
+  use({
+    "hoob3rt/lualine.nvim",
+    config = function()
+      require("wiz.lualine")
+    end,
+  })
 
   -- Lsp
   use({
@@ -66,6 +71,9 @@ return require("packer").startup(function(use)
   -- Treesitter
   use({
     "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("wiz.treesitter")
+    end,
     run = ":TSUpdate",
   })
 
@@ -100,15 +108,6 @@ return require("packer").startup(function(use)
 
   -- Wich-key key help
   use({ "folke/which-key.nvim" })
-
-  -- Fugitive git
-  use({
-    "tpope/vim-fugitive",
-    cmd = {
-      "G",
-      "Git",
-    },
-  })
 
   -- Autopairs
   use({
@@ -147,9 +146,15 @@ return require("packer").startup(function(use)
 
   -- Startify start screen
   -- REPLACE https://github.com/goolord/alpha-nvim
+  -- use({
+  --   "mhinz/vim-startify",
+  --   event = "BufWinEnter",
+  -- })
   use({
-    "mhinz/vim-startify",
-    event = "BufWinEnter",
+    "goolord/alpha-nvim",
+    config = function()
+      require("wiz.alphanvim")
+    end,
   })
 
   -- VimWiki
@@ -172,6 +177,7 @@ return require("packer").startup(function(use)
     config = function()
       require("indent_blankline").setup({
         show_current_context = true,
+        buftype_exclude = { "terminal", "startify", "markdown", "nofile" },
       })
     end,
   })

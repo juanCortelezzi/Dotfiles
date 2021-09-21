@@ -4,7 +4,7 @@ require("lualine").setup({
     theme = "nord",
     component_separators = { "", "" },
     section_separators = { "", "" },
-    disabled_filetypes = {},
+    disabled_filetypes = { "toggleterm", "startify", "alpha" },
   },
   sections = {
     lualine_a = { "mode" },

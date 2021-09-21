@@ -1,5 +1,3 @@
-require("wiz.lualine")
-require("wiz.treesitter")
 require("wiz.plugins")
 require("wiz.mappings")
 require("wiz.sets")
