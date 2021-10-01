@@ -39,12 +39,23 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, _, params, cli
   vim.lsp.diagnostic.display(diagnostics, bufnr, client_id, config)
 end
 
+local border = {
+  { "╭", "FloatBorder" },
+  { "─", "FloatBorder" },
+  { "╮", "FloatBorder" },
+  { "│", "FloatBorder" },
+  { "╯", "FloatBorder" },
+  { "─", "FloatBorder" },
+  { "╰", "FloatBorder" },
+  { "│", "FloatBorder" },
+}
+
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "single",
+  border = border,
 })
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = "single",
+  border = border,
 })
 
 for _, sign in ipairs(config.signs.values) do
@@ -75,7 +86,7 @@ function lsp_config.common_on_attach(client)
   require("wiz.lsp.dochighlight").lsp_highlight_document(client)
   client.resolved_capabilities.document_formatting = false
   client.resolved_capabilities.document_range_formatting = false
-  vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]])
+  vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 2000)]])
 end
 
 lspconfig["tsserver"].setup({
@@ -143,6 +154,7 @@ null_ls.config({
     null_ls.builtins.formatting.prettier,
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.gofmt,
+    null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.stylua.with({
       extra_args = { "--config-path", lang_serevers_path .. "/lua/stylua.toml" },
     }),
@@ -153,22 +165,21 @@ lspconfig["null-ls"].setup({
   autostart = true,
 })
 
--- local nvim_lsp = require("lspconfig")
--- local wiz_lsp = require("wiz.lsp")
--- nvim_lsp.rust_analyzer.setup({
---   capabilities = wiz_lsp.capabilities,
---   on_attach = wiz_lsp.common_on_attach,
---   settings = {
---   ["rust-analyzer"] = {
---     assist = {
---       importGranularity = "module",
---       importPrefix = "by_self",
---     },
---     cargo = {
---       loadOutDirsFromCheck = true
---     },
---     procMacro = {
---       enable = true
---     },
---   }
--- }})
+lspconfig["rust_analyzer"].setup({
+  capabilities = lsp_config.capabilities,
+  on_attach = lsp_config.common_on_attach,
+  settings = {
+    ["rust-analyzer"] = {
+      assist = {
+        importGranularity = "module",
+        importPrefix = "by_self",
+      },
+      cargo = {
+        loadOutDirsFromCheck = true,
+      },
+      procMacro = {
+        enable = true,
+      },
+    },
+  },
+})
