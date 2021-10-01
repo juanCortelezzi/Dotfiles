@@ -125,7 +125,7 @@ local mappings = {
     L = { "<cmd>BufferOrderByLanguage<cr>", "Sort by language" },
 
     -- Formatting
-    f = { "<cmd>lua vim.lsp.buf.formatting_sync(nil, 1000)<CR>", "Formatting" },
+    f = { "<cmd>lua vim.lsp.buf.formatting_sync(nil, 2000)<CR>", "Formatting" },
 
     -- Colorizer
     c = {
