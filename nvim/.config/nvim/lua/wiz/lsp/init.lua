@@ -3,8 +3,6 @@ local null_ls = require("null-ls")
 local lspconfig = require("lspconfig")
 local lsp_config = {}
 
--- FIX: lsp diagnostic signs
-
 local config = {
   signs = {
     active = true,

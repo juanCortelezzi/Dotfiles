@@ -42,6 +42,7 @@ return require("packer").startup(function(use)
     "hrsh7th/nvim-cmp",
     requires = {
       "L3MON4D3/LuaSnip",
+      "rafamadriz/friendly-snippets",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
@@ -53,16 +54,11 @@ return require("packer").startup(function(use)
     end,
   })
 
-  -- Vsnip snippets
-  use({ "rafamadriz/friendly-snippets" })
-
   -- Trouble error info
   use({
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
-    cmd = {
-      "TroubleToggle",
-    },
+    cmd = { "TroubleToggle" },
     config = function()
       require("trouble").setup()
     end,
@@ -84,25 +80,24 @@ return require("packer").startup(function(use)
       require("wiz.telescope")
     end,
     cmd = "Telescope",
+    requires = {
+      {
+        "ahmedkhalf/project.nvim",
+        config = function()
+          require("wiz.project")
+        end,
+      },
+    },
   })
 
   -- Commentary comments
   use({
     "terrortylor/nvim-comment",
-    event = "BufRead",
     cmd = "CommentToggle",
     config = function()
       require("nvim_comment").setup({
         create_mappings = false,
       })
-    end,
-  })
-
-  -- Project jumping
-  use({
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("wiz.project")
     end,
   })
 
@@ -112,6 +107,7 @@ return require("packer").startup(function(use)
   -- Autopairs
   use({
     "windwp/nvim-autopairs",
+    event = "InsertEnter",
     after = "nvim-cmp",
     config = function()
       require("wiz.autopairs")
@@ -145,11 +141,6 @@ return require("packer").startup(function(use)
   use({ "kyazdani42/nvim-web-devicons" })
 
   -- Startify start screen
-  -- REPLACE https://github.com/goolord/alpha-nvim
-  -- use({
-  --   "mhinz/vim-startify",
-  --   event = "BufWinEnter",
-  -- })
   use({
     "goolord/alpha-nvim",
     config = function()
