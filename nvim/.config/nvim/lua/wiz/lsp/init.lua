@@ -13,6 +13,7 @@ local config = {
       { name = "LspDiagnosticsSignInformation", text = "" },
     },
   },
+
   virtual_text = {
     prefix = "",
     spacing = 0,
@@ -21,21 +22,6 @@ local config = {
   update_in_insert = false,
   severity_sort = true,
 }
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, _, params, client_id, _)
-  local uri = params.uri
-  local bufnr = vim.uri_to_bufnr(uri)
-  if not bufnr then
-    return
-  end
-
-  local diagnostics = params.diagnostics
-  vim.lsp.diagnostic.save(diagnostics, bufnr, client_id)
-  if not vim.api.nvim_buf_is_loaded(bufnr) then
-    return
-  end
-  vim.lsp.diagnostic.display(diagnostics, bufnr, client_id, config)
-end
 
 local border = {
   { "╭", "FloatBorder" },
@@ -48,13 +34,24 @@ local border = {
   { "│", "FloatBorder" },
 }
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = border,
-})
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, _, params, client_id, _)
+--   local uri = params.uri
+--   local bufnr = vim.uri_to_bufnr(uri)
+--   if not bufnr then
+--     return
+--   end
+--
+--   local diagnostics = params.diagnostics
+--   vim.lsp.diagnostic.save(diagnostics, bufnr, client_id)
+--   if not vim.api.nvim_buf_is_loaded(bufnr) then
+--     return
+--   end
+--   vim.lsp.diagnostic.display(diagnostics, bufnr, client_id, config)
+-- end
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = border,
-})
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, config)
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border })
 
 for _, sign in ipairs(config.signs.values) do
   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
@@ -147,6 +144,43 @@ lspconfig["sumneko_lua"].setup({
   },
 })
 
+-- lspconfig["rust_analyzer"].setup({})
+local rust_analyzer_path = lang_serevers_path .. "/rust/rust-analyzer-x86_64-unknown-linux-gnu"
+require("rust-tools").setup({
+  tools = {
+    autoSetHints = true,
+    hover_with_actions = true,
+    inlay_hints = {
+      show_parameter_hints = false,
+      parameter_hints_prefix = "",
+      other_hints_prefix = "",
+    },
+  },
+
+  server = {
+    capabilities = lsp_config.capabilities,
+    on_attach = lsp_config.common_on_attach,
+    cmd = { rust_analyzer_path },
+    settings = {
+      ["rust-analyzer"] = {
+        assist = {
+          importGranularity = "module",
+          importPrefix = "by_self",
+        },
+        cargo = {
+          loadOutDirsFromCheck = true,
+        },
+        procMacro = {
+          enable = true,
+        },
+        checkOnSave = {
+          command = "clippy",
+        },
+      },
+    },
+  },
+})
+
 null_ls.config({
   sources = {
     null_ls.builtins.formatting.prettier,
@@ -161,23 +195,4 @@ null_ls.config({
 
 lspconfig["null-ls"].setup({
   autostart = true,
-})
-
-lspconfig["rust_analyzer"].setup({
-  capabilities = lsp_config.capabilities,
-  on_attach = lsp_config.common_on_attach,
-  settings = {
-    ["rust-analyzer"] = {
-      assist = {
-        importGranularity = "module",
-        importPrefix = "by_self",
-      },
-      cargo = {
-        loadOutDirsFromCheck = true,
-      },
-      procMacro = {
-        enable = true,
-      },
-    },
-  },
 })
