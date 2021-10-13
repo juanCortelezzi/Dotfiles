@@ -19,8 +19,8 @@ map("n", "<S-h>", ":BufferPrevious<CR>", silentNoremap)
 -- Resize with arrows
 map("n", "<C-Up>", ":resize -2<CR>", silentNoremap)
 map("n", "<C-Down>", ":resize +2<CR>", silentNoremap)
-map("n", "<C-Left>", ":vertical resize -2<CR>", silentNoremap)
-map("n", "<C-Right>", ":vertical resize +2<CR>", silentNoremap)
+map("n", "<C-Left>", ":vertical resize +2<CR>", silentNoremap)
+map("n", "<C-Right>", ":vertical resize -2<CR>", silentNoremap)
 
 -- Better indenting
 map("v", "<", "<gv", silentNoremap)
@@ -29,7 +29,7 @@ map("v", ">", ">gv", silentNoremap)
 -- LSP
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", silentNoremap)
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", silentNoremap)
-map("n", "gR", "<cmd>TroubleToggle lsp_references<CR>", silentNoremap)
+map("n", "gr", "<cmd>TroubleToggle lsp_references<CR>", silentNoremap)
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", silentNoremap)
 map("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", silentNoremap)
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", silentNoremap)
