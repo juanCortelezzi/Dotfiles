@@ -4,7 +4,7 @@ require("toggleterm").setup({
     if term.direction == "horizontal" then
       return 20
     elseif term.direction == "vertical" then
-      return 60
+      return 70
     end
   end,
   open_mapping = [[<C-\>]],

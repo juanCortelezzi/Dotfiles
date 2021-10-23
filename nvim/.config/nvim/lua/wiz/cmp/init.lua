@@ -3,10 +3,6 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-local function T(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
 local luasnip = require("luasnip")
 require("luasnip/loaders/from_vscode").lazy_load()
 local cmp = require("cmp")
@@ -57,23 +53,27 @@ cmp.setup({
       select = true,
     }),
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if vim.fn.pumvisible() == 1 then
-        vim.api.nvim_feedkeys(T("<C-n>"), "n", true)
-      elseif has_words_before() and luasnip.expand_or_jumpable() then
-        vim.api.nvim_feedkeys(T("<Plug>luasnip-expand-or-jump"), "", true)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
       else
-        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+        fallback()
       end
     end, {
       "i",
       "s",
     }),
 
-    ["<S-Tab>"] = cmp.mapping(function()
-      if vim.fn.pumvisible() == 1 then
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-p>", true, true, true), "n", true)
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "", true)
+        luasnip.jump(-1)
+      else
+        fallback()
       end
     end, {
       "i",

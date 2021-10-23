@@ -178,7 +178,7 @@ return require("packer").startup(function(use)
   })
 
   -- Colorschemes
-  use({ "juancortelezzi/awesomecolors" })
+  use({ "~/Documents/Stuff/awesomecolors" })
   use({ "LunarVim/Colorschemes" })
   use({ "folke/tokyonight.nvim" })
 

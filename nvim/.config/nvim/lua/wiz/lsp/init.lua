@@ -34,21 +34,6 @@ local border = {
   { "│", "FloatBorder" },
 }
 
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, _, params, client_id, _)
---   local uri = params.uri
---   local bufnr = vim.uri_to_bufnr(uri)
---   if not bufnr then
---     return
---   end
---
---   local diagnostics = params.diagnostics
---   vim.lsp.diagnostic.save(diagnostics, bufnr, client_id)
---   if not vim.api.nvim_buf_is_loaded(bufnr) then
---     return
---   end
---   vim.lsp.diagnostic.display(diagnostics, bufnr, client_id, config)
--- end
-
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, config)
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border })
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border })
@@ -60,22 +45,21 @@ end
 -- symbols for autocomplete
 vim.lsp.protocol.CompletionItemKind = require("wiz.lsp.kind")
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    "documentation",
-    "detail",
-    "additionalTextEdits",
-  },
-}
+local function make_capabilities()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+  capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+      "documentation",
+      "detail",
+      "additionalTextEdits",
+    },
+  }
 
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if status_ok then
-  capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+  return require("cmp_nvim_lsp").update_capabilities(capabilities)
 end
 
-lsp_config.capabilities = capabilities
+lsp_config.capabilities = make_capabilities()
 
 function lsp_config.common_on_attach(client)
   require("wiz.lsp.dochighlight").lsp_highlight_document(client)
@@ -183,10 +167,17 @@ require("rust-tools").setup({
 
 null_ls.config({
   sources = {
+    -- js, ts, json
     null_ls.builtins.formatting.prettier,
+    -- python
     null_ls.builtins.formatting.black,
+    -- golang
     null_ls.builtins.formatting.gofmt,
+    -- rust
     null_ls.builtins.formatting.rustfmt,
+    -- bash
+    null_ls.builtins.diagnostics.shellcheck,
+    -- lua
     null_ls.builtins.formatting.stylua.with({
       extra_args = { "--config-path", lang_serevers_path .. "/lua/stylua.toml" },
     }),

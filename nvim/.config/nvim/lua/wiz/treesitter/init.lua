@@ -10,7 +10,6 @@ require("nvim-treesitter.configs").setup({
     "json",
     "lua",
     "rust",
-    "markdown",
   },
   highlight = {
     enable = true,
