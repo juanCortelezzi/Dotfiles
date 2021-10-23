@@ -1,7 +1,4 @@
-local cmd = vim.cmd
 local opt = vim.opt
-
-cmd("filetype plugin on")
 
 opt.hidden = true
 opt.termguicolors = true
@@ -9,6 +6,7 @@ opt.fileencoding = "utf8"
 
 -- File management
 opt.backup = false
+opt.writebackup = false
 opt.clipboard = "unnamedplus"
 opt.swapfile = false
 opt.backup = false
@@ -29,6 +27,7 @@ opt.textwidth = 80
 opt.smartcase = true
 opt.hlsearch = false
 opt.incsearch = true
+opt.ignorecase = true
 opt.completeopt = { "menuone", "noselect" }
 
 -- Text rendering
@@ -39,11 +38,12 @@ opt.number = true
 opt.relativenumber = true
 
 -- UI
+opt.guifont = "monospace:h17"
 opt.mouse = "a"
 opt.cmdheight = 1
 opt.signcolumn = "yes"
 opt.showmode = false
 opt.cursorline = true
-opt.scrolloff = 4
+opt.scrolloff = 8
 opt.updatetime = 300
 opt.splitright = true
