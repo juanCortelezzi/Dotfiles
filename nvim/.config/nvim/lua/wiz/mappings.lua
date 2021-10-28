@@ -10,8 +10,6 @@ vim.g.mapleader = " "
 -- esc esc -> jj not proud of this, but i got used to it
 map("i", "jj", "<ESC><ESC>", noremap)
 
-map("n", "<TAB>", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", noremap)
-
 -- Tab switch buffer
 map("n", "<S-l>", ":BufferNext<CR>", silentNoremap)
 map("n", "<S-h>", ":BufferPrevious<CR>", silentNoremap)
@@ -92,15 +90,15 @@ local mappings = {
   },
 
   -- Telescope
-  f = { "<cmd>Telescope file_browser<CR>", "Find files" },
+  f = { "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", "Fuzzy files" },
   g = { "<cmd>Telescope live_grep<CR>", "Project grep" },
   t = {
     name = "Telescope",
     t = { "<cmd>Telescope<CR>", "Builtin" },
     p = { "<cmd>Telescope projects<CR>", "Projects" },
     c = { "<cmd>Telescope colorscheme<CR>", "Colorscheme" },
-    f = { "<cmd>Telescope filetypes<CR>", "Filetypes" },
-    z = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy find" },
+    f = { "<cmd>Telescope file_browser<CR>", "Find files" },
+    z = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy buffer" },
   },
 
   -- Harpoon
