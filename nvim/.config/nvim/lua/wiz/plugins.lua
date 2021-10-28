@@ -9,18 +9,18 @@ end
 
 return require("packer").startup(function(use)
   -- packer autohandles itself
-  use({ "wbthomason/packer.nvim" })
-
-  -- temporary fix
-  use({ "antoinemadec/FixCursorHold.nvim" })
+  use("wbthomason/packer.nvim")
 
   -- useful for other plugins
-  use({ "nvim-lua/popup.nvim" })
-  use({ "nvim-lua/plenary.nvim" })
+  use("nvim-lua/popup.nvim")
+  use("nvim-lua/plenary.nvim")
+
+  -- Icons
+  use("kyazdani42/nvim-web-devicons")
 
   -- Lualine statusline
   use({
-    "hoob3rt/lualine.nvim",
+    "nvim-lualine/lualine.nvim",
     config = function()
       require("wiz.lualine")
     end,
@@ -35,20 +35,25 @@ return require("packer").startup(function(use)
   })
 
   -- Formatting with lsp
-  use({ "jose-elias-alvarez/null-ls.nvim" })
+  use("jose-elias-alvarez/null-ls.nvim")
+
+  -- Rust lsp
+  use("simrat39/rust-tools.nvim")
+
+  -- Wich-key key help
+  use({ "folke/which-key.nvim" })
 
   -- Completion cmp
+  use("L3MON4D3/LuaSnip")
+  use("rafamadriz/friendly-snippets")
+  use("saadparwaiz1/cmp_luasnip")
+  use("hrsh7th/cmp-buffer")
+  use("hrsh7th/cmp-nvim-lsp")
+  use("hrsh7th/cmp-nvim-lua")
+  use("hrsh7th/cmp-cmdline")
+  use("hrsh7th/cmp-path")
   use({
     "hrsh7th/nvim-cmp",
-    requires = {
-      "L3MON4D3/LuaSnip",
-      "rafamadriz/friendly-snippets",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-path",
-    },
     config = function()
       require("wiz.cmp")
     end,
@@ -57,7 +62,6 @@ return require("packer").startup(function(use)
   -- Trouble error info
   use({
     "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
     cmd = { "TroubleToggle" },
     config = function()
       require("trouble").setup()
@@ -73,7 +77,7 @@ return require("packer").startup(function(use)
     run = ":TSUpdate",
   })
 
-  -- Telescope teejdv
+  -- Telescope tj-devries
   use({
     "nvim-telescope/telescope.nvim",
     config = function()
@@ -101,9 +105,6 @@ return require("packer").startup(function(use)
     end,
   })
 
-  -- Wich-key key help
-  use({ "folke/which-key.nvim" })
-
   -- Autopairs
   use({
     "windwp/nvim-autopairs",
@@ -115,7 +116,7 @@ return require("packer").startup(function(use)
   })
 
   -- Harpoon the primeagen is happy
-  use({ "ThePrimeagen/harpoon" })
+  use("ThePrimeagen/harpoon")
 
   -- Terminal
   use({
@@ -137,19 +138,12 @@ return require("packer").startup(function(use)
     end,
   })
 
-  -- Icons
-  use({ "kyazdani42/nvim-web-devicons" })
-
   -- Startify start screen
   use({
     "goolord/alpha-nvim",
     config = function()
       require("wiz.alphanvim")
     end,
-  })
-
-  use({
-    "simrat39/rust-tools.nvim",
   })
 
   -- VimWiki
@@ -178,9 +172,9 @@ return require("packer").startup(function(use)
   })
 
   -- Colorschemes
-  use({ "~/Documents/Stuff/awesomecolors" })
-  use({ "LunarVim/Colorschemes" })
-  use({ "folke/tokyonight.nvim" })
+  use("~/Documents/Stuff/awesomecolors")
+  use("LunarVim/Colorschemes")
+  use("folke/tokyonight.nvim")
 
   -- Colorizer
   use({
