@@ -41,7 +41,12 @@ return require("packer").startup(function(use)
   use("simrat39/rust-tools.nvim")
 
   -- Wich-key key help
-  use({ "folke/which-key.nvim" })
+  use({
+    "folke/which-key.nvim",
+    config = function()
+      require("wiz.whichkey")
+    end,
+  })
 
   -- Completion cmp
   use("L3MON4D3/LuaSnip")

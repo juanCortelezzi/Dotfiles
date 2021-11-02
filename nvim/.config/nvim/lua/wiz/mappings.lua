@@ -1,7 +1,6 @@
-require("wiz.whichkey")
+local wk = require("which-key")
 local map = vim.api.nvim_set_keymap
 local noremap = { noremap = true }
-local silentNoremap = { noremap = true, silent = true }
 
 -- map leader -> <SPACE>
 map("n", "<Space>", "", {})
@@ -9,28 +8,6 @@ vim.g.mapleader = " "
 
 -- esc esc -> jj not proud of this, but i got used to it
 map("i", "jj", "<ESC><ESC>", noremap)
-
--- Tab switch buffer
-map("n", "<S-l>", ":BufferNext<CR>", silentNoremap)
-map("n", "<S-h>", ":BufferPrevious<CR>", silentNoremap)
-
--- Resize with arrows
-map("n", "<C-Up>", ":resize -2<CR>", silentNoremap)
-map("n", "<C-Down>", ":resize +2<CR>", silentNoremap)
-map("n", "<C-Left>", ":vertical resize +2<CR>", silentNoremap)
-map("n", "<C-Right>", ":vertical resize -2<CR>", silentNoremap)
-
--- Better indenting
-map("v", "<", "<gv", silentNoremap)
-map("v", ">", ">gv", silentNoremap)
-
--- LSP
-map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", silentNoremap)
-map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", silentNoremap)
-map("n", "gr", "<cmd>TroubleToggle lsp_references<CR>", silentNoremap)
-map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", silentNoremap)
-map("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", silentNoremap)
-map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", silentNoremap)
 
 -- FUCK ARROW KEYS
 map("n", "<Up>", "<Nop>", noremap)
@@ -46,28 +23,37 @@ map("v", "<Down>", "<Nop>", noremap)
 map("v", "<Left>", "<Nop>", noremap)
 map("v", "<Right>", "<Nop>", noremap)
 
--- " idk what this is but it scares me
+-- idk what the fuck is this but it scares me.
 map("n", "Q", "<Nop>", noremap)
 
-local opts = {
+wk.register({
+  g = {
+    d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Get Definition" },
+    D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Get Declaration" },
+    r = { "<cmd>TroubleToggle lsp_references<CR>", "Get References" },
+    i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Get Implementation" },
+    s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Get Signature" },
+  },
+  K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
+  ["<S-l>"] = { ":BufferNext<CR>", "Buffer Next" },
+  ["<S-h>"] = { ":BufferPrevious<CR>", "Buffer Prev" },
+
+  -- Resize with arrows
+  ["<C-Up>"] = { ":resize -2<CR>", "Resize Up" },
+  ["<C-Down>"] = { ":resize +2<CR>", "Resize Down" },
+  ["<C-Left>"] = { ":vertical resize +2<CR>", "Resize Left" },
+  ["<C-Right>"] = { ":vertical resize -2<CR>", "Resize Right" },
+}, {
   mode = "n", -- NORMAL mode
-  prefix = "<leader>",
+  prefix = "",
   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
   silent = true, -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
   nowait = false, -- use `nowait` when creating keymaps
-}
+})
 
-local vopts = {
-  mode = "v", -- VISUAL mode
-  prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
-}
-
-local mappings = {
+-- LEADER MAPPINGS
+wk.register({
 
   ["/"] = { "<cmd>CommentToggle<CR>", "Comment" },
   a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Codeaction" },
@@ -145,14 +131,28 @@ local mappings = {
     s = { "<cmd>PackerStatus<CR>", "Status" },
     u = { "<cmd>PackerUpdate<CR>", "Update" },
   },
-}
+}, {
+  mode = "n", -- NORMAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = false, -- use `nowait` when creating keymaps
+})
 
+-- VISUAL MAPPINGS
 -- : doesnt get you out of visual mode
 -- <cmd> does
-local vmappings = {
-  ["/"] = { ":CommentToggle<CR>", "Comment" },
-}
-
-local wk = require("which-key")
-wk.register(mappings, opts)
-wk.register(vmappings, vopts)
+wk.register({
+  ["<leader>/"] = { ":CommentToggle<CR>", "Comment" },
+  -- Better indenting
+  ["<"] = { "<gv", "Indent Left" },
+  [">"] = { ">gv", "Indent Right" },
+}, {
+  mode = "v", -- VISUAL mode
+  prefix = "",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+})
