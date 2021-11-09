@@ -79,12 +79,14 @@ wk.register({
   f = { "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", "Fuzzy files" },
   g = { "<cmd>Telescope live_grep<CR>", "Project grep" },
   t = {
-    name = "Telescope",
+    name = "Telescope & tools",
     t = { "<cmd>Telescope<CR>", "Builtin" },
     p = { "<cmd>Telescope projects<CR>", "Projects" },
     c = { "<cmd>Telescope colorscheme<CR>", "Colorscheme" },
     f = { "<cmd>Telescope file_browser<CR>", "Find files" },
     z = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy buffer" },
+    g = { "<cmd>lua require('wiz.toggleterm.custom').lazygit_toggle()<CR>", "Lazygit" },
+    l = { "<cmd>lua require('wiz.toggleterm.custom').lf_toggle()<CR>", "Lazygit" },
   },
 
   -- Harpoon
@@ -99,7 +101,7 @@ wk.register({
   -- Buffer Actions
   b = {
     name = "Buffer",
-    t = { "<cmd>Telescope buffers<CR>", "Telescope" },
+    s = { "<cmd>Telescope buffers<CR>", "Telescope search" },
     j = { "<cmd>BufferPick<CR>", "Jump" },
     w = { "<cmd>BufferWipeout<CR>", "Wipeout" },
     e = { "<cmd>BufferCloseAllButCurrent<cr>", "Close all but current" },
