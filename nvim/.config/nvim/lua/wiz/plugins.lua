@@ -40,14 +40,6 @@ return require("packer").startup(function(use)
   -- Rust lsp
   use("simrat39/rust-tools.nvim")
 
-  -- Wich-key key help
-  use({
-    "folke/which-key.nvim",
-    config = function()
-      require("wiz.whichkey")
-    end,
-  })
-
   -- Completion cmp
   use("L3MON4D3/LuaSnip")
   use("rafamadriz/friendly-snippets")
@@ -176,11 +168,6 @@ return require("packer").startup(function(use)
     end,
   })
 
-  -- Colorschemes
-  use("~/Documents/Stuff/awesomecolors")
-  use("LunarVim/Colorschemes")
-  use("folke/tokyonight.nvim")
-
   -- Colorizer
   use({
     "norcalli/nvim-colorizer.lua",
@@ -193,4 +180,17 @@ return require("packer").startup(function(use)
       "ColorizerReloadAllBuffers",
     },
   })
+
+  -- Wich-key key help
+  use({
+    "folke/which-key.nvim",
+    config = function()
+      require("wiz.whichkey")
+    end,
+  })
+
+  -- Colorschemes
+  use("~/Documents/Stuff/awesomecolors")
+  use("LunarVim/Colorschemes")
+  use("folke/tokyonight.nvim")
 end)
