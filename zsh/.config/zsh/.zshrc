@@ -2,7 +2,7 @@ USE_PROMPT="" # spaceship, typewritten or wiz
 HISTFILE=~/.cache/zsh/zhistory
 HISTSIZE=5000
 SAVEHIST=5000
-WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
+WORDCHARS=${WORDCHARS//\/[&.;]} # Don't consider certain characters part of the word
 
 ## Options section
 # setopt autocd               # if only directory path is entered, cd there.
