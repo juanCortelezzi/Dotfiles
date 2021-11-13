@@ -86,7 +86,7 @@ wk.register({
     f = { "<cmd>Telescope file_browser<CR>", "Find files" },
     z = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy buffer" },
     g = { "<cmd>lua require('wiz.toggleterm.custom').lazygit_toggle()<CR>", "Lazygit" },
-    l = { "<cmd>lua require('wiz.toggleterm.custom').lf_toggle()<CR>", "Lazygit" },
+    l = { "<cmd>lua require('wiz.toggleterm.custom').lf_toggle()<CR>", "Lf" },
   },
 
   -- Harpoon
