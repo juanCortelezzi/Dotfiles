@@ -9,6 +9,12 @@ vim.g.mapleader = " "
 -- esc esc -> jj not proud of this, but i got used to it
 map("i", "jj", "<ESC><ESC>", noremap)
 
+-- luasnip
+map("i", "<C-j>", "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-j>'", {
+  silent = true,
+  expr = true,
+})
+
 -- FUCK ARROW KEYS
 map("n", "<Up>", "<Nop>", noremap)
 map("n", "<Down>", "<Nop>", noremap)
@@ -34,6 +40,7 @@ wk.register({
     i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Get Implementation" },
     s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Get Signature" },
   },
+
   K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
   ["<S-l>"] = { ":BufferNext<CR>", "Buffer Next" },
   ["<S-h>"] = { ":BufferPrevious<CR>", "Buffer Prev" },
