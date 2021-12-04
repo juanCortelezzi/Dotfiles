@@ -1,7 +1,9 @@
+require("impatient")
+
 require("wiz.sets")
 
 -- set colorscheme
-vim.g.colors_name = "marambio"
+vim.cmd([[colorscheme marambio]])
 
 -- Tokyonight config
 vim.g.tokyonight_style = "night"
