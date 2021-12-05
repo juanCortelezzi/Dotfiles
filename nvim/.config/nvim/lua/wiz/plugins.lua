@@ -1,10 +1,9 @@
-local execute = vim.api.nvim_command
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
   fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
-  execute("packadd packer.nvim")
+  vim.api.nvim_command("packadd packer.nvim")
 end
 
 require("packer").startup({
@@ -13,6 +12,7 @@ require("packer").startup({
     use("wbthomason/packer.nvim")
     use("lewis6991/impatient.nvim")
     use("antoinemadec/FixCursorHold.nvim") -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
+    use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
 
     -- useful for other plugins
     use({ "nvim-lua/popup.nvim", module = "popup" })
@@ -43,14 +43,13 @@ require("packer").startup({
     -- Rust lsp
     use("simrat39/rust-tools.nvim")
 
-    -- Completion cmp
+    -- Completion cmp and snippets luasnip
     use({
       "L3MON4D3/LuaSnip",
       module = "luasnip",
       config = function()
         require("luasnip/loaders/from_vscode").lazy_load()
       end,
-
       requires = "rafamadriz/friendly-snippets",
     })
 
@@ -101,21 +100,32 @@ require("packer").startup({
 
     -- Telescope tj-devries
     use({
+      "ahmedkhalf/project.nvim",
+      after = "telescope.nvim",
+      config = function()
+        require("wiz.project")
+        require("telescope").load_extension("projects")
+      end,
+      requires = "telescope.nvim",
+    })
+
+    use({
+      "nvim-telescope/telescope-fzf-native.nvim",
+      after = "telescope.nvim",
+      config = function()
+        require("telescope").load_extension("fzf")
+      end,
+      run = "make",
+      requires = "telescope.nvim",
+    })
+
+    use({
       "nvim-telescope/telescope.nvim",
+      module = "telescope",
+      cmd = "Telescope",
       config = function()
         require("wiz.telescope")
       end,
-      module = "telescope",
-      cmd = "Telescope",
-      requires = {
-        {
-          "ahmedkhalf/project.nvim",
-          config = function()
-            require("wiz.project")
-          end,
-        },
-        { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-      },
     })
 
     -- Commentary comments
@@ -144,9 +154,7 @@ require("packer").startup({
     -- TodoComments
     use({
       "folke/todo-comments.nvim",
-      cmd = {
-        "TodoTrouble",
-      },
+      cmd = "TodoTrouble",
       config = function()
         require("wiz.todocomments")
       end,
@@ -163,12 +171,13 @@ require("packer").startup({
     -- VimWiki
     use({
       "vimwiki/vimwiki",
-      ft = { "markdown" },
+      ft = "markdown",
       config = function()
         require("wiz.vimwiki")
       end,
     })
 
+    -- Barbar navbar buffers
     use({
       "romgrk/barbar.nvim",
       event = "BufWinEnter",
@@ -192,14 +201,14 @@ require("packer").startup({
     -- Colorizer
     use({
       "norcalli/nvim-colorizer.lua",
-      config = function()
-        require("wiz.colorizer")
-      end,
       cmd = {
         "ColorizerAttachToBuffer",
         "ColorizerDetachFromBuffer",
         "ColorizerReloadAllBuffers",
       },
+      config = function()
+        require("wiz.colorizer")
+      end,
     })
 
     -- Wich-key key help
