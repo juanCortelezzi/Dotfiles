@@ -47,7 +47,7 @@ cmp.setup({
     { name = "buffer", keyword_lenght = 5 },
     { name = "treesitter" },
   },
-  experimental = { ghost_text = true },
+  experimental = { ghost_text = false },
 })
 
 -- Use buffer source for `/`.
