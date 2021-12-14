@@ -27,7 +27,8 @@ if [ -d "/etc/X11/xinit/xinitrc.d" ] ; then
 fi
 
 # set display brightness
-xbacklight -set 40 &
+# xbacklight -set 40 &
+tostadora light set 40 &
 
 # set wallpaper
 xwallpaper --zoom "$HOME/Pictures/Wallpapers/astronaut-jellyfish.png" &
