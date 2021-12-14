@@ -7,10 +7,10 @@ local config = {
   signs = {
     active = true,
     values = {
-      { name = "LspDiagnosticsSignError", text = "" },
-      { name = "LspDiagnosticsSignWarning", text = "" },
-      { name = "LspDiagnosticsSignHint", text = "" },
-      { name = "LspDiagnosticsSignInformation", text = "" },
+      { name = "DiagnosticSignError", text = "" },
+      { name = "DiagnosticSignWarn", text = "" },
+      { name = "DiagnosticSignHint", text = "" },
+      { name = "DiagnosticSignInfo", text = "" },
     },
   },
 
@@ -171,7 +171,7 @@ require("rust-tools").setup({
   },
 })
 
-null_ls.config({
+null_ls.setup({
   sources = {
     -- js, ts, json
     null_ls.builtins.formatting.prettier,
@@ -188,8 +188,4 @@ null_ls.config({
       extra_args = { "--config-path", lang_serevers_path .. "/lua/stylua.toml" },
     }),
   },
-})
-
-lspconfig["null-ls"].setup({
-  autostart = true,
 })
