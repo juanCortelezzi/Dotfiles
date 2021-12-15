@@ -40,9 +40,7 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = border,
 })
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = border,
-})
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
 
 for _, sign in ipairs(config.signs.values) do
   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
@@ -74,19 +72,25 @@ function lsp_config.common_on_attach(client)
   vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 2000)]])
 end
 
+local lang_serevers_path = vim.fn.stdpath("config") .. "/lang-servers"
+
 lspconfig["tsserver"].setup({
   capabilities = lsp_config.capabilities,
   on_attach = lsp_config.common_on_attach,
+  cmd = { lang_serevers_path .. "/typescript/node_modules/typescript-language-server/lib/cli.js", "--stdio" },
 })
 
-lspconfig["gopls"].setup({
+lspconfig["emmet_ls"].setup({
   capabilities = lsp_config.capabilities,
   on_attach = lsp_config.common_on_attach,
+  cmd = { lang_serevers_path .. "/emmet/node_modules/emmet-ls/out/server.js", "--stdio" },
+  filetypes = { "html", "css" },
 })
 
 lspconfig["pyright"].setup({
   capabilities = lsp_config.capabilities,
   on_attach = lsp_config.common_on_attach,
+  cmd = { lang_serevers_path .. "/python/node_modules/pyright/langserver.index.js", "--stdio" },
   settings = {
     python = {
       analysis = {
@@ -99,9 +103,13 @@ lspconfig["pyright"].setup({
   },
 })
 
-local lang_serevers_path = vim.fn.stdpath("config") .. "/lang-servers"
+lspconfig["gopls"].setup({
+  capabilities = lsp_config.capabilities,
+  on_attach = lsp_config.common_on_attach,
+})
+
 local sumneko_root_path = lang_serevers_path .. "/lua/lua-language-server"
-local sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
+local sumneko_binary_path = sumneko_root_path .. "/bin/Linux/lua-language-server"
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
@@ -110,7 +118,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 lspconfig["sumneko_lua"].setup({
   capabilities = lsp_config.capabilities,
   on_attach = lsp_config.common_on_attach,
-  cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+  cmd = { sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua" },
   settings = {
     Lua = {
       runtime = {
@@ -134,8 +142,8 @@ lspconfig["sumneko_lua"].setup({
   },
 })
 
--- lspconfig["rust_analyzer"].setup({})
 local rust_analyzer_path = lang_serevers_path .. "/rust/rust-analyzer-x86_64-unknown-linux-gnu"
+
 require("rust-tools").setup({
   tools = {
     autoSetHints = true,
@@ -174,7 +182,10 @@ require("rust-tools").setup({
 null_ls.setup({
   sources = {
     -- js, ts, json
-    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.formatting.prettier.with({
+      command = lang_serevers_path .. "/typescript/node_modules/prettier/bin-prettier.js",
+      args = { "--stdin-filepath", "$FILENAME" },
+    }),
     -- python
     null_ls.builtins.formatting.black,
     -- golang
