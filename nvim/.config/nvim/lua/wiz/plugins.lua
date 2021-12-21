@@ -232,7 +232,7 @@ require("packer").startup({
     })
 
     -- Colorschemes
-    use("~/Documents/Stuff/awesomecolors")
+    use("~/Documents/Random-programes/awesomecolors")
     use("folke/tokyonight.nvim")
   end,
   config = {
