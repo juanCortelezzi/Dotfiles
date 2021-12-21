@@ -48,7 +48,7 @@ require("packer").startup({
       "L3MON4D3/LuaSnip",
       module = "luasnip",
       config = function()
-        require("luasnip/loaders/from_vscode").lazy_load()
+        require("luasnip/loaders/from_vscode").load()
       end,
       requires = "rafamadriz/friendly-snippets",
     })
@@ -151,6 +151,18 @@ require("packer").startup({
       end,
     })
 
+    use({
+      "kyazdani42/nvim-tree.lua",
+      cmd = {
+        "NvimTreeToggle",
+        "NvimTreeRefresh",
+      },
+      config = function()
+        require("wiz.nvimtree")
+      end,
+      requires = "kyazdani42/nvim-web-devicons",
+    })
+
     -- TodoComments
     use({
       "folke/todo-comments.nvim",
@@ -178,13 +190,13 @@ require("packer").startup({
     })
 
     -- Barbar navbar buffers
-    use({
-      "romgrk/barbar.nvim",
-      event = "BufWinEnter",
-      config = function()
-        require("wiz.barbar")
-      end,
-    })
+    -- use({
+    --   "romgrk/barbar.nvim",
+    --   event = "BufWinEnter",
+    --   config = function()
+    --     require("wiz.barbar")
+    --   end,
+    -- })
 
     -- Indent line
     use({
@@ -221,7 +233,6 @@ require("packer").startup({
 
     -- Colorschemes
     use("~/Documents/Stuff/awesomecolors")
-    use("LunarVim/Colorschemes")
     use("folke/tokyonight.nvim")
   end,
   config = {

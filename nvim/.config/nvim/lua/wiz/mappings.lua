@@ -82,6 +82,12 @@ wk.register({
     n = { "<cmd>TodoTrouble<CR>", "Notes" },
   },
 
+  -- NvimTree
+  [" "] = {
+    "<cmd>NvimTreeToggle<CR>",
+    "NvimTreeToggle",
+  },
+
   -- Telescope
   f = { "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", "Fuzzy files" },
   g = { "<cmd>Telescope live_grep<CR>", "Project grep" },
