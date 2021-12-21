@@ -34,7 +34,15 @@ require("telescope").setup({
         ["<esc>"] = actions.close,
       },
     },
-    file_ignore_patterns = { "node_modules/.*", "target/.*", "bin/.*", "dist/.*", ".next/.*", ".git/.*" },
+    file_ignore_patterns = {
+      "node_modules/.*",
+      "target/.*",
+      "bin/.*",
+      "dist/.*",
+      ".next/.*",
+      ".git/.*",
+      "__pycache__",
+    },
     buffer_previewer_maker = new_maker,
   },
   extensions = {
