@@ -67,18 +67,37 @@ lspconfig["tsserver"].setup({
   cmd = { lang_servers_path .. "/typescript/node_modules/typescript-language-server/lib/cli.js", "--stdio" },
 })
 
-local vscode_lang_server_path = lang_servers_path .. "/htmlcss/node_modules/vscode-langservers-extracted/bin"
+local vs_lang_server_path = lang_servers_path .. "/htmlcss/node_modules/vscode-langservers-extracted/bin"
 
 lspconfig["cssls"].setup({
   capabilities = lsp_config.capabilities,
   on_attach = lsp_config.common_on_attach,
-  cmd = { vscode_lang_server_path .. "/vscode-css-language-server", "--stdio" },
+  cmd = { vs_lang_server_path .. "/vscode-css-language-server", "--stdio" },
 })
 
 lspconfig["html"].setup({
   capabilities = lsp_config.capabilities,
   on_attach = lsp_config.common_on_attach,
-  cmd = { vscode_lang_server_path .. "/vscode-html-language-server", "--stdio" },
+  cmd = { vs_lang_server_path .. "/vscode-html-language-server", "--stdio" },
+})
+
+lspconfig["tailwindcss"].setup({
+  cmd = {
+    lang_servers_path .. "/tailwind/node_modules/@tailwindcss/language-server/bin/tailwindcss-language-server",
+    "--stdio",
+  },
+  filetypes = {
+    "html",
+    "markdown",
+    "mdx",
+    "css",
+    "postcss",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+  },
+  root_dir = util.root_pattern("tailwind.config.js", "tailwind.config.ts"),
 })
 
 lspconfig["emmet_ls"].setup({
@@ -187,10 +206,6 @@ null_ls.setup({
     null_ls.builtins.formatting.prettier.with({
       command = lang_servers_path .. "/typescript/node_modules/prettier/bin-prettier.js",
       args = { "--stdin-filepath", "$FILENAME" },
-    }),
-    null_ls.builtins.diagnostics.eslint_d.with({
-      command = lang_servers_path .. "/typescript/node_modules/eslint_d/bin/eslint_d.js",
-      args = { "--fix-to-stdout", "--stdin", "--stdin-filepath", "$FILENAME" },
     }),
     -- python
     null_ls.builtins.formatting.black,

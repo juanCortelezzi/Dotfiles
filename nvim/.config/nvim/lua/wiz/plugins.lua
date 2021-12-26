@@ -234,6 +234,7 @@ require("packer").startup({
     -- Colorschemes
     use("~/Documents/Random-programes/awesomecolors")
     use("folke/tokyonight.nvim")
+    use({ "rose-pine/neovim", as = "rose-pine" })
   end,
   config = {
     -- Move to lua dir so impatient.nvim can cache it
