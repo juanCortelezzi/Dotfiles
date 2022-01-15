@@ -31,7 +31,7 @@ fi
 tostadora light set 40 &
 
 # set wallpaper
-xwallpaper --zoom "$HOME/Pictures/Wallpapers/astronaut-jellyfish.png" &
+xwallpaper --zoom "$HOME/Pictures/Wallpapers/circle-wave.png" &
 
 # start ssh agent
 eval "$(ssh-agent -s)"
