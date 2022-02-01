@@ -19,6 +19,7 @@ local config = {
     prefix = "",
     spacing = 0,
   },
+
   underline = true,
   update_in_insert = false,
   severity_sort = true,
@@ -44,13 +45,11 @@ end
 -- symbols for autocomplete
 vim.lsp.protocol.CompletionItemKind = require("wiz.lsp.kind")
 
-local function make_capabilities()
+lsp_config.capabilities = (function()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
   return require("cmp_nvim_lsp").update_capabilities(capabilities)
-end
-
-lsp_config.capabilities = make_capabilities()
+end)()
 
 function lsp_config.common_on_attach(client)
   require("wiz.lsp.dochighlight").lsp_highlight_document(client)
@@ -81,24 +80,26 @@ lspconfig["html"].setup({
   cmd = { vs_lang_server_path .. "/vscode-html-language-server", "--stdio" },
 })
 
-lspconfig["tailwindcss"].setup({
-  cmd = {
-    lang_servers_path .. "/tailwind/node_modules/@tailwindcss/language-server/bin/tailwindcss-language-server",
-    "--stdio",
-  },
-  filetypes = {
-    "html",
-    "markdown",
-    "mdx",
-    "css",
-    "postcss",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-  },
-  root_dir = util.root_pattern("tailwind.config.js", "tailwind.config.ts"),
-})
+-- lspconfig["tailwindcss"].setup({
+--   capabilities = lsp_config.capabilities,
+--   on_attach = lsp_config.common_on_attach,
+--   cmd = {
+--     lang_servers_path .. "/tailwind/node_modules/@tailwindcss/language-server/bin/tailwindcss-language-server",
+--     "--stdio",
+--   },
+--   filetypes = {
+--     "html",
+--     "markdown",
+--     "mdx",
+--     "css",
+--     "postcss",
+--     "javascript",
+--     "javascriptreact",
+--     "typescript",
+--     "typescriptreact",
+--   },
+--   root_dir = util.root_pattern(".git", "tailwind.config.js", "tailwind.config.ts"),
+-- })
 
 lspconfig["emmet_ls"].setup({
   capabilities = lsp_config.capabilities,
