@@ -42,8 +42,6 @@ wk.register({
   },
 
   K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
-  ["<S-l>"] = { ":BufferNext<CR>", "Buffer Next" },
-  ["<S-h>"] = { ":BufferPrevious<CR>", "Buffer Prev" },
 
   -- Resize with arrows
   ["<C-Up>"] = { ":resize -2<CR>", "Resize Up" },
@@ -64,7 +62,6 @@ wk.register({
 
   ["/"] = { "<cmd>CommentToggle<CR>", "Comment" },
   a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Codeaction" },
-  c = { "<cmd>BufferClose<CR>", "Close Buffer" },
 
   -- Renaming action
   r = {
@@ -74,8 +71,8 @@ wk.register({
   -- Diagnostics
   d = {
     name = "Diagnostics",
-    ["["] = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Prev" },
-    ["]"] = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Next" },
+    ["["] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Prev" },
+    ["]"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next" },
     l = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Line" },
     d = { "<cmd>TroubleToggle document_diagnostics<CR>", "Document" },
     p = { "<cmd>TroubleToggle workspace_diagnostics<CR>", "Project" },
@@ -115,13 +112,7 @@ wk.register({
   b = {
     name = "Buffer",
     s = { "<cmd>Telescope buffers<CR>", "Telescope search" },
-    j = { "<cmd>BufferPick<CR>", "Jump" },
-    w = { "<cmd>BufferWipeout<CR>", "Wipeout" },
-    e = { "<cmd>BufferCloseAllButCurrent<cr>", "Close all but current" },
-    h = { "<cmd>BufferCloseBuffersLeft<cr>", "Close all to the left" },
-    l = { "<cmd>BufferCloseBuffersRight<cr>", "Close all to the right" },
-    D = { "<cmd>BufferOrderByDirectory<cr>", "Sort by directory" },
-    L = { "<cmd>BufferOrderByLanguage<cr>", "Sort by language" },
+    d = { "<cmd>bdelete<CR>", "Close Current Buffer" },
 
     -- Formatting
     f = { "<cmd>lua vim.lsp.buf.formatting_sync(nil, 2000)<CR>", "Formatting" },

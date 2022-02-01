@@ -189,19 +189,9 @@ require("packer").startup({
       end,
     })
 
-    -- Barbar navbar buffers
-    -- use({
-    --   "romgrk/barbar.nvim",
-    --   event = "BufWinEnter",
-    --   config = function()
-    --     require("wiz.barbar")
-    --   end,
-    -- })
-
     -- Indent line
     use({
       "lukas-reineke/indent-blankline.nvim",
-      event = "BufWinEnter",
       config = function()
         require("indent_blankline").setup({
           show_current_context = true,
