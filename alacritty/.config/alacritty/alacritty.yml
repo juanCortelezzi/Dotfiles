@@ -21,9 +21,9 @@ window:
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
 
-  decorations: none
+  decorations: full
 
-  startup_mode: Windowed
+  startup_mode: Maximized
 
   # Window title
   title: Tostadora
@@ -37,9 +37,9 @@ scrolling:
 
 font:
   normal:
-    # family: "Hack Nerd Font Mono"
+    family: "Hack Nerd Font Mono"
     # family: "Iosevka Nerd Font Mono"
-    family: "JetBrains Mono Nerd Font Mono"
+    # family: "JetBrains Mono Nerd Font Mono"
     style: Regular
   bold:
     # family: "Hack Nerd Font Mono"
