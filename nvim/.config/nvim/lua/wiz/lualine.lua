@@ -4,7 +4,7 @@ require("lualine").setup({
     theme = "nord",
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
-    disabled_filetypes = { "toggleterm", "startify", "alpha" },
+    disabled_filetypes = { "toggleterm", "startify", "alpha", "NvimTree", "Trouble" },
     always_divide_middle = false,
   },
   sections = {
