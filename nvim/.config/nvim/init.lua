@@ -1,3 +1,7 @@
+-- README:
+-- if installing for the first time, comment impatient and require the plugins
+-- first
+
 require("impatient")
 require("wiz.sets")
 

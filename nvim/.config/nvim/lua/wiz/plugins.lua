@@ -40,18 +40,14 @@ require("packer").startup({
     })
 
     -- Lsp
+    use("jose-elias-alvarez/null-ls.nvim")
+    use({ "simrat39/rust-tools.nvim", module = "rust-tools" })
     use({
       "neovim/nvim-lspconfig",
       config = function()
         require("wiz.lsp")
       end,
     })
-
-    -- Formatting with lsp
-    use("jose-elias-alvarez/null-ls.nvim")
-
-    -- Rust lsp
-    use("simrat39/rust-tools.nvim")
 
     -- Completion cmp and snippets luasnip
     use({
