@@ -1,15 +1,25 @@
 local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
+-- Automatically install packer
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
-  vim.api.nvim_command("packadd packer.nvim")
+  PACKER_BOOTSTRAP = fn.system({
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  })
+  print("Installing packer close and reopen Neovim...")
+  vim.cmd([[packadd packer.nvim]])
 end
 
 require("packer").startup({
   function(use)
     -- packer autohandles itself
     use("wbthomason/packer.nvim")
+    use("williamboman/nvim-lsp-installer")
     use("lewis6991/impatient.nvim")
     use("antoinemadec/FixCursorHold.nvim") -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
     use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
@@ -57,7 +67,7 @@ require("packer").startup({
       "hrsh7th/nvim-cmp",
       event = "InsertEnter",
       config = function()
-        require("wiz.cmp")
+        require("wiz.completion")
       end,
       requires = {
         "L3MON4D3/LuaSnip",
@@ -124,7 +134,7 @@ require("packer").startup({
       module = "telescope",
       cmd = "Telescope",
       config = function()
-        require("wiz.telescope")
+        require("wiz.telescopic")
       end,
     })
 
@@ -147,7 +157,7 @@ require("packer").startup({
       "akinsho/toggleterm.nvim",
       event = "BufWinEnter",
       config = function()
-        require("wiz.toggleterm")
+        require("wiz.terminal")
       end,
     })
 
@@ -209,7 +219,7 @@ require("packer").startup({
         "ColorizerReloadAllBuffers",
       },
       config = function()
-        require("wiz.colorizer")
+        require("wiz.hexcolors")
       end,
     })
 
