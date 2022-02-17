@@ -1,4 +1,10 @@
-require("todo-comments").setup({
+local todocomments_ok, todocomments = pcall(require, "todo-comments")
+if not todocomments_ok then
+  print("error when loading todo comments")
+  return
+end
+
+todocomments.setup({
   signs = true, -- show icons in the signs column
   sign_priority = 8, -- sign priority
   -- keywords recognized as todo comments

@@ -1,4 +1,9 @@
-local wk = require("which-key")
+local ok, wk = pcall(require, "which-key")
+if not ok then
+  print("error when loading which-key")
+  return
+end
+
 local map = vim.api.nvim_set_keymap
 local noremap = { noremap = true }
 

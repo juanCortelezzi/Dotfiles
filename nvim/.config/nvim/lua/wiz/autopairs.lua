@@ -1,4 +1,9 @@
-local npairs = require("nvim-autopairs")
+local npairs_ok, npairs = pcall(require, "nvim-autopairs")
+if not npairs_ok then
+  print("error when loading Nvim Autopairs")
+  return
+end
+
 local Rule = require("nvim-autopairs.rule")
 
 npairs.setup({
@@ -22,7 +27,13 @@ npairs.setup({
   },
 })
 
-require("nvim-treesitter.configs").setup({ autopairs = { enable = true } })
+local ntsc_ok, ntsc = pcall(require, "nvim-treesitter.configs")
+if not ntsc_ok then
+  print("error when loading nvim treesitter configs in autopairs config")
+  return
+end
+
+ntsc.setup({ autopairs = { enable = true } })
 
 local ts_conds = require("nvim-autopairs.ts-conds")
 
@@ -33,4 +44,11 @@ npairs.add_rules({
 })
 
 -- add cmp <CR> mapping
-require("cmp").event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())
+
+local cmp_ok, cmp = pcall(require, "cmp")
+if not cmp_ok then
+  print("error when loading cmp in autopairs config")
+  return
+end
+
+cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())

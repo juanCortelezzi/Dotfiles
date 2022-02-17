@@ -15,7 +15,13 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd([[packadd packer.nvim]])
 end
 
-require("packer").startup({
+local ok, packer = pcall(require, "packer")
+if not ok then
+  print("error when loading packer")
+  return
+end
+
+packer.startup({
   function(use)
     -- packer autohandles itself
     use("wbthomason/packer.nvim")

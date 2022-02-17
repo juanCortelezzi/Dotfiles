@@ -1,7 +1,19 @@
+local telescope_ok, telescope = pcall(require, "telescope")
+if not telescope_ok then
+  print("error when loading telescope")
+  return
+end
+
+local icons_ok, icons = pcall(require, "nvim-web-devicons")
+if not icons_ok then
+  print("error when loading icons in telescope config")
+  return
+end
+
 local actions = require("telescope.actions")
 local previewers = require("telescope.previewers")
 
-require("nvim-web-devicons").setup({
+icons.setup({
   default = true,
 })
 
@@ -27,7 +39,7 @@ local new_maker = function(filepath, bufnr, opts)
     :sync()
 end
 
-require("telescope").setup({
+telescope.setup({
   defaults = {
     mappings = {
       i = {

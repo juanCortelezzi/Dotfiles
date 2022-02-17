@@ -1,4 +1,10 @@
-require("which-key").setup({
+local ok, wk = pcall(require, "which-key")
+if not ok then
+  print("error when loading whichkey")
+  return
+end
+
+wk.setup({
   plugins = {
     marks = false, -- shows a list of your marks on ' and `
     registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode

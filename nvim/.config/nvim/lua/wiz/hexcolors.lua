@@ -1,4 +1,10 @@
-require("colorizer").setup({ "*" }, {
+local ok, colorizer = pcall(require, "colorizer")
+if not ok then
+  print("error when loading colorizer")
+  return
+end
+
+colorizer.setup({ "*" }, {
   RGB = true, -- #RGB hex codes
   RRGGBB = true, -- #RRGGBB hex codes
   RRGGBBAA = true, -- #RRGGBBAA hex codes

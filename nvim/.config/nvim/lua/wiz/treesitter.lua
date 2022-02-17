@@ -1,4 +1,10 @@
-require("nvim-treesitter.configs").setup({
+local ok, treesitter = pcall(require, "nvim-treesitter.configs")
+if not ok then
+  print("error when loading treesitter configs")
+  return
+end
+
+treesitter.setup({
   ensure_installed = {
     "bash",
     "html",

@@ -2,7 +2,11 @@
 -- if installing for the first time, comment impatient and require the plugins
 -- first
 
-require("impatient")
+local impatient_ok, _ = pcall(require, "impatient")
+if not impatient_ok then
+  print("error when loading impatient")
+end
+
 require("wiz.sets")
 
 -- set colorscheme

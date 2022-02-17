@@ -1,3 +1,9 @@
+local alpha_ok, alpha = pcall(require, "alpha")
+if not alpha_ok then
+  print("error when loading Alpha")
+  return
+end
+
 local startify = require("alpha.themes.startify")
 
 startify.section.header.val = {
@@ -26,4 +32,4 @@ startify.section.bottom_buttons.val = {
   startify.button("e", "new file", ":ene <BAR> startinsert <CR>"),
 }
 
-require("alpha").setup(startify.opts)
+alpha.setup(startify.opts)

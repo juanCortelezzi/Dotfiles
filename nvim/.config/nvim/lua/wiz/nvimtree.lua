@@ -1,4 +1,10 @@
-require("nvim-tree").setup({
+local ok, nvimtree = pcall(require, "nvim-tree")
+if not ok then
+  print("error when loading nvim tree")
+  return
+end
+
+nvimtree.setup({
   disable_netrw = true,
   hijack_netrw = true,
   open_on_setup = false,
