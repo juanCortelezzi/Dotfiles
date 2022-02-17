@@ -60,7 +60,6 @@ wk.register({
 -- LEADER MAPPINGS
 wk.register({
 
-  ["/"] = { "<cmd>CommentToggle<CR>", "Comment" },
   a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Codeaction" },
 
   -- Renaming action
@@ -73,7 +72,7 @@ wk.register({
     name = "Diagnostics",
     ["["] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Prev" },
     ["]"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next" },
-    l = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Line" },
+    l = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Line" },
     d = { "<cmd>TroubleToggle document_diagnostics<CR>", "Document" },
     p = { "<cmd>TroubleToggle workspace_diagnostics<CR>", "Project" },
     n = { "<cmd>TodoTrouble<CR>", "Notes" },
