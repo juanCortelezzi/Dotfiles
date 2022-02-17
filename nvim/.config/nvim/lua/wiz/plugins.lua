@@ -21,7 +21,7 @@ require("packer").startup({
     use("wbthomason/packer.nvim")
     use("williamboman/nvim-lsp-installer")
     use("lewis6991/impatient.nvim")
-    use("antoinemadec/FixCursorHold.nvim") -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
+    -- use("antoinemadec/FixCursorHold.nvim") -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
     use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
 
     -- useful for other plugins
@@ -134,14 +134,11 @@ require("packer").startup({
       end,
     })
 
-    -- Commentary comments
+    -- Comments
     use({
-      "terrortylor/nvim-comment",
-      cmd = "CommentToggle",
+      "numToStr/Comment.nvim",
       config = function()
-        require("nvim_comment").setup({
-          create_mappings = false,
-        })
+        require("wiz.comments")
       end,
     })
 
