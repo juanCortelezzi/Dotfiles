@@ -11,7 +11,7 @@ alias df='df -h'
 alias free='free -hm'
 alias path="echo $PATH | sed -e 's/:/\n/g' | sort"
 alias t="tmux"
-alias sucklessinstall="rm -rf config.h && doas make clean install"
+alias sucklessinstall="rm -rf config.h && sudo make clean install"
 alias getkc="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", \$5, \$8 }'"
 alias pan="pandoc --pdf-engine=xelatex --highlight-style=zenburn --filter pandoc-crossref --template=eisvogel -s"
 alias luamake="$HOME/.config/nvim/lang-servers/lua-language-server/3rd/luamake/luamake"
