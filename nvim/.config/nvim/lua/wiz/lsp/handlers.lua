@@ -2,27 +2,24 @@ local M = {}
 
 M.setup = function()
   local signs = {
-    active = true,
-    values = {
-      { name = "DiagnosticSignError", text = "" },
-      { name = "DiagnosticSignWarn", text = "" },
-      { name = "DiagnosticSignHint", text = "" },
-      { name = "DiagnosticSignInfo", text = "" },
-    },
+    { name = "DiagnosticSignError", text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
   }
 
-  for _, sign in ipairs(signs.values) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
+  for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
   end
 
   local config = {
-    virtual_text = {
-      prefix = "",
-      spacing = 0,
+    virtual_text = false,
+    signs = {
+      active = signs,
     },
 
-    underline = true,
     update_in_insert = false,
+    underline = true,
     severity_sort = true,
     float = {
       focusable = false,
