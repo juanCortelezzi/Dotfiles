@@ -150,7 +150,7 @@ colors: *gruvbox
 #colors: *nord
 #colors: *gnome
 
-background_opacity: 1.0
+window.opacity: 1.0
 # background_opacity: 0.8
 
 #selection:
@@ -178,7 +178,7 @@ key_bindings:
   - { key: Home,      mods: Shift,   mode: ~Alt, action: ScrollToTop,   }
   - { key: End,       mods: Shift,   mode: ~Alt, action: ScrollToBottom }
 
-  - { key: N,        mods: Control|Shift,           action: SpawnNewInstance }  
+  - { key: Return,   mods: Control|Shift,           action: SpawnNewInstance }  
   - { key: V,        mods: Control|Shift,           action: Paste            }
   - { key: C,        mods: Control|Shift,           action: Copy             }
   - { key: Key0,     mods: Control,                 action: ResetFontSize    }
