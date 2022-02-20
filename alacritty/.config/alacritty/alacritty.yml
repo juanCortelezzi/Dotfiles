@@ -23,10 +23,15 @@ window:
 
   decorations: full
 
-  startup_mode: Maximized
+  # Values for `startup_mode`:
+  #   - Windowed
+  #   - Maximized
+  #   - Fullscreen
+  #
+  startup_mode: Windowed
 
   # Window title
-  title: Tostadora
+  title: Alacritty
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
