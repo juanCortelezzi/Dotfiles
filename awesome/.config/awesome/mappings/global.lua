@@ -4,10 +4,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local constants = require("constants")
 
 local modkey = constants.modkey
-local terminal = constants.terminal
 
 local M = {}
-
 M.setup = function()
   return gears.table.join(
     awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
@@ -47,7 +45,7 @@ M.setup = function()
     -- end, { description = "go back", group = "client" }),
 
     awful.key({ modkey }, "Return", function()
-      awful.spawn(terminal)
+      awful.spawn(constants.terminal)
     end, { description = "open a terminal", group = "launcher" }),
 
     awful.key({ modkey, "Shift" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
@@ -60,14 +58,6 @@ M.setup = function()
         history_path = awful.util.get_cache_dir() .. "/history_eval",
       })
     end, { description = "lua execute prompt", group = "awesome" }),
-
-    awful.key({ modkey }, "t", function()
-      awful.layout.set(awful.layout.suit.tile)
-    end, { description = "set layout to tiling", group = "layout" }),
-
-    awful.key({ modkey }, "m", function()
-      awful.layout.set(awful.layout.suit.max)
-    end, { description = "set layout to monocle", group = "layout" }),
 
     awful.key({ modkey }, "l", function()
       awful.tag.incmwfact(0.05)
@@ -93,10 +83,6 @@ M.setup = function()
     --   awful.tag.incncol(-1, nil, true)
     -- end, { description = "decrease the number of columns", group = "layout" }),
 
-    awful.key({ modkey }, "space", function()
-      awful.layout.inc(1)
-    end, { description = "select next", group = "layout" }),
-
     awful.key({ modkey, "Control" }, "n", function()
       local c = awful.client.restore()
       -- Focus restored client
@@ -105,10 +91,39 @@ M.setup = function()
       end
     end, { description = "restore minimized", group = "client" }),
 
+    -- Set layouts
+    awful.key({ modkey }, "t", function()
+      awful.layout.set(awful.layout.suit.tile)
+    end, { description = "set layout to tiling", group = "layout" }),
+
+    awful.key({ modkey }, "m", function()
+      awful.layout.set(awful.layout.suit.max)
+    end, { description = "set layout to monocle", group = "layout" }),
+
+    awful.key({ modkey }, "f", function()
+      awful.layout.set(awful.layout.suit.floating)
+    end, { description = "set layout to floating", group = "layout" }),
+
+    -- awful.key({}, "XF86MonBrightnessUp", function()
+    --   awful.client.focus.byidx(1)
+    -- end, { description = "increase volume", group = "client" }),
+    --
+    -- awful.key({}, "XF86MonBrightnessDown", function()
+    --   awful.client.focus.byidx(1)
+    -- end, { description = "decrease volume", group = "client" }),
+
+    awful.key({ modkey }, "w", function()
+      awful.spawn(constants.browser)
+    end, { description = "open browser", group = "client" }),
+
     -- Prompt
     awful.key({ modkey }, "r", function()
       awful.util.spawn_with_shell("dmenu_run")
-    end)
+    end),
+
+    awful.key({ modkey }, "space", function()
+      awful.util.spawn_with_shell("dmenu_run")
+    end, { description = "run prompt", group = "launcher" })
   )
 end
 
