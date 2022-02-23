@@ -11,24 +11,24 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font = "sans 12"
+theme.font = "sans 13"
 
-theme.bg_normal = "#222222"
-theme.bg_focus = "#535d6c"
-theme.bg_urgent = "#ff0000"
-theme.bg_minimize = "#444444"
+theme.bg_normal = "#2e3440"
+theme.bg_focus = "#5e81ac"
+theme.bg_urgent = "#eceff4"
+theme.bg_minimize = "#3b4252"
 theme.bg_systray = theme.bg_normal
 
-theme.fg_normal = "#aaaaaa"
-theme.fg_focus = "#ffffff"
-theme.fg_urgent = "#ffffff"
-theme.fg_minimize = "#ffffff"
+theme.fg_normal = "#eceff4"
+theme.fg_focus = "#eceff4"
+theme.fg_urgent = "#2e3440"
+theme.fg_minimize = "#eceff4"
 
-theme.useless_gap = dpi(0)
-theme.border_width = dpi(1)
-theme.border_normal = "#000000"
-theme.border_focus = "#535d6c"
-theme.border_marked = "#91231c"
+theme.useless_gap = dpi(3)
+theme.border_width = dpi(2)
+theme.border_normal = "#2e3440"
+theme.border_focus = "#5e81ac"
+theme.border_marked = "#ebcb8b"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -44,7 +44,7 @@ theme.border_marked = "#91231c"
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
+local taglist_square_size = dpi(6)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
 
@@ -118,8 +118,6 @@ theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.bg_focus
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = nil
+theme.icon_theme = "/usr/share/icons/breeze-dark/"
 
 return theme
-
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
