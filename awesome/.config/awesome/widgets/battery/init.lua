@@ -9,7 +9,7 @@ local watch = awful.widget.watch
 
 local gears = require("gears")
 local config_dir = gears.filesystem.get_configuration_dir()
-local widget_icon_dir = config_dir .. "widgets/test/icons/"
+local widget_icon_dir = config_dir .. "widgets/battery/icons/"
 
 local battery_imagebox = wibox.widget({
   nil,
