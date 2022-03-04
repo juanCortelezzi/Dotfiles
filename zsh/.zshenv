@@ -16,12 +16,22 @@ export BROWSER="librewolf"
 # add npm globals to path
 export NPM_CONFIG_PREFIX="$XDG_CONFIG_HOME/npm/npm-global"
 export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
+# add Android SDK to path
+export ANDROID_HOME=$HOME/Android/Sdk
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+export ANDROID_PREFS_ROOT=$HOME/.android
+export ANDROID_EMULATOR_HOME=$HOME/.android
+export ANDROID_AVD_HOME=$ANDROID_EMULATOR_HOME/avd
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 # add cargo/rust to path
 export RUSTUP_HOME="$XDG_CONFIG_HOME/rust/rustup"
 export CARGO_HOME="$XDG_CONFIG_HOME/rust/cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
 # add go to path
-export GOPATH="$HOME/Documents/Golang-programes"
+export GOPATH="$HOME/Documents/Golang-programmes"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 # pass password storage
