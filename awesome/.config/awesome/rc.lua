@@ -30,5 +30,3 @@ root.keys(mappings.globalkeys)
 
 require("window.rules").setup(mappings.clientkeys, mappings.clientbuttons)
 require("window.signals")
-
-awful.spawn('eval "$(ssh-agent -s)"')
