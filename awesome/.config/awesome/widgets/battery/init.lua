@@ -102,7 +102,7 @@ local update_widget_ui = function(status, charge, time)
   battery_imagebox.icon:set_image(gears.surface.load_uncached(widget_icon_dir .. icon_name .. ".svg"))
 end
 
-watch("acpi -b", 10, function(_, stdout)
+watch("acpi -b", 60, function(_, stdout)
   for s in stdout:gmatch("[^\r\n]+") do
     local status, charge, time = string.match(s, ".+: (%a+), (%d?%d?%d)%%,?(.*)")
     if not status then
