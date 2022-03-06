@@ -14,16 +14,6 @@ cmd open ${{
 }}
 
 
-cmd fzf_jump ${{
-   res="$(find * \( -path '*/\.*' -o -name node_modules -o -name \.next -o -name lib -o -name libraries -o -name snap -o -name bin -o -name \.git -o -name \.cache -o -name dist -o -name build -o -name Apps \) -prune -o -type d -print -o -type l -print | fzf --reverse --header='Jump to location')"
-   if [ -f "$res" ]; then
-     cmd="select"
-   elif [ -d "$res" ]; then
-     cmd="cd"                                                       
-   fi
-lf -remote "send $id $cmd \"$res\""
-}}
-
 cmd mkdir ${{
   printf "Directory Name: "
   read ans
@@ -100,14 +90,8 @@ map n
 map "'"
 map '"'
 map d
-map c
 map e
 map f
-
-
-# File Openers
-map ee $$EDITOR "$f"
-map u $view "$f"
 
 # Archive Mappings
 map az zip
@@ -134,9 +118,5 @@ map mf mkfile
 map md mkdir
 map ms $mkscript
 map ch chmod
-map br $vimv $fx
 map r rename
-map R reload
-map C clear
-map U unselect
-map <c-f> :fzf_jump
+map u unselect
