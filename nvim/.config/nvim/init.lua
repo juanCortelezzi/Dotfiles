@@ -7,7 +7,10 @@ if not impatient_ok then
   print("error when loading impatient")
 end
 
+-- bundle whichkey mappings on config function plugin load
 require("wiz.sets")
+require("wiz.plugins")
+require("wiz.mappings")
 
 -- set colorscheme
 -- require("wiz.colors").set("tokyonight")
@@ -16,7 +19,3 @@ require("wiz.colors").set("rose-pine")
 
 -- set filetype on wiki files
 vim.cmd([[autocmd BufNewFile,BufRead *.wiki,*.mdx set ft=markdown]])
-
--- bundle whichkey mappings on config function plugin load
-require("wiz.plugins")
-require("wiz.mappings")

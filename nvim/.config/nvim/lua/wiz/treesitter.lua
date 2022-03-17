@@ -6,25 +6,27 @@ end
 
 treesitter.setup({
   ensure_installed = {
-    "bash",
-    "html",
-    "css",
-    "javascript",
     "typescript",
     "tsx",
-    "toml",
+    "javascript",
+    "json",
+    "html",
+    "css",
+    "python",
+    "bash",
     "go",
     "gomod",
-    "json",
     "lua",
     "rust",
-    "python",
+    "toml",
+    "yaml",
   },
   highlight = {
     enable = true,
     disable = { "markdown" },
     additional_vim_regex_highlighting = true,
   },
+
   autopairs = { enable = false },
 
   indent = { enable = false, disable = { "yaml" } },
