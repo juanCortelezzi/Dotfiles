@@ -14,7 +14,6 @@ alias t="tmux"
 alias sucklessinstall="rm -rf config.h && sudo make clean install"
 alias getkc="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", \$5, \$8 }'"
 alias pan="pandoc --pdf-engine=xelatex --highlight-style=zenburn --filter pandoc-crossref --template=eisvogel -s"
-alias luamake="$HOME/.config/nvim/lang-servers/lua-language-server/3rd/luamake/luamake"
 
 #git aliases
 alias g='git'
@@ -36,16 +35,7 @@ alias parrot="curl parrot.live"
 # FUNCTIONS
 ###################################################################################################
 
-[ -f "$HOME/Documents/Bash-programes/tmux-short.sh" ] && source "$HOME/Documents/Bash-programes/tmux-short.sh"
-
-
-function sfind {
-  local DIRECTORY=""
-  if [ "$#" -gt 0 ]; then
-    DIRECTORY="$1"
-  fi
-  find $DIRECTORY* \( -path '*/\.*' -o -name node_modules -o -name \.next -o -name libraries -o -name snap -o -name bin -o -name \.git -o -name \.cache -o -name dist -o -name build -o -name Apps -o -name pkg -o -name target \) -prune -o -type d -print -o -type l -print
-}
+# [ -f "$HOME/Documents/Bash-programes/tmux-short.sh" ] && source "$HOME/Documents/Bash-programes/tmux-short.sh"
 
 function vf {
   local FILE=$(rg --files --hidden | fzf --preview 'head -50 {}')
@@ -53,6 +43,28 @@ function vf {
   if [[ ! -z $FILE ]]; then
     v $FILE
   fi
+}
+
+
+function sfind {
+  fd -t d \
+      --no-ignore-vcs \
+      --color never \
+      --strip-cwd-prefix \
+      -E node_modules \
+      -E .next \
+      -E libraries \
+      -E snap \
+      -E bin \
+      -E .cache \
+      -E dist \
+      -E build \
+      -E pkg \
+      -E target \
+      -E Zomboid \
+      -E android \
+      -E Notas \
+      -E ios
 }
 
 function jf {
@@ -95,5 +107,5 @@ function extract {
           return 1
       fi
     done
-fi
+ fi
 }
