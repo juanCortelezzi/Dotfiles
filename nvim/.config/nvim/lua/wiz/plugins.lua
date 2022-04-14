@@ -15,6 +15,14 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd([[packadd packer.nvim]])
 end
 
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]])
+
 local ok, packer = pcall(require, "packer")
 if not ok then
   print("error when loading packer")
@@ -198,13 +206,22 @@ packer.startup({
       end,
     })
 
+    -- Neorg
+    use({
+      "nvim-neorg/neorg",
+      config = function()
+        require("wiz.neorg")
+      end,
+      requires = "nvim-lua/plenary.nvim",
+    })
+
     -- Indent line
     use({
       "lukas-reineke/indent-blankline.nvim",
       config = function()
         require("indent_blankline").setup({
           show_current_context = true,
-          buftype_exclude = { "terminal", "startify", "markdown", "nofile" },
+          buftype_exclude = { "terminal", "startify", "markdown", "norg", "nofile" },
         })
       end,
     })
@@ -234,6 +251,12 @@ packer.startup({
     use("~/Documents/Random-programmes/awesomecolors")
     use("folke/tokyonight.nvim")
     use({ "rose-pine/neovim", as = "rose-pine" })
+
+    -- Automatically set up your configuration after cloning packer.nvim
+    -- Put this at the end after all plugins
+    if PACKER_BOOTSTRAP then
+      require("packer").sync()
+    end
   end,
   config = {
     -- Move to lua dir so impatient.nvim can cache it
