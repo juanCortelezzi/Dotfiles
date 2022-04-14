@@ -31,7 +31,7 @@ export RUSTUP_HOME="$XDG_CONFIG_HOME/rust/rustup"
 export CARGO_HOME="$XDG_CONFIG_HOME/rust/cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
 # add go to path
-export GOPATH="$HOME/Documents/Golang-programmes"
+export GOPATH="$HOME/Documents/Golang-programmes/gopath"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 # pass password storage
