@@ -5,13 +5,12 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 
-
 export LANG=en_US.UTF-8
 export TERM='tmux-256color'
 export TERMINAL="st"
 export VISUAL="nvim"
 export EDITOR="nvim"
-export BROWSER="librewolf"
+export BROWSER="firefox"
 
 # add npm globals to path
 export NPM_CONFIG_PREFIX="$XDG_CONFIG_HOME/npm/npm-global"
