@@ -1,16 +1,17 @@
 #!/bin/bash
 
 opts=(
-    "st"
     "librewolf"
     "firefox"
     "brave"
+    "st"
+    "alacritty"
     "thunar"
+    "discord"
     "zathura"
     "gimp"
     "inkscape"
     "lxappearance"
-    "alacritty"
     "signal-desktop"
     "retroarch"
 )
