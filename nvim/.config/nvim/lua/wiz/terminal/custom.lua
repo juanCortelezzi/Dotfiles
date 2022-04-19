@@ -29,10 +29,6 @@ local lf = Terminal:new({
   hidden = true,
   direction = "float",
   close_on_exit = true,
-  highlights = {
-    border = "Normal",
-    background = "Normal",
-  },
 })
 
 M.lf_toggle = function()
