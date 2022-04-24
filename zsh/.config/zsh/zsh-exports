@@ -1,5 +1,2 @@
-# add virtualenvwrapper vars to path
-export WORKON_HOME="$HOME/Documents/Python-programes/.venvs"
-export PROJECT_HOME="$HOME/Documents/Python-programes"
 # ripgrep config
 # export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
