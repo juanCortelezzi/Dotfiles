@@ -47,6 +47,7 @@ opt.cursorline = true
 opt.scrolloff = 8
 opt.updatetime = 300
 opt.splitright = true
+opt.laststatus = 3
 
 vim.g.loaded_gzip = 1
 vim.g.loaded_tar = 1

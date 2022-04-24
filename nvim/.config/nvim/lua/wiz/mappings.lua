@@ -4,15 +4,14 @@ if not ok then
   return
 end
 
-local map = vim.api.nvim_set_keymap
-local noremap = { noremap = true }
+local map = vim.keymap.set
 
 -- map leader -> <SPACE>
-map("n", "<Space>", "", {})
+map("n", "<Space>", "")
 vim.g.mapleader = " "
 
 -- esc esc -> jj not proud of this, but i got used to it
-map("i", "jj", "<ESC><ESC>", noremap)
+map("i", "jj", "<ESC><ESC>")
 
 -- luasnip
 map("i", "<C-j>", "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-j>'", {
@@ -21,21 +20,21 @@ map("i", "<C-j>", "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump'
 })
 
 -- FUCK ARROW KEYS
-map("n", "<Up>", "<Nop>", noremap)
-map("n", "<Down>", "<Nop>", noremap)
-map("n", "<Left>", "<Nop>", noremap)
-map("n", "<Right>", "<Nop>", noremap)
-map("i", "<Up>", "<Nop>", noremap)
-map("i", "<Down>", "<Nop>", noremap)
-map("i", "<Left>", "<Nop>", noremap)
-map("i", "<Right>", "<Nop>", noremap)
-map("v", "<Up>", "<Nop>", noremap)
-map("v", "<Down>", "<Nop>", noremap)
-map("v", "<Left>", "<Nop>", noremap)
-map("v", "<Right>", "<Nop>", noremap)
+map("n", "<Up>", "<Nop>")
+map("n", "<Down>", "<Nop>")
+map("n", "<Left>", "<Nop>")
+map("n", "<Right>", "<Nop>")
+map("i", "<Up>", "<Nop>")
+map("i", "<Down>", "<Nop>")
+map("i", "<Left>", "<Nop>")
+map("i", "<Right>", "<Nop>")
+map("v", "<Up>", "<Nop>")
+map("v", "<Down>", "<Nop>")
+map("v", "<Left>", "<Nop>")
+map("v", "<Right>", "<Nop>")
 
 -- idk what the fuck is this but it scares me.
-map("n", "Q", "<Nop>", noremap)
+map("n", "Q", "<Nop>")
 
 wk.register({
   g = {
