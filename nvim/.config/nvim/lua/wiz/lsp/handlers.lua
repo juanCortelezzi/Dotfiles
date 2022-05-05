@@ -47,7 +47,12 @@ M.on_attach = function(client)
   -- require("wiz.lsp.dochighlight").lsp_highlight_document(client)
   client.resolved_capabilities.document_formatting = false
   client.resolved_capabilities.document_range_formatting = false
-  vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 2000)]])
+  vim.cmd([[
+  augroup LspFormatting
+      autocmd! * <buffer>
+      autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+  augroup END
+  ]])
 end
 
 return M
