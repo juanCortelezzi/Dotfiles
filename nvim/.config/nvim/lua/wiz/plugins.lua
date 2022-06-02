@@ -248,7 +248,6 @@ packer.startup({
     })
 
     -- Colorschemes
-    use("~/Documents/Random-programmes/awesomecolors")
     use("folke/tokyonight.nvim")
     use({ "rose-pine/neovim", as = "rose-pine" })
 
