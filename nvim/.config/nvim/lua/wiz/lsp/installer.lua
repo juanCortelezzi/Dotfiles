@@ -11,12 +11,15 @@ lsp_installer.on_server_ready(function(server)
   }
 
   if server.name == "sumneko_lua" then
+    -- LUA
     local sumneko_opts = require("wiz.lsp.settings.sumneko")
     opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
   elseif server.name == "pyright" then
+    -- PYTHON
     local pyright_opts = require("wiz.lsp.settings.pyright")
     opts = vim.tbl_deep_extend("force", pyright_opts, opts)
   elseif server.name == "rust_analyzer" then
+    -- RUST
     local rust = require("wiz.lsp.settings.rust")
     opts = vim.tbl_deep_extend("force", rust.opts, opts)
 
