@@ -14,6 +14,9 @@ opts=(
     "lxappearance"
     "signal-desktop"
     "retroarch"
+    "postman"
+    "steam"
+    "pavucontrol"
 )
 
 echo "${opts[@]}" | tr ' ' '\n' | dmenu "$@" | ${SHELL:-"/bin/sh"} &
