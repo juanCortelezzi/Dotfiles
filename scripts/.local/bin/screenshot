@@ -11,11 +11,11 @@ function selClipShot {
 }
 function selMemShot {
     file_name=$(date +Screenshot_%d%m%y_%H%M%S.png)
-    maim -s "$HOME/Pictures/Screenshots/$file_name"
+    maim -s "$HOME/Pictures/screenshots/$file_name"
 }
 function screenShot {
     file_name=$(date +Screenshot_%d%m%y_%H%M%S.png)
-    maim "$HOME/Pictures/Screenshots/$file_name"
+    maim "$HOME/Pictures/screenshots/$file_name"
 }
 
 OPTION=$(echo "${OPTS[@]}" | tr ' ' '\n' | dmenu -i "$@")
