@@ -1,4 +1,5 @@
 local M = {}
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 M.setup = function()
   local signs = {
@@ -13,7 +14,7 @@ M.setup = function()
   end
 
   local config = {
-    virtual_text = false,
+    virtual_text = true,
     signs = {
       active = signs,
     },
@@ -43,16 +44,31 @@ M.capabilities = (function()
   return require("cmp_nvim_lsp").update_capabilities(capabilities)
 end)()
 
-M.on_attach = function(client)
-  -- require("wiz.lsp.dochighlight").lsp_highlight_document(client)
+-- local lsp_formatting = function(bufnr)
+--   -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+--   vim.lsp.buf.format({
+--     filter = function(clients)
+--       -- filter out clients that you don't want to use
+--       return vim.tbl_filter(function(client)
+--         return client.name ~= "tsserver"
+--       end, clients)
+--     end,
+--     bufnr = bufnr,
+--   })
+-- end
+
+M.on_attach = function(client, bufnr)
   client.resolved_capabilities.document_formatting = false
   client.resolved_capabilities.document_range_formatting = false
-  vim.cmd([[
-  augroup LspFormatting
-      autocmd! * <buffer>
-      autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-  augroup END
-  ]])
+  vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = augroup,
+    buffer = bufnr,
+    callback = function()
+      vim.lsp.buf.formatting_sync()
+      -- lsp_formatting(bufnr)
+    end,
+  })
 end
 
 return M
