@@ -10,14 +10,17 @@ if not luasnip_ok then
   return
 end
 
+require("luasnip/loaders/from_vscode").lazy_load()
+
 -- load snippets
 cmp.setup({
   -- do not mess up snippets (?)
-  preselect = false,
+  preselect = cmp.PreselectMode.None,
   formatting = {
+    fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
       local icons = require("wiz.lsp.kind").icons
-      vim_item.kind = icons[vim_item.kind]
+      vim_item.kind = string.format("%s", icons[vim_item.kind])
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
         nvim_lua = "[Lua]",
@@ -29,9 +32,8 @@ cmp.setup({
     end,
   },
   window = {
-    documentation = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-    },
+    -- completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
   },
   snippet = {
     expand = function(args)
@@ -39,8 +41,8 @@ cmp.setup({
     end,
   },
   mapping = {
-    ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-    ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior }),
+    ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior }),
     ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
     ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -48,17 +50,17 @@ cmp.setup({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<CR>"] = cmp.mapping.confirm({ select = false }),
   },
   sources = {
     { name = "luasnip" },
     { name = "nvim_lua" },
     { name = "nvim_lsp" },
     { name = "path" },
-    { name = "buffer", keyword_lenght = 5 },
+    { name = "buffer", keyword_length = 5, max_item_count = 3 },
     { name = "treesitter" },
   },
-  experimental = { ghost_text = false },
+  experimental = { ghost_text = true },
 })
 
 -- Use buffer source for `/`.
