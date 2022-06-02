@@ -1,12 +1,15 @@
 #!/bin/bash
 
-selection=$(echo -e "Shutdown\nReboot" | dmenu "$@" -i -p "Select:")
+selection=$(echo -e "Shutdown\nReboot\nSuspend" | dmenu "$@" -i -p "Select:")
 
 case "$selection" in
     Shutdown)
-        doas shutdown now
+        sudo systemctl poweroff
         ;;
     Reboot)
-        doas reboot
+        sudo systemctl reboot
+        ;;
+    Suspend)
+        sudo systemctl suspend
         ;;
 esac
