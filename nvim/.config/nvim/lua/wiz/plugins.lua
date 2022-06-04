@@ -49,7 +49,7 @@ packer.startup({
     use({
       "nvim-lualine/lualine.nvim",
       config = function()
-        require("wiz.statusbar")
+        require("wiz.statusline")
       end,
     })
 
