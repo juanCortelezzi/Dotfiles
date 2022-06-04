@@ -115,6 +115,8 @@ packer.startup({
       run = ":TSUpdate",
     })
 
+    use({ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" })
+
     -- Telescope tj-devries
     use({
       "ahmedkhalf/project.nvim",
@@ -241,6 +243,15 @@ packer.startup({
       "folke/which-key.nvim",
       config = function()
         require("wiz.whichkey")
+      end,
+    })
+
+    -- Twilight
+    use({
+      "folke/twilight.nvim",
+      cmd = { "Twilight" },
+      config = function()
+        require("wiz.twilight")
       end,
     })
 

@@ -129,6 +129,9 @@ wk.register({
     },
   },
 
+  --Stuff
+  s = { "<cmd>Twilight<CR>", "Showcase" },
+
   -- Packer
   p = {
     name = "Packer",
