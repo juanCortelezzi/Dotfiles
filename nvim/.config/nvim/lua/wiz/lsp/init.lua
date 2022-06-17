@@ -1,10 +1,8 @@
--- FIX: lsp kind, has to be a better option
--- FIX: tailwind, to only open on tailwind.config projects
-require("lspconfig")
+local status_ok, _ = pcall(require, "lspconfig")
+if not status_ok then
+  return
+end
 
--- symbols for autocomplete
--- vim.lsp.protocol.CompletionItemKind = require("wiz.lsp.kind")
-
-require("wiz.lsp.null")
-require("wiz.lsp.installer")
+require("wiz.lsp.lsp-installer")
 require("wiz.lsp.handlers").setup()
+require("wiz.lsp.null-ls")

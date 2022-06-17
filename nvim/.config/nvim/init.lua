@@ -1,21 +1,26 @@
--- README:
--- if installing for the first time, comment impatient and require the plugins
--- first
-
-local impatient_ok, _ = pcall(require, "impatient")
-if not impatient_ok then
-  print("error when loading impatient")
-end
-
--- bundle whichkey mappings on config function plugin load
-require("wiz.sets")
+require("wiz.options")
+require("wiz.keymaps")
 require("wiz.plugins")
-require("wiz.mappings")
+require("wiz.autocommands")
 
--- set colorscheme
--- require("wiz.colors").set("tokyonight")
--- require("wiz.colors").set("marambio")
+-- Colorscheme
 require("wiz.colors").set("rose-pine")
 
--- set filetype on wiki files
-vim.cmd([[autocmd BufNewFile,BufRead *.wiki,*.mdx set ft=markdown]])
+require("wiz.cmp")
+require("wiz.telescope")
+require("wiz.treesitter")
+require("wiz.autopairs")
+require("wiz.comment")
+require("wiz.nvim-tree")
+require("wiz.lualine")
+require("wiz.toggleterm")
+require("wiz.impatient")
+require("wiz.indentline")
+require("wiz.alpha")
+require("wiz.lsp")
+require("wiz.dap")
+require("wiz.hexcolors")
+require("wiz.neorg")
+require("wiz.todocomments")
+require("wiz.twilight")
+require("wiz.vimwiki")

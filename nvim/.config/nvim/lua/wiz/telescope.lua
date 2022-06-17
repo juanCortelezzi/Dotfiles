@@ -1,21 +1,10 @@
-local telescope_ok, telescope = pcall(require, "telescope")
-if not telescope_ok then
-  print("error when loading telescope")
-  return
-end
-
-local icons_ok, icons = pcall(require, "nvim-web-devicons")
-if not icons_ok then
-  print("error when loading icons in telescope config")
+local status_ok, telescope = pcall(require, "telescope")
+if not status_ok then
   return
 end
 
 local actions = require("telescope.actions")
 local previewers = require("telescope.previewers")
-
-icons.setup({
-  default = true,
-})
 
 local Job = require("plenary.job")
 local new_maker = function(filepath, bufnr, opts)
@@ -41,11 +30,9 @@ end
 
 telescope.setup({
   defaults = {
-    mappings = {
-      i = {
-        ["<esc>"] = actions.close,
-      },
-    },
+    -- prompt_prefix = " ",
+    -- selection_caret = " ",
+    -- path_display = { "smart" },
     file_ignore_patterns = {
       "node_modules/.*",
       "target/.*",
@@ -54,7 +41,18 @@ telescope.setup({
       ".git/.*",
       "__pycache__",
     },
+
     buffer_previewer_maker = new_maker,
+
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close,
+        ["<Down>"] = actions.cycle_history_next,
+        ["<Up>"] = actions.cycle_history_prev,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+      },
+    },
   },
   extensions = {
     fzf = {
@@ -66,3 +64,5 @@ telescope.setup({
     },
   },
 })
+
+require("telescope").load_extension("fzf")

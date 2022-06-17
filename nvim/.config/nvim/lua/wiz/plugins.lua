@@ -16,213 +16,122 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
--- vim.cmd([[
---   augroup packer_user_config
---     autocmd!
---     autocmd BufWritePost plugins.lua source <afile> | PackerSync
---   augroup end
--- ]])
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]])
 
-local ok, packer = pcall(require, "packer")
-if not ok then
-  print("error when loading packer")
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
   return
 end
 
-packer.startup({
+-- Install your plugins here
+return packer.startup({
   function(use)
-    -- packer autohandles itself
-    use("wbthomason/packer.nvim")
-    use("williamboman/nvim-lsp-installer")
-    use("lewis6991/impatient.nvim")
-    -- use("antoinemadec/FixCursorHold.nvim") -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
-    use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
+    -- My plugins here
+    use({ "wbthomason/packer.nvim", commit = "00ec5adef58c5ff9a07f11f45903b9dbbaa1b422" })
+    use({ "lewis6991/impatient.nvim", commit = "969f2c5c90457612c09cf2a13fee1adaa986d350" })
 
     -- useful for other plugins
-    use({ "nvim-lua/popup.nvim", module = "popup" })
-    use({ "nvim-lua/plenary.nvim", module = "plenary" })
-
+    use({ "nvim-lua/plenary.nvim", commit = "968a4b9afec0c633bc369662e78f8c5db0eba249" })
     -- Icons
-    use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })
+    use({ "kyazdani42/nvim-web-devicons", commit = "8d2c5337f0a2d0a17de8e751876eeb192b32310e" })
+
+    use({ "goolord/alpha-nvim", commit = "ef27a59e5b4d7b1c2fe1950da3fe5b1c5f3b4c94" })
 
     -- Lualine statusline
-    use({
-      "nvim-lualine/lualine.nvim",
-      config = function()
-        require("wiz.statusline")
-      end,
-    })
+    use({ "nvim-lualine/lualine.nvim", commit = "3362b28f917acc37538b1047f187ff1b5645ecdd" })
 
-    -- Lsp
-    use("jose-elias-alvarez/null-ls.nvim")
-    use({ "simrat39/rust-tools.nvim", module = "rust-tools" })
-    use({
-      "neovim/nvim-lspconfig",
-      config = function()
-        require("wiz.lsp")
-      end,
-    })
+    -- Indent line
+    use({ "lukas-reineke/indent-blankline.nvim", commit = "6177a59552e35dfb69e1493fd68194e673dc3ee2" })
 
-    -- Completion cmp and snippets luasnip
-    use({
-      "L3MON4D3/LuaSnip",
-      module = "luasnip",
-      requires = "rafamadriz/friendly-snippets",
-    })
+    -- File tree
+    use({ "kyazdani42/nvim-tree.lua", commit = "bdb6d4a25410da35bbf7ce0dbdaa8d60432bc243" })
 
-    use({
-      "hrsh7th/nvim-cmp",
-      event = "InsertEnter",
-      config = function()
-        require("wiz.completion")
-      end,
-      requires = {
-        "L3MON4D3/LuaSnip",
-      },
-    })
+    -- Terminal
+    use({ "akinsho/toggleterm.nvim", commit = "aaeed9e02167c5e8f00f25156895a6fd95403af8" })
 
-    use({ after = "nvim-cmp", "hrsh7th/cmp-nvim-lsp", module = "cmp_nvim_lsp" })
-    use({ after = "nvim-cmp", "saadparwaiz1/cmp_luasnip" })
-    use({ after = "nvim-cmp", "hrsh7th/cmp-buffer" })
-    use({ after = "nvim-cmp", "hrsh7th/cmp-nvim-lua" })
-    use({ after = "nvim-cmp", "hrsh7th/cmp-cmdline" })
-    use({ after = "nvim-cmp", "hrsh7th/cmp-path" })
+    -- Comments
+    use({ "numToStr/Comment.nvim", commit = "2c26a00f32b190390b664e56e32fd5347613b9e2" })
+    use({ "JoosepAlviste/nvim-ts-context-commentstring", commit = "88343753dbe81c227a1c1fd2c8d764afb8d36269" })
 
     -- Autopairs
-    use({
-      "windwp/nvim-autopairs",
-      after = "nvim-cmp",
-      config = function()
-        require("wiz.autopairs")
-      end,
-    })
+    use({ "windwp/nvim-autopairs", commit = "fa6876f832ea1b71801c4e481d8feca9a36215ec" })
 
-    -- Trouble error info
+    -- Colorschemes
+    use({ "folke/tokyonight.nvim", commit = "8223c970677e4d88c9b6b6d81bda23daf11062bb" })
+    use({ "rose-pine/neovim", as = "rose-pine" })
+
+    -- cmp plugins
+    use({ "hrsh7th/nvim-cmp", commit = "df6734aa018d6feb4d76ba6bda94b1aeac2b378a" })
+    use({ "hrsh7th/cmp-buffer", commit = "62fc67a2b0205136bc3e312664624ba2ab4a9323" })
+    use({ "hrsh7th/cmp-path", commit = "466b6b8270f7ba89abd59f402c73f63c7331ff6e" })
+    use({ "saadparwaiz1/cmp_luasnip", commit = "a9de941bcbda508d0a45d28ae366bb3f08db2e36" })
+    use({ "hrsh7th/cmp-nvim-lsp", commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8" })
+    use({ "hrsh7th/cmp-nvim-lua", commit = "d276254e7198ab7d00f117e88e223b4bd8c02d21" })
+
+    -- snippets
+    use({ "L3MON4D3/LuaSnip", commit = "79b2019c68a2ff5ae4d732d50746c901dd45603a" })
+    use({ "rafamadriz/friendly-snippets", commit = "d27a83a363e61009278b6598703a763ce9c8e617" })
+
+    -- LSP
+    use({
+      "neovim/nvim-lspconfig",
+      after = "nvim-lsp-installer",
+      commit = "148c99bd09b44cf3605151a06869f6b4d4c24455",
+    })
+    use({ "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" })
+    use({ "jose-elias-alvarez/null-ls.nvim", commit = "ff40739e5be6581899b43385997e39eecdbf9465" })
+    use({ "simrat39/rust-tools.nvim", module = "rust-tools" })
+
+    -- Harpoon the primeagen is happy
+    use("ThePrimeagen/harpoon")
+
+    -- Telescope
+    use({
+      "nvim-telescope/telescope-fzf-native.nvim",
+      run = "make",
+    })
+    use({ "nvim-telescope/telescope.nvim", commit = "d96eaa914aab6cfc4adccb34af421bdd496468b0" })
+
+    -- Trouble error and todo info
     use({
       "folke/trouble.nvim",
-      cmd = { "TroubleToggle" },
       config = function()
         require("trouble").setup()
       end,
     })
 
+    use("folke/todo-comments.nvim")
+
     -- Treesitter
     use({
       "nvim-treesitter/nvim-treesitter",
-      config = function()
-        require("wiz.treesitter")
-      end,
+      commit = "518e27589c0463af15463c9d675c65e464efc2fe",
       run = ":TSUpdate",
     })
 
     use({ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" })
 
-    -- Telescope tj-devries
-    use({
-      "ahmedkhalf/project.nvim",
-      after = "telescope.nvim",
-      config = function()
-        require("wiz.project")
-        require("telescope").load_extension("projects")
-      end,
-      requires = "telescope.nvim",
-    })
-
-    use({
-      "nvim-telescope/telescope-fzf-native.nvim",
-      after = "telescope.nvim",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
-      run = "make",
-      requires = "telescope.nvim",
-    })
-
-    use({
-      "nvim-telescope/telescope.nvim",
-      module = "telescope",
-      cmd = "Telescope",
-      config = function()
-        require("wiz.telescopic")
-      end,
-    })
-
-    -- Comments
-    use({
-      "numToStr/Comment.nvim",
-      config = function()
-        require("wiz.comments")
-      end,
-    })
-
-    -- Harpoon the primeagen is happy
-    use("ThePrimeagen/harpoon")
-
-    -- Terminal
-    use({
-      "akinsho/toggleterm.nvim",
-      event = "BufWinEnter",
-      config = function()
-        require("wiz.terminal")
-      end,
-    })
-
-    use({
-      "kyazdani42/nvim-tree.lua",
-      cmd = {
-        "NvimTreeToggle",
-        "NvimTreeRefresh",
-      },
-      config = function()
-        require("wiz.nvimtree")
-      end,
-      requires = "kyazdani42/nvim-web-devicons",
-    })
-
-    -- TodoComments
-    use({
-      "folke/todo-comments.nvim",
-      cmd = "TodoTrouble",
-      config = function()
-        require("wiz.todocomments")
-      end,
-    })
-
-    -- Startify start screen
-    use({
-      "goolord/alpha-nvim",
-      config = function()
-        require("wiz.alphanvim")
-      end,
-    })
+    -- DAP
+    use({ "mfussenegger/nvim-dap", commit = "014ebd53612cfd42ac8c131e6cec7c194572f21d" })
+    use({ "rcarriga/nvim-dap-ui", commit = "d76d6594374fb54abf2d94d6a320f3fd6e9bb2f7" })
+    use({ "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" })
 
     -- VimWiki
     use({
       "vimwiki/vimwiki",
       ft = "markdown",
-      config = function()
-        require("wiz.vimwiki")
-      end,
     })
 
     -- Neorg
     use({
       "nvim-neorg/neorg",
-      config = function()
-        require("wiz.neorg")
-      end,
       requires = "nvim-lua/plenary.nvim",
-    })
-
-    -- Indent line
-    use({
-      "lukas-reineke/indent-blankline.nvim",
-      config = function()
-        require("indent_blankline").setup({
-          show_current_context = true,
-          buftype_exclude = { "terminal", "startify", "markdown", "norg", "nofile" },
-        })
-      end,
     })
 
     -- Colorizer
@@ -233,31 +142,13 @@ packer.startup({
         "ColorizerDetachFromBuffer",
         "ColorizerReloadAllBuffers",
       },
-      config = function()
-        require("wiz.hexcolors")
-      end,
-    })
-
-    -- Wich-key key help
-    use({
-      "folke/which-key.nvim",
-      config = function()
-        require("wiz.whichkey")
-      end,
     })
 
     -- Twilight
     use({
       "folke/twilight.nvim",
       cmd = { "Twilight" },
-      config = function()
-        require("wiz.twilight")
-      end,
     })
-
-    -- Colorschemes
-    use("folke/tokyonight.nvim")
-    use({ "rose-pine/neovim", as = "rose-pine" })
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
@@ -265,10 +156,9 @@ packer.startup({
       require("packer").sync()
     end
   end,
+
   config = {
     -- Move to lua dir so impatient.nvim can cache it
     compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
   },
 })
-
-require("packer_compiled")
