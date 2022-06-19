@@ -26,14 +26,25 @@ vim.cmd([[
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
+  print("could not load packer")
   return
 end
 
+packer.init {
+  -- Move to lua dir so impatient.nvim can cache it
+  compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
+  display = {
+    open_fn = function()
+      return require("packer.util").float { border = "rounded" }
+    end,
+  },
+}
+
 -- Install your plugins here
-return packer.startup({
+return packer.startup(
   function(use)
     -- My plugins here
-    use({ "wbthomason/packer.nvim", commit = "00ec5adef58c5ff9a07f11f45903b9dbbaa1b422" })
+    use({ "wbthomason/packer.nvim" })
     use({ "lewis6991/impatient.nvim", commit = "969f2c5c90457612c09cf2a13fee1adaa986d350" })
 
     -- useful for other plugins
@@ -79,13 +90,9 @@ return packer.startup({
     use({ "rafamadriz/friendly-snippets", commit = "d27a83a363e61009278b6598703a763ce9c8e617" })
 
     -- LSP
-    use({
-      "neovim/nvim-lspconfig",
-      after = "nvim-lsp-installer",
-      commit = "148c99bd09b44cf3605151a06869f6b4d4c24455",
-    })
-    use({ "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" })
-    use({ "jose-elias-alvarez/null-ls.nvim", commit = "ff40739e5be6581899b43385997e39eecdbf9465" })
+    use({ "neovim/nvim-lspconfig" })
+    use({ "williamboman/nvim-lsp-installer" })
+    use({ "jose-elias-alvarez/null-ls.nvim" })
     use({ "simrat39/rust-tools.nvim", module = "rust-tools" })
 
     -- Harpoon the primeagen is happy
@@ -155,10 +162,5 @@ return packer.startup({
     if PACKER_BOOTSTRAP then
       require("packer").sync()
     end
-  end,
-
-  config = {
-    -- Move to lua dir so impatient.nvim can cache it
-    compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
-  },
-})
+  end
+)

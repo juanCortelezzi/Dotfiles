@@ -1,3 +1,5 @@
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
 local M = {}
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -64,19 +66,32 @@ end
 M.on_attach = function(client, bufnr)
   local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
   if not status_cmp_ok then
+    print("could not load cmp")
     return
   end
 
-  if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
-  end
+  -- if client.name == "tsserver" then
+  --   client.resolved_capabilities.document_formatting = false
+  -- end
+  --
+  -- if client.name == "sumneko_lua" then
+  --   client.resolved_capabilities.document_formatting = false
+  -- end
 
-  if client.name == "sumneko_lua" then
-    client.resolved_capabilities.document_formatting = false
-  end
+  client.resolved_capabilities.document_formatting = false
+  -- client.resolved_capabilities.document_range_formatting = false
 
   M.capabilities.textDocument.completion.completionItem.snippetSupport = true
   M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+
+  vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = augroup,
+    buffer = bufnr,
+    callback = function()
+      vim.lsp.buf.formatting_sync()
+    end,
+  })
 
   lsp_keymaps(bufnr)
 end
