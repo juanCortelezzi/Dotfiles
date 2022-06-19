@@ -46,7 +46,6 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   end,
 })
 
-
 -- set markdown ft on .wiki
 vim.cmd([[autocmd BufNewFile,BufRead *.wiki,*.mdx set ft=markdown]])
 -- vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
