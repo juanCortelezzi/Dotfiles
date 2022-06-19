@@ -13,6 +13,7 @@ local servers = {
   "prismals",
   "pyright",
   "sumneko_lua",
+  "rust_analyzer",
   "tailwindcss",
   "tsserver",
 }
