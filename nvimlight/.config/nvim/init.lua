@@ -1,2 +1,2 @@
-require("wiz.sets")
-require("wiz.mappings")
+require("wizlight.sets")
+require("wizlight.mappings")
