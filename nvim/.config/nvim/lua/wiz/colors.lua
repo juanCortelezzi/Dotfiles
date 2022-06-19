@@ -16,8 +16,10 @@ local pre_config = {
     vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
   end,
   ["rose-pine"] = function()
-    -- @usage 'main' | 'moon' | 'dawn'
-    vim.g.rose_pine_variant = "moon"
+    require("rose-pine").setup({
+      --- @usage 'main' | 'moon'
+      dark_variant = "moon",
+    })
   end,
 }
 
