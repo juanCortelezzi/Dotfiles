@@ -53,8 +53,7 @@ for _, server in pairs(servers) do
       server = vim.tbl_deep_extend("force", rust_config.opts, opts),
       tools = rust_config.tools,
     })
-    return
+  else
+    lspconfig[server].setup(opts)
   end
-
-  lspconfig[server].setup(opts)
 end
