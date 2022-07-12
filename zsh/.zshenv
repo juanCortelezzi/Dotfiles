@@ -4,6 +4,7 @@ ZDOTDIR=$HOME/.config/zsh
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
+export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
 
 export LANG=en_US.UTF-8
 export TERM='tmux-256color'
@@ -13,6 +14,7 @@ export EDITOR="nvim"
 export BROWSER="firefox"
 
 # add npm globals to path
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export VOLTA_HOME="$XDG_CONFIG_HOME/volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 # export NPM_CONFIG_PREFIX="$XDG_CONFIG_HOME/npm/npm-global"

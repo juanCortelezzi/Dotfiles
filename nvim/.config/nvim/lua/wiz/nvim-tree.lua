@@ -20,7 +20,7 @@ nvim_tree.setup({
   ignore_ft_on_setup = {
     "alpha",
   },
-  update_cwd = true,
+  update_cwd = false,
   renderer = {
     add_trailing = false,
     group_empty = false,

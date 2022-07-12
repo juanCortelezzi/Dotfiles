@@ -14,11 +14,11 @@ alias t="tmux"
 alias sucklessinstall="rm -rf config.h && sudo make clean install"
 alias getkc="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", \$5, \$8 }'"
 alias pan="pandoc --pdf-engine=xelatex --highlight-style=zenburn --filter pandoc-crossref --template=eisvogel -s"
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 
 #git aliases
 alias g='git'
 alias gp='git push'
-alias gphm='git push heroku main'
 alias gs='git status'
 alias ga='git add'
 alias gaa='git add --all'
