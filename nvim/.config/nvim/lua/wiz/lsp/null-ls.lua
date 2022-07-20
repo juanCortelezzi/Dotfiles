@@ -31,5 +31,7 @@ null_ls.setup({
     null_ls.builtins.formatting.rustfmt,
     -- bash
     -- null_ls.builtins.diagnostics.shellcheck,
+    -- zig
+    null_ls.builtins.formatting.zigfmt,
   },
 })

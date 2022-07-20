@@ -74,7 +74,7 @@ ZSH_HIGHLIGHT_STYLES[path]='fg=yellow,underline'
 ZSH_HIGHLIGHT_STYLES[unknown-token]='none'
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#666666,bold,underline"
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"

@@ -16,6 +16,7 @@ local servers = {
   "rust_analyzer",
   "tailwindcss",
   "tsserver",
+  "zls",
 }
 
 lsp_installer.setup({
