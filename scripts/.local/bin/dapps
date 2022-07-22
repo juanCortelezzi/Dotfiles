@@ -8,16 +8,17 @@ opts=(
     "alacritty"
     "thunar"
     "discord"
+    "easyeffects"
     "zathura"
     "gimp"
     "inkscape"
     "lxappearance"
     "signal-desktop"
-    "retroarch"
     "postman"
     "steam"
     "pavucontrol"
     "arandr"
+    "retroarch"
 )
 
 echo "${opts[@]}" | tr ' ' '\n' | dmenu "$@" | ${SHELL:-"/bin/sh"} &
