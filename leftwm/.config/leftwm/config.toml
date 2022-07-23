@@ -1,0 +1,296 @@
+modkey = "Mod4"
+mousekey = "Mod4"
+workspaces = []
+tags = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+layouts = ["MainAndVertStack", "Monocle"]
+layout_mode = "Workspace"
+insert_behavior = "Top"
+window_rules = [
+  {window_class = "discord", spawn_on_tag = 9},
+  {window_class = "easyeffects", spawn_on_tag = 5},
+]
+
+disable_current_tag_swap = true
+disable_tile_drag = true
+focus_behaviour = "Sloppy"
+focus_new_windows = true
+disable_window_snap = true
+
+[[scratchpad]]
+name = "QuickCommands"
+value = "WINIT_X11_SCALE_FACTOR=1 alacritty -o font.size=14"
+x = 0.10
+y = 0.20
+height = 0.60
+width = 0.80
+
+[[keybind]]
+command = "ToggleScratchPad"
+value = "QuickCommands"
+modifier = ["modkey"]
+key = "grave"
+
+# * mod enter -> terminal
+# * mod w -> firefox
+# * mod space -> dapps
+# * mod shift space -> dmenu
+# * mod s -> screenshot
+# * mod shift x -> reshut
+
+[[keybind]]
+command = "Execute"
+value = "alacritty"
+modifier = ["modkey"]
+key = "Return"
+
+[[keybind]]
+command = "Execute"
+value = "firefox"
+modifier = ["modkey"]
+key = "w"
+
+[[keybind]]
+command = "Execute"
+value = "dapps"
+modifier = ["modkey"]
+key = "space"
+
+[[keybind]]
+command = "Execute"
+value = "dmenu_run"
+modifier = ["modkey", "Shift"]
+key = "space"
+
+[[keybind]]
+command = "Execute"
+value = "nsxiv -t ~/Pictures/wallpapers"
+modifier = ["modkey", "Shift"]
+key = "b"
+
+[[keybind]]
+command = "Execute"
+value = "screenshot"
+modifier = ["modkey"]
+key = "s"
+
+[[keybind]]
+command = "Execute"
+value = "reshut"
+modifier = ["modkey", "Shift"]
+key = "x"
+
+# * mod q -> kill window
+# * mod shift r -> reload leftwm
+# * mod shift q -> kill leftwm
+
+[[keybind]]
+command = "CloseWindow"
+value = ""
+modifier = ["modkey"]
+key = "q"
+
+[[keybind]]
+command = "SoftReload"
+value = ""
+modifier = ["modkey", "Shift"]
+key = "r"
+
+[[keybind]]
+command = "Execute"
+value = "loginctl kill-session $XDG_SESSION_ID"
+modifier = ["modkey", "Shift"]
+key = "q"
+
+# * mod j -> move down through stack
+# * mod k -> move up through stack
+# * mod shift j -> move window down through stack
+# * mod shift k -> move window up through stack
+# * mod shift enter -> window to main
+
+[[keybind]]
+command = "MoveWindowDown"
+value = ""
+modifier = ["modkey", "Shift"]
+key = "j"
+
+[[keybind]]
+command = "MoveWindowUp"
+value = ""
+modifier = ["modkey", "Shift"]
+key = "k"
+
+[[keybind]]
+command = "FocusWindowDown"
+value = ""
+modifier = ["modkey"]
+key = "j"
+
+[[keybind]]
+command = "FocusWindowUp"
+value = ""
+modifier = ["modkey"]
+key = "k"
+
+[[keybind]]
+command = "MoveWindowTop"
+value = ""
+modifier = ["modkey", "Shift"]
+key = "Return"
+
+# * mod h -> decrease main size
+# * mod l -> increase main size
+# * mod t -> set layout to tiling
+# * mod m -> set layout to monocle
+# * mod f -> toggle window to floating
+
+[[keybind]]
+command = "DecreaseMainWidth"
+value = "5"
+modifier = ["modkey"]
+key = "h"
+
+[[keybind]]
+command = "IncreaseMainWidth"
+value = "5"
+modifier = ["modkey"]
+key = "l"
+
+[[keybind]]
+command = "SetLayout"
+value = "MainAndVertStack"
+modifier = ["modkey"]
+key = "t"
+
+[[keybind]]
+command = "SetLayout"
+value = "Monocle"
+modifier = ["modkey"]
+key = "m"
+
+[[keybind]]
+command = "ToggleFloating"
+modifier = ["modkey"]
+key = "f"
+
+# * mod n -> focus next tag
+# * mod p -> focus prev tag
+# * mod # -> tag #
+# * mod shift # -> move to tag #
+
+[[keybind]]
+command = "FocusNextTag"
+modifier = ["modkey"]
+key = "n"
+
+[[keybind]]
+command = "FocusPreviousTag"
+modifier = ["modkey"]
+key = "p"
+
+[[keybind]]
+command = "GotoTag"
+value = "1"
+modifier = ["modkey"]
+key = "1"
+
+[[keybind]]
+command = "GotoTag"
+value = "2"
+modifier = ["modkey"]
+key = "2"
+
+[[keybind]]
+command = "GotoTag"
+value = "3"
+modifier = ["modkey"]
+key = "3"
+
+[[keybind]]
+command = "GotoTag"
+value = "4"
+modifier = ["modkey"]
+key = "4"
+
+[[keybind]]
+command = "GotoTag"
+value = "5"
+modifier = ["modkey"]
+key = "5"
+
+[[keybind]]
+command = "GotoTag"
+value = "6"
+modifier = ["modkey"]
+key = "6"
+
+[[keybind]]
+command = "GotoTag"
+value = "7"
+modifier = ["modkey"]
+key = "7"
+
+[[keybind]]
+command = "GotoTag"
+value = "8"
+modifier = ["modkey"]
+key = "8"
+
+[[keybind]]
+command = "GotoTag"
+value = "9"
+modifier = ["modkey"]
+key = "9"
+
+[[keybind]]
+command = "MoveToTag"
+value = "1"
+modifier = ["modkey", "Shift"]
+key = "1"
+
+[[keybind]]
+command = "MoveToTag"
+value = "2"
+modifier = ["modkey", "Shift"]
+key = "2"
+
+[[keybind]]
+command = "MoveToTag"
+value = "3"
+modifier = ["modkey", "Shift"]
+key = "3"
+
+[[keybind]]
+command = "MoveToTag"
+value = "4"
+modifier = ["modkey", "Shift"]
+key = "4"
+
+[[keybind]]
+command = "MoveToTag"
+value = "5"
+modifier = ["modkey", "Shift"]
+key = "5"
+
+[[keybind]]
+command = "MoveToTag"
+value = "6"
+modifier = ["modkey", "Shift"]
+key = "6"
+
+[[keybind]]
+command = "MoveToTag"
+value = "7"
+modifier = ["modkey", "Shift"]
+key = "7"
+
+[[keybind]]
+command = "MoveToTag"
+value = "8"
+modifier = ["modkey", "Shift"]
+key = "8"
+
+[[keybind]]
+command = "MoveToTag"
+value = "9"
+modifier = ["modkey", "Shift"]
+key = "9"
