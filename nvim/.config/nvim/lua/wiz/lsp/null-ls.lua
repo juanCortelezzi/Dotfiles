@@ -31,6 +31,9 @@ null_ls.setup({
     null_ls.builtins.formatting.rustfmt,
     -- bash
     -- null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.formatting.beautysh.with({
+      extra_args = { "--indent-size", 2 },
+    }),
     -- zig
     null_ls.builtins.formatting.zigfmt,
   },
