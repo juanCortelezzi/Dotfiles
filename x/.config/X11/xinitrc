@@ -1,21 +1,29 @@
 #!/bin/sh
 
-# merge in defaults and keymaps
+# Here dwm is kept as default
+session=${1:-dwm}
+echo "SESSION -------- $session"
 
-if [ -f "$HOME/.config/X11/xresources" ]; then
-    xrdb -merge "$HOME/.config/X11/xresources"
+if pgrep $session; then
+  echo "already running $session"
+  exit 1
 fi
+
+# merge in defaults and keymaps
+if [ -f "$HOME/.config/X11/xresources" ]; then
+  xrdb -merge "$HOME/.config/X11/xresources"
+fi
+
 if [ -d "/etc/X11/xinit/xinitrc.d" ] ; then
-    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-        # shellcheck source=/dev/null
-        [ -x "$f" ] && . "$f"
-    done
-    unset f
+  for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+    # shellcheck source=/dev/null
+    [ -x "$f" ] && . "$f"
+  done
+  unset f
 fi
 
 # set display brightness
-# xbacklight -set 40 &
-tostadora light set 40 &
+tost light set 40 &
 
 # set wallpaper
 xwallpaper --zoom "$HOME/.config/wallpaper" &
@@ -23,17 +31,28 @@ xwallpaper --zoom "$HOME/.config/wallpaper" &
 # start ssh agent
 eval "$(ssh-agent -s)"
 
-# start top bar
-dwmblocks &
 
-# start st
-st &
+case $session in
+  dwm)
+    dwmblocks &
+    st &
 
-# do this to be able to refresh dwm instead of killing the X server
-while true; do
-    # Log stderror to a file 
-    # dwm 2> ~/.config/dwm/dwm.log
+    # do this to be able to refresh dwm instead of killing the X server
+    while true; do
+      # Log stderror to a file
+      # dwm 2> ~/.config/dwm/dwm.log
 
-    # No error logging
-    dwm >/dev/null 2>&1
-done
+      # No error logging
+      dwm >/dev/null 2>&1
+    done
+    ;;
+
+  leftwm)
+    exec leftwm
+    ;;
+
+  *)
+    # No known session, try to run it as command
+    exec $1
+    ;;
+esac
