@@ -8,6 +8,8 @@ insert_behavior = "Top"
 window_rules = [
   {window_class = "discord", spawn_on_tag = 9},
   {window_class = "easyeffects", spawn_on_tag = 5},
+  {window_class = "Pavucontrol", spawn_on_tag = 5},
+  {window_class = "firefox", spawn_on_tag = 1},
 ]
 
 disable_current_tag_swap = true
