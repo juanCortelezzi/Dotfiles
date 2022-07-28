@@ -4,6 +4,22 @@ if not ok then
   return
 end
 
+local harpoon = {
+  component = function()
+    local harpoon_number = require("harpoon.mark").get_index_of(vim.fn.bufname())
+    if harpoon_number then
+      return "ﯠ " .. harpoon_number
+    else
+      return "ﯡ "
+    end
+  end,
+  color = function()
+    if require("harpoon.mark").get_index_of(vim.fn.bufname()) then
+      return { fg = "#98be65", gui = "bold" }
+    end
+  end,
+}
+
 lualine.setup({
   options = {
     icons_enabled = true,
@@ -28,7 +44,7 @@ lualine.setup({
       { "filename", path = 1 },
     },
 
-    lualine_x = { { "filetype", icons_enabled = false } },
+    lualine_x = { { harpoon.component, color = harpoon.color } },
     lualine_y = { "progress" },
     lualine_z = { "location" },
     -- lualine_x = {},
