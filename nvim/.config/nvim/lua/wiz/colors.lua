@@ -21,6 +21,9 @@ local pre_config = {
       dark_variant = "moon",
     })
   end,
+  poimandres = function()
+    require("poimandres").setup({})
+  end,
 }
 
 vim.api.nvim_create_autocmd({ "ColorSchemePre" }, {

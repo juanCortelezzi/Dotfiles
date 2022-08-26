@@ -28,7 +28,9 @@ null_ls.setup({
     -- golang
     null_ls.builtins.formatting.gofmt,
     -- rust
-    null_ls.builtins.formatting.rustfmt,
+    null_ls.builtins.formatting.rustfmt.with({
+      extra_args = { "--edition", 2021 },
+    }),
     -- bash
     -- null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.formatting.beautysh.with({

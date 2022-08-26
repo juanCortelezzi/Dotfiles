@@ -75,6 +75,7 @@ return packer.startup(function(use)
   -- Colorschemes
   use({ "folke/tokyonight.nvim" })
   use({ "rose-pine/neovim", as = "rose-pine" })
+  use({ "olivercederborg/poimandres.nvim" })
 
   -- cmp plugins
   use({ "hrsh7th/nvim-cmp" })
@@ -92,7 +93,7 @@ return packer.startup(function(use)
   use({ "neovim/nvim-lspconfig" })
   use({ "williamboman/nvim-lsp-installer" })
   use({ "jose-elias-alvarez/null-ls.nvim" })
-  use({ "simrat39/rust-tools.nvim", module = "rust-tools" })
+  use({ "simrat39/rust-tools.nvim" })
 
   -- Harpoon the primeagen is happy
   use("ThePrimeagen/harpoon")
@@ -121,11 +122,6 @@ return packer.startup(function(use)
   })
   use({
     "nvim-treesitter/nvim-treesitter-context",
-    cmd = {
-      "TSContextEnable",
-      "TSContextDisable",
-      "TSContextToggle",
-    },
     config = function()
       require("treesitter-context").setup()
     end,

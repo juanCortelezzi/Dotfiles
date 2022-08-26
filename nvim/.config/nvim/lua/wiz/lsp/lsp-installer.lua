@@ -17,6 +17,7 @@ local servers = {
   "tailwindcss",
   "tsserver",
   "zls",
+  "denols",
 }
 
 lsp_installer.setup({
@@ -47,10 +48,22 @@ for _, server in pairs(servers) do
     opts = vim.tbl_deep_extend("force", pyright_opts, opts)
   end
 
+  if server == "denols" then
+    local denols_opts = require("wiz.lsp.settings.denols")
+    vim.pretty_print(denols_opts)
+    opts = vim.tbl_deep_extend("force", denols_opts, opts)
+  end
+
   if server == "rust_analyzer" then
     local rust_config = require("wiz.lsp.settings.rust")
 
-    require("rust-tools").setup({
+    local rust_tools_ok, rust_tools = pcall(require, "rust-tools")
+    if not rust_tools_ok then
+      print("could not load rust-tools")
+      return
+    end
+
+    rust_tools.setup({
       server = vim.tbl_deep_extend("force", rust_config.opts, opts),
       tools = rust_config.tools,
     })
