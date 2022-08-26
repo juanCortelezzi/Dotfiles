@@ -90,10 +90,13 @@ return packer.startup(function(use)
   use({ "rafamadriz/friendly-snippets" })
 
   -- LSP
-  use({ "neovim/nvim-lspconfig" })
-  use({ "williamboman/nvim-lsp-installer" })
-  use({ "jose-elias-alvarez/null-ls.nvim" })
-  use({ "simrat39/rust-tools.nvim" })
+  use({
+    "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "jose-elias-alvarez/null-ls.nvim",
+    "simrat39/rust-tools.nvim",
+  })
 
   -- Harpoon the primeagen is happy
   use("ThePrimeagen/harpoon")
