@@ -104,5 +104,5 @@ keymap("v", "<Down>", "<Nop>")
 keymap("v", "<Left>", "<Nop>")
 keymap("v", "<Right>", "<Nop>")
 
--- idk what the fuck is this but it scares me.
+-- idk what the fuck this is but it scares me.
 keymap("n", "Q", "<Nop>")

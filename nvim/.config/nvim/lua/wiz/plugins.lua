@@ -111,6 +111,7 @@ return packer.startup(function(use)
   -- Trouble error and todo info
   use({
     "folke/trouble.nvim",
+    cmd = { "TroubleToggle", "TodoTrouble" },
     config = function()
       require("trouble").setup()
     end,
@@ -133,9 +134,9 @@ return packer.startup(function(use)
   use({ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" })
 
   -- DAP
-  use({ "mfussenegger/nvim-dap" })
-  use({ "rcarriga/nvim-dap-ui" })
-  use({ "ravenxrz/DAPInstall.nvim" })
+  --[[ use({ "mfussenegger/nvim-dap" }) ]]
+  --[[ use({ "rcarriga/nvim-dap-ui" }) ]]
+  --[[ use({ "ravenxrz/DAPInstall.nvim" }) ]]
 
   -- VimWiki
   use({

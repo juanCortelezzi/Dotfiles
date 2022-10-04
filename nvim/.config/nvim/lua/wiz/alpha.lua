@@ -25,7 +25,7 @@ startify.section.top_buttons.val = {
   startify.button("zs", "zsh", ":cd ~/.config/zsh<CR>:e .zshrc<CR>"),
   startify.button("ze", "zshenv", ":cd ~<CR>:e .zshenv<CR>"),
   startify.button("vw", "wiki", ":cd ~/Documents/Stuff/Notas/Vim_wiki/<CR>:e index.wiki<CR>"),
-  startify.button("vn", "neorg", ":NeorgStart<CR>"),
+  startify.button("vn", "neorg", ":Neorg workspace notes<CR>"),
 }
 
 startify.section.bottom_buttons.val = {

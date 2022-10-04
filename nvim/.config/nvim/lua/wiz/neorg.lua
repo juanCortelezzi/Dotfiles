@@ -12,7 +12,7 @@ neorg.setup({
         engine = "nvim-cmp",
       },
     },
-    -- ["core.norg.concealer"] = {},
+    --[[ ["core.norg.concealer"] = {}, ]]
     ["core.norg.dirman"] = {
       config = {
         workspaces = {

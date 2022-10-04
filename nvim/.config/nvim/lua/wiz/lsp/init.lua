@@ -20,18 +20,12 @@ end
 mason.setup()
 
 local servers = {
-  "cssls",
-  "dockerls",
-  "eslint",
   "gopls",
-  "jsonls",
-  "prismals",
   "pyright",
   "sumneko_lua",
   "rust_analyzer",
   "tailwindcss",
   "tsserver",
-  "zls",
   "denols",
 }
 
@@ -105,6 +99,14 @@ mason_lsp.setup_handlers({
       on_attach = on_attach,
       capabilities = capabilities,
       root_dir = lspconfig.util.root_pattern("deno.json", "deno.cjson"),
+      filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+    })
+  end,
+
+  ["tailwindcss"] = function()
+    lspconfig.tailwindcss.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
       filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
     })
   end,

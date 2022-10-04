@@ -7,7 +7,7 @@ require("wiz.autocommands")
 
 -- Colorscheme
 require("wiz.colors").set("poimandres")
--- require("wiz.colors").set("rose-pine")
+--[[ require("wiz.colors").set("rose-pine") ]]
 -- require("wiz.colors").set("tokyonight")
 
 require("wiz.lsp")
