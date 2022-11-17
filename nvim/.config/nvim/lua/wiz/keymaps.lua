@@ -50,10 +50,10 @@ keymap("n", "<leader>tg", "<cmd>lua require('wiz.toggleterm.custom').lazygit_tog
 keymap("n", "<leader>tl", "<cmd>lua require('wiz.toggleterm.custom').lf_toggle()<CR>", opts)
 
 -- Harpoon
-keymap("n", "<leader>h", "<cmd>lua require('harpoon.ui').nav_file(1)<CR>", opts)
-keymap("n", "<leader>j", "<cmd>lua require('harpoon.ui').nav_file(2)<CR>", opts)
-keymap("n", "<leader>k", "<cmd>lua require('harpoon.ui').nav_file(3)<CR>", opts)
-keymap("n", "<leader>l", "<cmd>lua require('harpoon.ui').nav_file(4)<CR>", opts)
+keymap("n", "<C-H>", "<cmd>lua require('harpoon.ui').nav_file(1)<CR>", opts)
+keymap("n", "<C-J>", "<cmd>lua require('harpoon.ui').nav_file(2)<CR>", opts)
+keymap("n", "<C-K>", "<cmd>lua require('harpoon.ui').nav_file(3)<CR>", opts)
+keymap("n", "<C-L>", "<cmd>lua require('harpoon.ui').nav_file(4)<CR>", opts)
 keymap("n", "<leader>;", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
 keymap("n", "<leader>m", "<cmd>lua require('harpoon.mark').add_file()<CR>", opts)
 keymap("n", "<leader>M", "<cmd>lua require('harpoon.mark').rm_file()<CR>", opts)

@@ -76,6 +76,7 @@ return packer.startup(function(use)
   use({ "folke/tokyonight.nvim" })
   use({ "rose-pine/neovim", as = "rose-pine" })
   use({ "olivercederborg/poimandres.nvim" })
+  use({ "catppuccin/nvim", as = "catppuccin" })
 
   -- cmp plugins
   use({ "hrsh7th/nvim-cmp" })

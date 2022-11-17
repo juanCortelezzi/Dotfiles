@@ -10,19 +10,21 @@ M.set = function(colorscheme)
 end
 
 local pre_config = {
-  tokyonight = function()
-    vim.g.tokyonight_style = "night"
-    vim.g.tokyonight_italic_functions = true
-    vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
-  end,
-  ["rose-pine"] = function()
-    require("rose-pine").setup({
-      --- @usage 'main' | 'moon'
-      dark_variant = "moon",
+  tokyonight = function(tokyonight)
+    tokyonight.setup({
+      --- @usage 'night' | 'moon' | 'storm' | 'day'
+      style = "night",
+      styles = {
+        --[[ comments = { italic = true }, ]]
+        --[[ keywords = { italic = true }, ]]
+        --[[ sidebars = "dark", ]]
+        --[[ floats = "dark", ]]
+      },
+      sidebars = { "qf", "vista_kind", "terminal", "packer" },
     })
   end,
-  poimandres = function()
-    require("poimandres").setup({
+  poimandres = function(poimandres)
+    poimandres.setup({
       bold_vert_split = false, -- use bold vertical separators
       dim_nc_background = false, -- dim 'non-current' window backgrounds
       disable_background = false, -- disable background
@@ -30,16 +32,34 @@ local pre_config = {
       disable_italics = false, -- disable italics
     })
   end,
+  catppuccin = function(catppuccin)
+    catppuccin.setup({
+      -- @usage 'mocha' | 'macchiato' | 'frappe' | 'latte'
+      flavour = "macchiato",
+    })
+  end,
+  ["rose-pine"] = function(rosepine)
+    rosepine.setup({
+      --- @usage 'main' | 'moon'
+      dark_variant = "moon",
+    })
+  end,
 }
 
-vim.api.nvim_create_autocmd({ "ColorSchemePre" }, {
+vim.api.nvim_create_autocmd("ColorSchemePre", {
   callback = function(a)
-    -- print("cooooloooorsss", a.match)
     local custom_setter = pre_config[a.match]
-    if custom_setter ~= nil then
-      -- print("setting")
-      custom_setter()
+    if custom_setter == nil then
+      return
     end
+
+    local ok, colorscheme = pcall(require, a.match)
+    if not ok then
+      vim.notify("could not require" .. a.match)
+      return
+    end
+
+    custom_setter(colorscheme)
   end,
 })
 

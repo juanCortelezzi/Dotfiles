@@ -31,6 +31,9 @@ local servers = {
 
 mason_lsp.setup({
   ensure_installed = servers,
+  ui = {
+    check_outdated_packages_on_open = true,
+  },
 })
 
 local handlers = require("wiz.lsp.handlers")
@@ -83,6 +86,7 @@ mason_lsp.setup_handlers({
       on_attach = on_attach,
       capabilities = capabilities,
       root_dir = lspconfig.util.root_pattern("package.json"),
+      filetypes = { "typescript", "typescriptreact", "typescript.tsx", "mdx" },
     })
   end,
 
@@ -107,7 +111,7 @@ mason_lsp.setup_handlers({
     lspconfig.tailwindcss.setup({
       on_attach = on_attach,
       capabilities = capabilities,
-      filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+      filetypes = { "typescript", "typescriptreact", "typescript.tsx", "astro" },
     })
   end,
 })
