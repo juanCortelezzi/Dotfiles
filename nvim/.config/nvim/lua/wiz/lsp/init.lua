@@ -86,7 +86,7 @@ mason_lsp.setup_handlers({
       on_attach = on_attach,
       capabilities = capabilities,
       root_dir = lspconfig.util.root_pattern("package.json"),
-      filetypes = { "typescript", "typescriptreact", "typescript.tsx", "mdx" },
+      filetypes = { "typescript", "typescriptreact", "typescript.tsx", "mdx", "javascript" },
     })
   end,
 
@@ -111,7 +111,7 @@ mason_lsp.setup_handlers({
     lspconfig.tailwindcss.setup({
       on_attach = on_attach,
       capabilities = capabilities,
-      filetypes = { "typescript", "typescriptreact", "typescript.tsx", "astro" },
+      filetypes = { "typescript", "typescriptreact", "typescript.tsx", "astro", "javascript" },
     })
   end,
 })

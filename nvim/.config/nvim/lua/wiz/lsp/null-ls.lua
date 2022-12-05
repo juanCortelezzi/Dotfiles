@@ -15,7 +15,7 @@ null_ls.setup({
   sources = {
     -- js, ts, json
     formatting.prettier.with({
-      extra_filetypes = { "toml", "solidity" },
+      extra_filetypes = { "toml", "astro" },
     }),
     -- python
     formatting.black.with({ extra_args = { "--fast" } }),
