@@ -18,5 +18,10 @@ case "$1" in
 		ln -sf "$file" "$XDG_CONFIG_HOME/wallpaper"
 		xwallpaper --zoom "$XDG_CONFIG_HOME/wallpaper"
 	done ;;
+
+"C-d")      
+	while read file; do 
+    rm "$file"
+	done ;;
 esac
 
