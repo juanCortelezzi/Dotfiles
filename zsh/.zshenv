@@ -17,6 +17,8 @@ export BROWSER="firefox"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export VOLTA_HOME="$XDG_CONFIG_HOME/volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+# SDK man
+# export SDKMAN_DIR="$XDG_CONFIG_HOME/sdkman"
 # export NPM_CONFIG_PREFIX="$XDG_CONFIG_HOME/npm/npm-global"
 # export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
 # add Android SDK to path

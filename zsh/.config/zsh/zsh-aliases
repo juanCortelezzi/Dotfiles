@@ -10,13 +10,14 @@ alias mv="mv -i"
 alias df='df -h'    
 alias free='free -hm'
 alias path="echo $PATH | sed -e 's/:/\n/g' | sort"
-alias t="tmux"
+# alias t="tmux"
 alias sucklessinstall="rm -rf config.h && sudo make clean install"
 alias getkc="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", \$5, \$8 }'"
 alias pan="pandoc --pdf-engine=xelatex --highlight-style=zenburn --filter pandoc-crossref --template=eisvogel -s"
-alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+alias wget="wget --hsts-file=\"$XDG_DATA_HOME/wget-hsts\""
 alias asdf="setxkbmap dvorak"
 alias aoeu="setxkbmap us"
+alias pn="pnpm"
 
 #git aliases
 alias g='git'
@@ -25,8 +26,6 @@ alias gs='git status'
 alias ga='git add'
 alias gaa='git add --all'
 alias gc='git commit'
-alias gb='git branch'
-alias gbd='git branch -d'
 alias gcm="git checkout main"
 alias gco="git checkout"
 alias gcb="git checkout -b"
@@ -38,15 +37,6 @@ alias parrot="curl parrot.live"
 ###################################################################################################
 
 # [ -f "$HOME/Documents/Bash-programes/tmux-short.sh" ] && source "$HOME/Documents/Bash-programes/tmux-short.sh"
-
-function vf {
-  local FILE=$(rg --files --hidden | fzf --preview 'head -50 {}')
-
-  if [[ ! -z $FILE ]]; then
-    v $FILE
-  fi
-}
-
 
 function sfind {
   fd -t d \
