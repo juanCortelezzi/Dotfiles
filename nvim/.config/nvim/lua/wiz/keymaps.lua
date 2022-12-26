@@ -21,6 +21,9 @@ keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
+keymap("n", "<C-u>", "<C-u>zz", opts)
+keymap("n", "<C-d>", "<C-d>zz", opts)
+
 -- Clear highlights
 -- keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
@@ -34,7 +37,7 @@ keymap("v", ">", ">gv", opts)
 -- Diagnostics
 keymap("n", "<leader>dd", "<cmd>TroubleToggle document_diagnostics<CR>", opts)
 keymap("n", "<leader>dp", "<cmd>TroubleToggle workspace_diagnostics<CR>", opts)
-keymap("n", "<leader>dn", "<cmd>TodoTrouble<CR>", opts)
+keymap("n", "<leader>dn", "<cmd>TodoTelescope<CR>", opts)
 
 -- NvimTree
 keymap("n", "<leader><leader>", "<cmd>NvimTreeToggle<CR>", opts)
