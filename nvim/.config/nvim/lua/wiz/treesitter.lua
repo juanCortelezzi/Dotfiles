@@ -19,6 +19,12 @@ configs.setup({
     "rust",
     "toml",
     "yaml",
+    "norg",
+    "norg_meta",
+    "git_rebase",
+    "gitattributes",
+    "gitcommit",
+    "gitignore",
   },
   ignore_install = { "" }, -- List of parsers to ignore installing
   highlight = {
