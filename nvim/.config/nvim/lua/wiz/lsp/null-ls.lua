@@ -4,6 +4,12 @@ if not null_ls_status_ok then
   return
 end
 
+local mason_null_status_ok, mason_null = pcall(require, "mason-null-ls")
+if not mason_null_status_ok then
+  print("could not load mason-null-ls")
+  return
+end
+
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 local formatting = null_ls.builtins.formatting
 
@@ -22,10 +28,19 @@ null_ls.setup({
     -- diagnostics.flake8,
     -- lua
     formatting.stylua.with({
-      extra_args = { "--config-path", vim.fn.stdpath("config") .. "/stylua.toml" },
+      extra_args = {
+        "--config-path",
+        vim.fn.stdpath("config") .. "/stylua.toml",
+      },
     }),
     -- golang
-    formatting.gofmt,
+    -- formatting.gofmt,
+    formatting.gofumpt.with({
+      extra_args = { "--extra" },
+      env = {
+        GOFUMPT_SPLIT_LONG_LINES = "on",
+      },
+    }),
     -- rust
     formatting.rustfmt.with({
       extra_args = { "--edition", 2021 },
@@ -38,4 +53,10 @@ null_ls.setup({
     -- zig
     formatting.zigfmt,
   },
+})
+
+mason_null.setup({
+  ensure_installed = nil,
+  automatic_installation = true,
+  automatic_setup = false,
 })

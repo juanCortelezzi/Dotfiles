@@ -95,6 +95,7 @@ return packer.startup(function(use)
     "neovim/nvim-lspconfig",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    "jay-babu/mason-null-ls.nvim",
     "jose-elias-alvarez/null-ls.nvim",
     "simrat39/rust-tools.nvim",
   })
