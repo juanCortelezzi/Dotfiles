@@ -40,7 +40,7 @@ vim.opt.shortmess:append("c")
 -- vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.iskeyword:append("-")
 vim.opt.relativenumber = true -- set relative numbered lines
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "81"
 
 vim.g.loaded_gzip = 1
 vim.g.loaded_tar = 1
