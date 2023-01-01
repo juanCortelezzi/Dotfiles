@@ -73,6 +73,15 @@ keymap("n", "<leader>bcr", "<cmd>ColorizerReloadAllBuffers<CR>", opts)
 --Stuff
 keymap("n", "<leader>s", "<cmd>Twilight<CR>", opts)
 
+-- Mind
+keymap("n", "<leader>vl", function()
+  require("mind").open_project()
+end, opts)
+
+keymap("n", "<leader>vm", function()
+  require("mind").open_main()
+end, opts)
+
 -- Packer
 keymap("n", "<leader>pi", "<cmd>PackerInstall<CR>", opts)
 keymap("n", "<leader>pc", "<cmd>PackerCompile<CR>", opts)

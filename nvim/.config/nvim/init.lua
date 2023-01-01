@@ -30,5 +30,6 @@ require("wiz.twilight")
 
 require("wiz.neorg")
 require("wiz.vimwiki")
+require("wiz.mind")
 
 require("packer_compiled")

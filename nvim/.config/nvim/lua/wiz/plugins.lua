@@ -147,10 +147,10 @@ return packer.startup(function(use)
   })
 
   -- Neorg
-  use({
-    "nvim-neorg/neorg",
-    requires = "nvim-lua/plenary.nvim",
-  })
+  use({ "nvim-neorg/neorg" })
+
+  -- Mind
+  use({ "phaazon/mind.nvim" })
 
   -- Colorizer
   use({
@@ -166,6 +166,22 @@ return packer.startup(function(use)
   use({
     "folke/twilight.nvim",
     cmd = { "Twilight" },
+  })
+
+  use({
+    "folke/zen-mode.nvim",
+    config = function()
+      require("zen-mode").setup({
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+        plugins = {
+          twilight = {
+            enabled = false,
+          },
+        },
+      })
+    end,
   })
 
   -- Automatically set up your configuration after cloning packer.nvim
