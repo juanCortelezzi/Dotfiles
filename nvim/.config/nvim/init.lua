@@ -1,35 +1,53 @@
-require("wiz.impatient")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
 require("wiz.options")
-require("wiz.keymaps")
-require("wiz.plugins")
-require("wiz.autocommands")
+require("lazy").setup("plugins", {
+  defaults = { lazy = true },
+  install = { colorscheme = { "tokyonight", "habamax" } },
+  checker = { enabled = false },
+  change_detection = {
+    -- automatically check for config file changes and reload the ui
+    enabled = false,
+    notify = false, -- get a notification when changes are found
+  },
+  diff = {
+    cmd = "terminal_git",
+  },
+  performance = {
+    cache = {
+      enabled = true,
+    },
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+        "nvim-treesitter-textobjects",
+      },
+    },
+  },
+})
 
--- Colorscheme
--- require("wiz.colors").set("poimandres")
--- require("wiz.colors").set("rose-pine")
--- require("wiz.colors").set("tokyonight")
-require("wiz.colors").set("catppuccin")
-
-require("wiz.lsp")
-require("wiz.cmp")
-require("wiz.telescope")
-require("wiz.treesitter")
-require("wiz.autopairs")
-require("wiz.comment")
-
-require("wiz.nvim-tree")
-require("wiz.lualine")
-require("wiz.toggleterm")
-require("wiz.indentline")
-require("wiz.alpha")
--- require("wiz.dap")
-require("wiz.hexcolors")
-require("wiz.todocomments")
-require("wiz.twilight")
-
-require("wiz.neorg")
-require("wiz.vimwiki")
-require("wiz.mind")
-
-require("packer_compiled")
+vim.api.nvim_create_autocmd("User", {
+  pattern = "VeryLazy",
+  callback = function()
+    require("wiz.keymaps")
+    require("wiz.autocommands")
+  end,
+})

@@ -1,7 +1,6 @@
-local Terminal = require("toggleterm.terminal").Terminal
-
 local M = {}
 
+local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({
   cmd = "lazygit",
   hidden = true,
@@ -20,16 +19,16 @@ local lazygit = Terminal:new({
   },
 })
 
-M.lazygit_toggle = function()
-  lazygit:toggle()
-end
-
 local lf = Terminal:new({
   cmd = "lf",
   hidden = true,
   direction = "float",
   close_on_exit = true,
 })
+
+M.lazygit_toggle = function()
+  lazygit:toggle()
+end
 
 M.lf_toggle = function()
   lf:toggle()

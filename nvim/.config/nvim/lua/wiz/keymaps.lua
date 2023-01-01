@@ -24,9 +24,6 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
 keymap("n", "<C-d>", "<C-d>zz", opts)
 
--- Clear highlights
--- keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
-
 -- esc esc -> jj not proud of this, but i got used to it
 keymap("i", "jj", "<ESC>", opts)
 
@@ -40,7 +37,7 @@ keymap("n", "<leader>dp", "<cmd>TroubleToggle workspace_diagnostics<CR>", opts)
 keymap("n", "<leader>dn", "<cmd>TodoTelescope<CR>", opts)
 
 -- NvimTree
-keymap("n", "<leader><leader>", "<cmd>NvimTreeToggle<CR>", opts)
+keymap("n", "<leader><leader>", "<cmd>Neotree toggle<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>f", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", opts)
@@ -49,8 +46,8 @@ keymap("n", "<leader>tt", "<cmd>Telescope<CR>", opts)
 keymap("n", "<leader>tc", "<cmd>Telescope colorscheme<CR>", opts)
 keymap("n", "<leader>tf", "<cmd>Telescope file_browser<CR>", opts)
 keymap("n", "<leader>tz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", opts)
-keymap("n", "<leader>tg", "<cmd>lua require('wiz.toggleterm.custom').lazygit_toggle()<CR>", opts)
-keymap("n", "<leader>tl", "<cmd>lua require('wiz.toggleterm.custom').lf_toggle()<CR>", opts)
+keymap("n", "<leader>tg", "<cmd>lua require('plugins.toggleterm.custom').lazygit_toggle()<CR>", opts)
+keymap("n", "<leader>tl", "<cmd>lua require('plugins.toggleterm.custom').lf_toggle()<CR>", opts)
 
 -- Harpoon
 keymap("n", "<C-H>", "<cmd>lua require('harpoon.ui').nav_file(1)<CR>", opts)
@@ -71,7 +68,7 @@ keymap("n", "<leader>bcd", "<cmd>ColorizerDetachFromBuffer<CR>", opts)
 keymap("n", "<leader>bcr", "<cmd>ColorizerReloadAllBuffers<CR>", opts)
 
 --Stuff
-keymap("n", "<leader>s", "<cmd>Twilight<CR>", opts)
+-- keymap("n", "<leader>s", "<cmd>Twilight<CR>", opts)
 
 -- Mind
 keymap("n", "<leader>vl", function()
@@ -81,26 +78,6 @@ end, opts)
 keymap("n", "<leader>vm", function()
   require("mind").open_main()
 end, opts)
-
--- Packer
-keymap("n", "<leader>pi", "<cmd>PackerInstall<CR>", opts)
-keymap("n", "<leader>pc", "<cmd>PackerCompile<CR>", opts)
-keymap("n", "<leader>pC", "<cmd>PackerClean<CR>", opts)
-keymap("n", "<leader>pr", "<cmd>luafile %<CR>", opts)
-keymap("n", "<leader>pS", "<cmd>PackerSync<CR>", opts)
-keymap("n", "<leader>ps", "<cmd>PackerStatus<CR>", opts)
-keymap("n", "<leader>pu", "<cmd>PackerUpdate<CR>", opts)
-
--- DAP
--- keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
--- keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
--- keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
--- keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)
--- keymap("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", opts)
--- keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
--- keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
--- keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
--- keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 
 -- FUCK ARROW KEYS
 keymap("n", "<Up>", "<Nop>")
