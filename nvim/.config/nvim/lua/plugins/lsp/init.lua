@@ -6,12 +6,11 @@ local M = {
     "folke/neodev.nvim",
   },
 }
-function M.config()
-  local mason_lsp = require("mason-lspconfig")
-  local lspconfig = require("lspconfig")
-  local handlers = require("plugins.lsp.config")
 
-  handlers.setup()
+function M.config()
+  local lspconfig = require("lspconfig")
+  local mason_lsp = require("mason-lspconfig")
+  local handlers = require("plugins.lsp.config")
   local on_attach = handlers.on_attach
   local capabilities = handlers.capabilities
 
@@ -85,6 +84,45 @@ function M.config()
   })
 
   require("plugins.null-ls").setup(on_attach)
+end
+
+function M.init()
+  local signs = {
+    { name = "DiagnosticSignError", text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
+  }
+
+  for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+  end
+
+  vim.diagnostic.config({
+    virtual_text = true, -- disable virtual text
+    signs = {
+      active = signs, -- show signs
+    },
+    update_in_insert = false,
+    underline = true,
+    severity_sort = true,
+    float = {
+      focusable = true,
+      style = "minimal",
+      border = "rounded",
+      source = "always",
+      header = "",
+      prefix = "",
+    },
+  })
+
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "rounded",
+  })
+
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    border = "rounded",
+  })
 end
 
 return M

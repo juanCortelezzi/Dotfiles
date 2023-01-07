@@ -3,11 +3,6 @@ local opts = { noremap = true, silent = true }
 -- Shorten function name
 local keymap = vim.keymap.set
 
---Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- normal_mode = "n",
 -- insert_mode = "i",
 -- visual_mode = "v",
@@ -40,7 +35,7 @@ keymap("n", "<leader>dn", "<cmd>TodoTelescope<CR>", opts)
 keymap("n", "<leader><leader>", "<cmd>Neotree toggle<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>f", "<cmd>Telescope find_files hidden=true no_ignore=true<CR>", opts)
+keymap("n", "<leader>f", "<cmd>Telescope find_files hidden=true<CR>", opts)
 keymap("n", "<leader>g", "<cmd>Telescope live_grep<CR>", opts)
 keymap("n", "<leader>tt", "<cmd>Telescope<CR>", opts)
 keymap("n", "<leader>tc", "<cmd>Telescope colorscheme<CR>", opts)
@@ -72,7 +67,7 @@ keymap("n", "<leader>bcr", "<cmd>ColorizerReloadAllBuffers<CR>", opts)
 
 -- Mind
 keymap("n", "<leader>vl", function()
-  require("mind").open_project()
+  require("mind").open_project(true)
 end, opts)
 
 keymap("n", "<leader>vm", function()

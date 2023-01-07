@@ -53,6 +53,9 @@ return {
         prompt_prefix = " ",
         selection_caret = " ",
         winblend = borderless and 0 or 10,
+        file_ignore_patterns = {
+          ".git/.*",
+        },
       },
     })
     telescope.load_extension("fzf")
