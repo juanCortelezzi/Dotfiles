@@ -33,7 +33,6 @@ local lsp_formatting = function(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  print("attatching to buf: " .. bufnr)
   local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
   if not status_cmp_ok then
     print("could not load cmp")

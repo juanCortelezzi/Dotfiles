@@ -54,6 +54,7 @@ function M.config()
         capabilities = capabilities,
         root_dir = lspconfig.util.root_pattern("package.json"),
         filetypes = { "typescript", "typescriptreact", "typescript.tsx", "mdx", "javascript" },
+        single_file_support = false,
       })
     end,
 
