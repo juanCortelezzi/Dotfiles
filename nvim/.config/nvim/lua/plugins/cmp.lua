@@ -10,6 +10,7 @@ local M = {
     "saadparwaiz1/cmp_luasnip",
     "L3MON4D3/LuaSnip",
     "windwp/nvim-autopairs",
+    "rafamadriz/friendly-snippets",
   },
 }
 
