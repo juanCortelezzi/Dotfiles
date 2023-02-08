@@ -1,4 +1,3 @@
--- Set up nvim-cmp.
 local M = {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
@@ -73,11 +72,27 @@ function M.config()
     mapping = cmp.mapping.preset.insert({
       ["<C-p>"] = cmp.mapping.select_prev_item(),
       ["<C-n>"] = cmp.mapping.select_next_item(),
-      -- ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(2), { "i", "c" }),
-      -- ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-2), { "i", "c" }),
-      -- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
       ["<C-d>"] = cmp.mapping.scroll_docs(2),
       ["<C-u>"] = cmp.mapping.scroll_docs(-2),
+      ["<C-f>"] = cmp.mapping(function()
+        if luasnip.choice_active() then
+          require("luasnip.extras.select_choice")()
+        end
+      end, { "i" }),
+      ["<C-j>"] = cmp.mapping(function(fallback)
+        if luasnip.locally_jumpable() then
+          luasnip.jump(1)
+        else
+          fallback()
+        end
+      end, { "i" }),
+      ["<C-k>"] = cmp.mapping(function(fallback)
+        if luasnip.locally_jumpable() then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, { "i" }),
       ["<C-Space>"] = cmp.mapping.complete(),
       ["<C-e>"] = cmp.mapping({
         i = cmp.mapping.abort(),

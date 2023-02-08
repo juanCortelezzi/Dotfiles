@@ -34,6 +34,9 @@ return {
             show_path = "absolute", -- "none", "relative", "absolute"
           },
         },
+        ["x"] = "cut_to_clipboard",
+        ["y"] = "copy_to_clipboard",
+        ["p"] = "paste_from_clipboard",
         ["q"] = "close_window",
         ["<esc>"] = "close_window",
         ["?"] = "show_help",

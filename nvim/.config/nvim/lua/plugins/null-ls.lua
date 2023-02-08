@@ -48,7 +48,7 @@ function M.setup(on_attach)
         extra_args = { "--edition", 2021 },
       }),
       -- bash
-      -- null_ls.builtins.diagnostics.shellcheck,
+      null_ls.builtins.diagnostics.shellcheck,
       formatting.beautysh.with({
         extra_args = { "--indent-size", 2 },
       }),

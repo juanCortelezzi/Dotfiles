@@ -13,6 +13,9 @@ export VISUAL="nvim"
 export EDITOR="nvim"
 export BROWSER="firefox"
 
+# Haskell
+export CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
+export GHCUP_USE_XDG_DIRS=true # set to anything
 # add npm globals to path
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export VOLTA_HOME="$XDG_CONFIG_HOME/volta"

@@ -4,6 +4,12 @@ return {
     persistence = {
       data_dir = "~/Documents/Stuff/Notas/Mind",
     },
+    ui = {
+      width = 30,
+    },
+    tree = {
+      automatic_data_creation = false,
+    },
     edit = {
       data_extension = ".norg",
       data_header = "* %s",

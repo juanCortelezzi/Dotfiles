@@ -13,15 +13,14 @@
 # keysym as listed in /usr/include/X11/keysymdef.h without the "XK_" prefix.
 
 case "$1" in
-"C-w")      
-	while read file; do 
-		ln -sf "$file" "$XDG_CONFIG_HOME/wallpaper"
-		xwallpaper --zoom "$XDG_CONFIG_HOME/wallpaper"
-	done ;;
+  "C-w")
+    while read file; do
+      ln -sf "$file" "$XDG_CONFIG_HOME/wallpaper"
+      xwallpaper --zoom "$XDG_CONFIG_HOME/wallpaper"
+    done ;;
 
-"C-d")      
-	while read file; do 
-    rm "$file"
-	done ;;
+  "C-d")
+    while read file; do
+      rm "$file"
+    done ;;
 esac
-
