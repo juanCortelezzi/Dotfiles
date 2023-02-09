@@ -66,13 +66,16 @@ keymap("n", "<leader>bcr", "<cmd>ColorizerReloadAllBuffers<CR>", opts)
 -- keymap("n", "<leader>s", "<cmd>Twilight<CR>", opts)
 
 -- Mind
-keymap("n", "<leader>vl", function()
-  require("mind").open_project(true)
-end, opts)
+-- keymap("n", "<leader>vl", function()
+--   require("mind").open_project(true)
+-- end, opts)
+--
+-- keymap("n", "<leader>vm", function()
+--   require("mind").open_main()
+-- end, opts)
 
-keymap("n", "<leader>vm", function()
-  require("mind").open_main()
-end, opts)
+-- Neorg
+keymap("n", "<space>n", "<cmd>Neorg workspace notes<CR>", opts)
 
 -- FUCK ARROW KEYS
 keymap("n", "<Up>", "<Nop>")

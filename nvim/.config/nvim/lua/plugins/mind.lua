@@ -1,5 +1,6 @@
 return {
   "phaazon/mind.nvim",
+  enabled = false,
   config = {
     persistence = {
       data_dir = "~/Documents/Stuff/Notas/Mind",
