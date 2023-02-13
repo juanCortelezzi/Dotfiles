@@ -6,7 +6,7 @@ return {
       ensure_installed = {
         "gopls",
         "pyright",
-        "sumneko_lua",
+        "lua_ls",
         "rust_analyzer",
         "tailwindcss",
         "tsserver",

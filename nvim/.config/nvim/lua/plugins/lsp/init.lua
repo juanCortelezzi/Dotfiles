@@ -40,11 +40,11 @@ function M.config()
       })
     end,
 
-    ["sumneko_lua"] = function()
-      lspconfig.sumneko_lua.setup({
+    ["lua_ls"] = function()
+      lspconfig.lua_ls.setup({
         on_attach = on_attach,
         capabilities = capabilities,
-        settings = require("plugins.lsp.settings.sumneko"),
+        settings = require("plugins.lsp.settings.lua"),
       })
     end,
 
