@@ -5,7 +5,7 @@ return {
     "ColorizerDetachFromBuffer",
     "ColorizerReloadAllBuffers",
   },
-  config = {
+  opts = {
     filetypes = { "*", "!lazy" },
     buftype = { "*", "!prompt", "!nofile" },
     user_default_options = {

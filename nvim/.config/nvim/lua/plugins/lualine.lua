@@ -4,7 +4,7 @@ local M = {
   event = "BufWinEnter",
 }
 
-M.config = {
+M.opts = {
   options = {
     icons_enabled = true,
     theme = "auto",

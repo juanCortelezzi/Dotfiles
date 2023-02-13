@@ -3,7 +3,7 @@ return {
   ft = { "norg" },
   cmd = { "Neorg" },
   build = ":Neorg sync-parsers",
-  config = {
+  opts = {
     load = {
       ["core.defaults"] = {},
       ["core.norg.completion"] = {

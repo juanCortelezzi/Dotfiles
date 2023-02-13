@@ -2,7 +2,7 @@ return {
   { "williamboman/mason.nvim", config = true },
   {
     "williamboman/mason-lspconfig.nvim",
-    config = {
+    opts = {
       ensure_installed = {
         "gopls",
         "pyright",

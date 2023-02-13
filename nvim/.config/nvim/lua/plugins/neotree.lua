@@ -11,7 +11,7 @@ return {
     vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
   end,
   cmd = { "Neotree" },
-  config = {
+  opts = {
     close_if_last_window = true,
     enable_diagnostics = true,
     enable_git_status = false,

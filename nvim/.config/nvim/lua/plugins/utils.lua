@@ -3,7 +3,7 @@ return {
   "ThePrimeagen/harpoon",
   {
     "windwp/nvim-autopairs",
-    config = {
+    opts = {
       check_ts = true,
       disable_filetype = { "TelescopePrompt", "spectre_panel" },
       enable_check_bracket_line = true,
@@ -12,7 +12,7 @@ return {
   {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
-    config = {
+    opts = {
       auto_open = false,
       use_diagnostic_signs = true, -- en
     },

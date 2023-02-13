@@ -1,7 +1,7 @@
 return {
   "akinsho/toggleterm.nvim",
   keys = [[<C-\>]],
-  config = {
+  opts = {
     -- size can be a number or function which is passed the current terminal
     size = function(term)
       if term.direction == "horizontal" then
