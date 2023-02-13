@@ -4,7 +4,7 @@
 session=${1:-dwm}
 echo "SESSION -------- $session"
 
-if pgrep $session; then
+if pgrep "$session"; then
   echo "already running $session"
   exit 1
 fi
@@ -30,7 +30,6 @@ xwallpaper --zoom "$HOME/.config/wallpaper" &
 
 # start ssh agent
 eval "$(ssh-agent -s)"
-
 
 case $session in
   dwm)
