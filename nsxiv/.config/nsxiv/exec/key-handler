@@ -14,13 +14,13 @@
 
 case "$1" in
   "C-w")
-    while read file; do
+    while read -r file; do
       ln -sf "$file" "$XDG_CONFIG_HOME/wallpaper"
       xwallpaper --zoom "$XDG_CONFIG_HOME/wallpaper"
     done ;;
 
   "C-d")
-    while read file; do
+    while read -r file; do
       rm "$file"
     done ;;
 esac
