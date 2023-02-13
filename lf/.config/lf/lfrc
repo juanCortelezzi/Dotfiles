@@ -3,6 +3,7 @@ set preview true
 set drawbox true
 set icons true
 set ignorecase true
+set hidden
 
 # Custom Functions
 cmd open ${{
