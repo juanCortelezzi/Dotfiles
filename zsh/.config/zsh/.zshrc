@@ -16,7 +16,7 @@ setopt appendhistory          # Immediately append history instead of overwritin
 setopt histignorealldups      # If a new command is a duplicate, remove the older one
 setopt inc_append_history     # save commands are added to the history immediately, otherwise only when shell exits.
 
-# Theming section  
+# Theming section
 autoload -U compinit && compinit -d ~/.config/zsh/zcompdump
 autoload -U colors && colors
 autoload -U zcalc
@@ -40,7 +40,7 @@ _comp_options+=(globdots)
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.cache/zsh/.zcache
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcache"
 
 # # Use lf to switch directories and bind it to ctrl-o
 # lfcd () {
@@ -61,7 +61,6 @@ bindkey -a '^[[3~' vi-delete-char
 source "$ZDOTDIR/zsh-functions"
 
 # Load aliases and shortcuts if existent.
-zsh_add_file "zsh-exports"
 zsh_add_file "zsh-aliases"
 zsh_add_file "promptConfig/zsh-prompt"
 zsh_add_file "zsh-vim-mode"
