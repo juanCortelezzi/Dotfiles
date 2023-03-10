@@ -11,16 +11,19 @@ return {
           engine = "nvim-cmp",
         },
       },
-      -- ["core.norg.concealer"] = {},
+      ["core.norg.concealer"] = {
+        config = {
+          folds = false,
+          icon_preset = "diamond",
+        },
+      },
       ["core.norg.dirman"] = {
         config = {
           workspaces = {
             notes = "~/Documents/Stuff/Notas/Neorg",
           },
-
           default_workspace = "notes",
-          autochdir = true, -- Automatically change the directory to the current workspace's root every time
-          index = "index.norg", -- The name of the main (root) .norg file
+          autochdrir = true,
         },
       },
     },
