@@ -37,12 +37,17 @@ function M.setup(on_attach)
       }),
       -- golang
       -- formatting.gofmt,
-      formatting.gofumpt.with({
-        extra_args = { "--extra" },
-        env = {
-          GOFUMPT_SPLIT_LONG_LINES = "on",
-        },
+      -- formatting.gofumpt.with({
+      --   extra_args = { "--extra" },
+      --   env = {
+      --     GOFUMPT_SPLIT_LONG_LINES = "on",
+      --   },
+      -- }),
+      formatting.golines.with({
+        extra_args = { "-m", 80, "-t", 2, "--base-formatter", "gofumpt" },
+        -- command = 'golines %s -w --base-formatter="gofumpt"',
       }),
+
       -- rust
       formatting.rustfmt.with({
         extra_args = { "--edition", 2021 },
