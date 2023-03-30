@@ -1,0 +1,34 @@
+anchor = top
+width = 100%
+height = 20
+horizontal = true
+font-size = 12
+prompt-text = "run:"
+font = "/home/wiz/.local/share/fonts/HackNerdFont/Hack_Regular_Nerd_Font_Complete_Mono.ttf"
+outline-width = 0
+border-width = 0
+
+background-color = #1e1e2e
+text-color = #cdd6f4
+
+selection-background = #94e2d5
+selection-color = #1e1e2e
+
+prompt-background = #94e2d5
+prompt-color = #1e1e2e
+
+default-result-background-padding = 10
+selection-background-padding = 10
+
+result-spacing = 15
+
+min-input-width = 140
+clip-to-padding = true
+
+prompt-padding=5
+prompt-background-padding=5
+
+padding-top = 0
+padding-bottom = 0
+padding-left = 0
+padding-right = 0
