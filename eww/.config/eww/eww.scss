@@ -1,0 +1,48 @@
+$surface0: #313244;
+$base: #1e1e2e;
+$mantle: #181825;
+$text: #cdd6f4;
+$accent: #f2cdcd;
+$roundness: 5px;
+
+* {
+  all: unset; // default styles suck
+}
+
+.main {
+  background-color: $mantle;
+  color: $text;
+  font-family: "Hack Nerd Font", monospace;
+  // font-family: "JetBrainsMono Nerd Font", monospace;
+  // font-family: "RobotoMono Nerd Font", monospace;
+  padding: 5px;
+  font-size: 13px;
+  border-radius: $roundness;
+  margin: 5px 5px 0 5px;
+}
+
+.workspace_container {
+  & > .workspace_btn:first-child:nth-last-child(1) {
+    border-radius: $roundness;
+  }
+  & > .workspace_btn:first-child {
+    border-radius: $roundness 0 0 $roundness;
+  }
+  & > .workspace_btn:last-child {
+    border-radius: 0 $roundness $roundness 0;
+  }
+}
+
+.workspace_btn {
+  padding: 2px 10px;
+}
+
+.workspace_inactive {
+  background-color: $surface0;
+  color: $text;
+}
+
+.workspace_active {
+  background-color: $accent;
+  color: $surface0;
+}

@@ -1,0 +1,57 @@
+(defvar battery_icons  `["󰂃", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹", "󰂄"]`)
+
+(defpoll time :interval "20s" 
+  `date +"%a %b %d %H:%M"`)
+
+(deflisten workspaces :initial "[]"
+	`$HOME/.config/eww/scripts/workspaces.py`)
+
+(defpoll wifi :interval "20s" `$HOME/.config/eww/scripts/wifi.py`)
+
+(defwidget workspaces []
+  (box :orientation "h" :space-evenly false :class "workspace_container"
+    (for workspace in workspaces
+        (button 
+          :class "workspace_btn ${workspace.isactive ? "workspace_active" : "workspace_inactive"}"
+          :onclick `hyprctl dispatch workspace ${workspace.name}`
+          "${workspace.id}"
+        )))
+)
+
+(defwidget battery [] 
+      "${EWW_BATTERY["BAT0"].status == "Charging" 
+        ? battery_icons[11] 
+        : battery_icons[round(EWW_BATTERY["BAT0"].capacity / 10, 0)]
+      } ${EWW_BATTERY["BAT0"].capacity}%"
+)
+
+(defwidget ram [] "󰍛 ${round(EWW_RAM.used_mem / 1024 / 1024 / 1024, 1)}GB")
+
+(defwidget sidestuff []
+    (box :orientation "h" :space-evenly false :halign "end" :spacing 10
+      "${wifi}"
+      (ram)
+      (battery))
+)
+
+(defwidget bar []
+  (centerbox 
+    :orientation "h" 
+    :class "main"
+    (workspaces)
+    (label :xalign 0.5 :text "${time}")
+    (sidestuff))
+)
+
+(defwindow bar
+	:monitor 0
+	:windowtype "dock"
+	:exclusive true	
+  :focusable false
+	:geometry (geometry 
+			:width "100%"
+			:height "25px"
+      :anchor "top center"
+  )
+  (bar)
+)
