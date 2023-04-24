@@ -6,18 +6,18 @@ return {
   opts = {
     load = {
       ["core.defaults"] = {},
-      ["core.norg.completion"] = {
+      ["core.completion"] = {
         config = {
           engine = "nvim-cmp",
         },
       },
-      ["core.norg.concealer"] = {
+      ["core.concealer"] = {
         config = {
           folds = false,
           icon_preset = "diamond",
         },
       },
-      ["core.norg.dirman"] = {
+      ["core.dirman"] = {
         config = {
           workspaces = {
             notes = "~/Documents/Stuff/Notas/Neorg",
