@@ -1,3 +1,2 @@
 fonts/.local/share/**/.uuid
-nvim/.config/nvim/lua/packer_compiled.lua
-nvim/.config/nvim/lazy-lock.json
+# nvim/.config/nvim/lazy-lock.json
