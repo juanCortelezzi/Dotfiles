@@ -3,19 +3,27 @@
 (defpoll time :interval "20s" 
   `date +"%a %b %d %H:%M"`)
 
-(deflisten workspaces :initial "[]"
-	`$HOME/.config/eww/scripts/workspaces.py`)
+(defpoll wifi :interval "1m" 
+  `$HOME/.config/eww/python-scripts/wifi.py`)
 
-(defpoll wifi :interval "20s" `$HOME/.config/eww/scripts/wifi.py`)
+(deflisten workspaces :initial "[]"
+	`$HOME/.config/eww/scripts/target/release/workspaces`)
+
 
 (defwidget workspaces []
-  (box :orientation "h" :space-evenly false :class "workspace_container"
-    (for workspace in workspaces
+  (box :orientation "h" :space-evenly false :spacing 10
+    (box :orientation "h" :space-evenly false :class "workspace_container"
+      (for workspace in workspaces
         (button 
           :class "workspace_btn ${workspace.isactive ? "workspace_active" : "workspace_inactive"}"
           :onclick `hyprctl dispatch workspace ${workspace.name}`
           "${workspace.id}"
-        )))
+        ))
+    )
+
+    (for workspace in workspaces
+      (box :visible {workspace.isactive && workspace.hasfullscreen} "M[${workspace.windows}]"))
+  )
 )
 
 (defwidget battery [] 
@@ -29,9 +37,11 @@
 
 (defwidget sidestuff []
     (box :orientation "h" :space-evenly false :halign "end" :spacing 10
+
       "${wifi}"
-      (ram)
-      (battery))
+      ;; (ram)
+      (battery)
+    )
 )
 
 (defwidget bar []
@@ -45,7 +55,6 @@
 
 (defwindow bar
 	:monitor 0
-	:windowtype "dock"
 	:exclusive true	
   :focusable false
 	:geometry (geometry 
