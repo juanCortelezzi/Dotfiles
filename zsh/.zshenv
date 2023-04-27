@@ -13,9 +13,6 @@ export VISUAL="nvim"
 export EDITOR="nvim"
 export BROWSER="firefox"
 
-# Haskell
-export CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
-export GHCUP_USE_XDG_DIRS=true # set to anything
 # add npm globals to path
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export VOLTA_HOME="$XDG_CONFIG_HOME/volta"
@@ -34,7 +31,12 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 # export PATH=$PATH:$ANDROID_SDK_ROOT/tools
 # export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
 # export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+# Haskell
+# export CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
+# export GHCUP_USE_XDG_DIRS=true # set to anything
 # add cargo/rust to path
+# Ansible
+export ANSIBLE_HOME="$XDG_CONFIG_HOME/ansible"
 export RUSTUP_HOME="$XDG_CONFIG_HOME/rust/rustup"
 export CARGO_HOME="$XDG_CONFIG_HOME/rust/cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
