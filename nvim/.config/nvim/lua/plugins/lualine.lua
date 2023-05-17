@@ -32,13 +32,13 @@ M.opts = {
       {
         function()
           if not package.loaded["harpoon"] then
-            return "ﯡ "
+            return "󰛣 "
           end
           local harpoon_number = require("harpoon.mark").get_index_of(vim.fn.bufname())
           if harpoon_number then
-            return "ﯠ " .. harpoon_number
+            return "󰛢 " .. harpoon_number
           else
-            return "ﯡ "
+            return "󰛣 "
           end
         end,
         color = function()
