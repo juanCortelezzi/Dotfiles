@@ -77,4 +77,4 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 
 # Opam init shit
-[[ ! -r /home/wiz/.opam/opam-init/init.zsh ]] || source /home/wiz/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+[[ ! -r "$XDG_DATA_HOME/opam/opam-init/init.zsh" ]] || source "$XDG_DATA_HOME/opam/opam-init/init.zsh"  > /dev/null 2> /dev/null

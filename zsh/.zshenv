@@ -14,39 +14,29 @@ export EDITOR="nvim"
 export BROWSER="firefox"
 
 # add npm globals to path
+# export NPM_CONFIG_PREFIX="$XDG_CONFIG_HOME/npm/npm-global"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export VOLTA_HOME="$XDG_CONFIG_HOME/volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
-# SDK man
-# export SDKMAN_DIR="$XDG_CONFIG_HOME/sdkman"
-# export NPM_CONFIG_PREFIX="$XDG_CONFIG_HOME/npm/npm-global"
+# Ansible
+export ANSIBLE_HOME="$XDG_CONFIG_HOME/ansible"
 # export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
-# add Android SDK to path
-# export ANDROID_HOME=$HOME/Android/Sdk
-# export ANDROID_SDK_ROOT=$ANDROID_HOME
-# export ANDROID_PREFS_ROOT=$HOME/.android
-# export ANDROID_EMULATOR_HOME=$HOME/.android
-# export ANDROID_AVD_HOME=$ANDROID_EMULATOR_HOME/avd
-# export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
-# export PATH=$PATH:$ANDROID_SDK_ROOT/tools
-# export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
-# export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
-# Haskell
+# add haskell to path
 # export CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
 # export GHCUP_USE_XDG_DIRS=true # set to anything
 # add cargo/rust to path
-# Ansible
-export ANSIBLE_HOME="$XDG_CONFIG_HOME/ansible"
 export RUSTUP_HOME="$XDG_CONFIG_HOME/rust/rustup"
 export CARGO_HOME="$XDG_CONFIG_HOME/rust/cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
+# add opam to path
+export OPAMROOT="$XDG_DATA_HOME/opam"
 # add go to path
 export GOPATH="$HOME/Documents/Golang-programmes/gopath"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 # pass password storage
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/pass-store"
-# gtk2rc to .config
+# gtk2rc to .config for ancient applications
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 # gnupg to .config
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
