@@ -101,6 +101,15 @@ function M.config()
           "astro",
           "javascript",
         },
+        settings = {
+          tailwindCSS = {
+            experimental = {
+              classRegex = {
+                { "tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+              },
+            },
+          },
+        },
       })
     end,
   })
@@ -150,6 +159,7 @@ function M.config()
       formatting.zigfmt,
       -- yaml
       formatting.yamlfmt,
+      formatting.ocamlformat,
     },
   })
 end
