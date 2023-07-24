@@ -26,12 +26,12 @@ export ANSIBLE_HOME="$XDG_CONFIG_HOME/ansible"
 # export GHCUP_USE_XDG_DIRS=true # set to anything
 # add cargo/rust to path
 export RUSTUP_HOME="$XDG_CONFIG_HOME/rust/rustup"
-export CARGO_HOME="$XDG_CONFIG_HOME/rust/cargo"
+export CARGO_HOME="$XDG_DATA_HOME/rust/cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
 # add opam to path
 export OPAMROOT="$XDG_DATA_HOME/opam"
 # add go to path
-export GOPATH="$HOME/Documents/Golang-programmes/gopath"
+export GOPATH="$XDG_DATA_HOME/golang/gopath"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 # pass password storage
