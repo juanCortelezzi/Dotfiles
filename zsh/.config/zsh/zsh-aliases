@@ -36,31 +36,16 @@ alias parrot="curl parrot.live"
 # FUNCTIONS
 ###################################################################################################
 
-# [ -f "$HOME/Documents/Bash-programes/tmux-short.sh" ] && source "$HOME/Documents/Bash-programes/tmux-short.sh"
-
-function sfind {
-  fd -t d \
-      --no-ignore-vcs \
-      --color never \
-      --strip-cwd-prefix \
-      -E node_modules \
-      -E .next \
-      -E libraries \
-      -E snap \
-      -E bin \
-      -E .cache \
-      -E dist \
-      -E build \
-      -E pkg \
-      -E target \
-      -E Zomboid \
-      -E android \
-      -E Notas \
-      -E ios
-}
-
 function jf {
-  local NEXTDIR=$(sfind | fzf)
+  local PROGRAMMING="~/Documents/programming"
+  local NEXTDIR=$(fd \
+    -t d \
+    --color never \
+    -d 2 \
+    . \
+    ~/Documents/programming | fzf
+  )
+
   if [[ ! -z $NEXTDIR ]]; then
     cd $NEXTDIR
   fi
