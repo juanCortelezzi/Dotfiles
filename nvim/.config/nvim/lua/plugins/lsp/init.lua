@@ -100,6 +100,7 @@ function M.config()
           "typescript.tsx",
           "astro",
           "javascript",
+          "svelte",
         },
         settings = {
           tailwindCSS = {
@@ -121,7 +122,7 @@ function M.config()
     sources = {
       -- js, ts, json
       formatting.prettier.with({
-        extra_filetypes = { "toml", "astro" },
+        extra_filetypes = { "toml", "astro", "svelte" },
       }),
       -- python
       formatting.black.with({ extra_args = { "--fast" } }),
