@@ -16,14 +16,17 @@ export BROWSER="firefox"
 # add npm globals to path
 # export NPM_CONFIG_PREFIX="$XDG_CONFIG_HOME/npm/npm-global"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+# export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
 export VOLTA_HOME="$XDG_CONFIG_HOME/volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 # Ansible
 export ANSIBLE_HOME="$XDG_CONFIG_HOME/ansible"
-# export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
 # add haskell to path
 # export CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
 # export GHCUP_USE_XDG_DIRS=true # set to anything
+# add bun to path
+export BUN_INSTALL="$XDG_CONFIG_HOME/bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 # add cargo/rust to path
 export RUSTUP_HOME="$XDG_CONFIG_HOME/rust/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/rust/cargo"
