@@ -39,10 +39,10 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 
 -- set markdown ft on .wiki
 -- vim.cmd([[autocmd BufNewFile,BufRead *.wiki,*.mdx set ft=markdown]])
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "norg" },
-  callback = function()
-    vim.opt.autochdir = true
-    vim.opt.conceallevel = 2
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "FileType" }, {
+--   pattern = { "norg" },
+--   callback = function()
+--     vim.opt.autochdir = true
+--     vim.opt.conceallevel = 2
+--   end,
+-- })
