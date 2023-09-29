@@ -1,5 +1,5 @@
 # zsh config
-ZDOTDIR=$HOME/.config/zsh
+ZDOTDIR="$HOME/.config/zsh"
 
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
@@ -54,3 +54,5 @@ export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-R
 # No hist file
 export LESSHISTFILE="-"
+export PARALLEL_HOME="$XDG_CONFIG_HOME/parallel"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
