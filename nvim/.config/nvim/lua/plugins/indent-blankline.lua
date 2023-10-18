@@ -3,11 +3,16 @@ return {
   main = "ibl",
   event = "BufReadPre",
   opts = {
-    buftype_exclude = { "terminal", "nofile" },
-    filetype_exclude = {
-      "help",
-      "neo-tree",
-      "Trouble",
+    exclude = {
+      buftypes = {
+        "terminal",
+        "nofile",
+      },
+      filetypes = {
+        "help",
+        "neo-tree",
+        "Trouble",
+      },
     },
     -- char = "│",
     -- use_treesitter_scope = false,
