@@ -1,5 +1,5 @@
--- @usage "tokyonight" | "rosepine" | "poimandres" | "catppuccin"
-local colorscheme = "catppuccin"
+-- @usage "tokyonight" | "rose-pine" | "poimandres" | "catppuccin"
+local colorscheme = "rose-pine"
 -- local configs = {
 --   ["tokyonight-storm"] = { style = "storm", sidebars = { "qf", "vista_kind", "terminal" } },
 --   ["tokyonight-night"] = { style = "night", sidebars = { "qf", "vista_kind", "terminal" } },
@@ -41,14 +41,14 @@ local M = {
   },
   {
     "rose-pine/neovim",
-    name = "rosepine",
+    name = "rose-pine",
     config = function()
-      local rosepine = require("rosepine")
+      local rosepine = require("rose-pine")
       rosepine.setup({
         --- @usage 'main' | 'moon'
         dark_variant = "moon",
       })
-      vim.cmd([[colorscheme rosepine]])
+      vim.cmd([[colorscheme rose-pine]])
     end,
   },
   {
