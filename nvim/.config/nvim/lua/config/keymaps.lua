@@ -65,9 +65,6 @@ keymap("n", "<leader>bcr", "<cmd>ColorizerReloadAllBuffers<CR>", opts)
 --Stuff
 -- keymap("n", "<leader>s", "<cmd>Twilight<CR>", opts)
 
--- Neorg
-keymap("n", "<leader>n", "<cmd>Neorg workspace notes<CR>", opts)
-
 -- FUCK ARROW KEYS
 keymap("n", "<Up>", "<Nop>")
 keymap("n", "<Down>", "<Nop>")
@@ -81,6 +78,3 @@ keymap("v", "<Up>", "<Nop>")
 keymap("v", "<Down>", "<Nop>")
 keymap("v", "<Left>", "<Nop>")
 keymap("v", "<Right>", "<Nop>")
-
--- idk what the fuck this is but it scares me.
-keymap("n", "Q", "<Nop>")

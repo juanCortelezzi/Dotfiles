@@ -11,43 +11,27 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("wiz.options")
-require("lazy").setup("plugins", {
-  defaults = { lazy = true },
-  install = { colorscheme = { "tokyonight", "habamax" } },
-  checker = { enabled = false },
-  change_detection = {
-    -- automatically check for config file changes and reload the ui
-    enabled = false,
-    notify = false, -- get a notification when changes are found
-  },
-  diff = {
-    cmd = "terminal_git",
-  },
-  performance = {
-    cache = {
-      enabled = true,
-    },
-    rtp = {
-      disabled_plugins = {
-        "gzip",
-        "matchit",
-        "matchparen",
-        "netrwPlugin",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
-        "nvim-treesitter-textobjects",
-      },
-    },
-  },
-})
+require("config.options")
+require("config.keymaps")
+require("config.autocommands")
 
-vim.api.nvim_create_autocmd("User", {
-  pattern = "VeryLazy",
-  callback = function()
-    require("wiz.keymaps")
-    require("wiz.autocommands")
-  end,
+require("lazy").setup("plugins", {
+	defaults = {lazy=true},
+	install = { colorscheme = { "tokyonight" }},
+	performance = {
+		cache = { enabled = true },
+		rtp = {
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"matchparen",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+				"nvim-treesitter-textobjects",
+			},
+		}
+	}
 })
