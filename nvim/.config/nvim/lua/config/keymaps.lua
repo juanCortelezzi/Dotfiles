@@ -30,6 +30,9 @@ keymap("v", ">", ">gv", opts)
 keymap("n", "<leader>dd", "<cmd>TroubleToggle document_diagnostics<CR>", opts)
 keymap("n", "<leader>dp", "<cmd>TroubleToggle workspace_diagnostics<CR>", opts)
 keymap("n", "<leader>dn", "<cmd>TodoTelescope<CR>", opts)
+keymap("n", "<leader>d[", vim.diagnostic.goto_prev, opts)
+keymap("n", "<leader>d]", vim.diagnostic.goto_next, opts)
+keymap("n", "<leader>dl", vim.diagnostic.open_float, opts)
 
 -- NvimTree
 keymap("n", "<leader><leader>", "<cmd>Neotree toggle<CR>", opts)

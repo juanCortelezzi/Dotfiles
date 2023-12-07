@@ -16,22 +16,24 @@ require("config.keymaps")
 require("config.autocommands")
 
 require("lazy").setup("plugins", {
-	defaults = {lazy=true},
-	install = { colorscheme = { "tokyonight" }},
-	performance = {
-		cache = { enabled = true },
-		rtp = {
-			disabled_plugins = {
-				"gzip",
-				"matchit",
-				"matchparen",
-				"netrwPlugin",
-				"tarPlugin",
-				"tohtml",
-				"tutor",
-				"zipPlugin",
-				"nvim-treesitter-textobjects",
-			},
-		}
-	}
+  defaults = { lazy = true },
+  install = { colorscheme = { "tokyonight", "habamax" } },
+  performance = {
+    cache = { enabled = true },
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+        "nvim-treesitter-textobjects",
+      },
+    }
+  }
 })
+
+vim.cmd.colorscheme("tokyonight")
