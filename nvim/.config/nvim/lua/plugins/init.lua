@@ -9,14 +9,34 @@ return {
     event = "BufReadPost",
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
-        highlight = { enable = true },
-        indent = { enable = true },
-      })
-      -- vim.defer_fn(function()
-      -- end, 0)
+      vim.defer_fn(function()
+        require("nvim-treesitter.configs").setup({
+          ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+          highlight = { enable = true },
+          indent = { enable = true },
+        })
+      end, 0)
     end,
+  },
+  {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.5',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make',
+        cond = function()
+          return vim.fn.executable 'make' == 1
+        end,
+      },
+    },
+    config = function(_, opts)
+      local telescope = require("telescope")
+      telescope.setup(opts)
+      telescope.load_extension('fzf')
+    end,
+    cmd = "Telescope",
   },
   { "williamboman/mason.nvim", lazy = false, config = true },
   {

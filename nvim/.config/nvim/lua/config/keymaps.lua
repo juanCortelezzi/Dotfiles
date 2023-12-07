@@ -38,14 +38,12 @@ keymap("n", "<leader>dl", vim.diagnostic.open_float, opts)
 keymap("n", "<leader><leader>", "<cmd>Neotree toggle<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>f", "<cmd>Telescope find_files hidden=true<CR>", opts)
+keymap("n", "<leader>f", "<cmd>Telescope find_files<CR>", opts)
 keymap("n", "<leader>g", "<cmd>Telescope live_grep<CR>", opts)
 keymap("n", "<leader>tt", "<cmd>Telescope<CR>", opts)
 keymap("n", "<leader>tc", "<cmd>Telescope colorscheme<CR>", opts)
 keymap("n", "<leader>tf", "<cmd>Telescope file_browser<CR>", opts)
 keymap("n", "<leader>tz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", opts)
-keymap("n", "<leader>tg", "<cmd>lua require('plugins.toggleterm.custom').lazygit_toggle()<CR>", opts)
-keymap("n", "<leader>tl", "<cmd>lua require('plugins.toggleterm.custom').lf_toggle()<CR>", opts)
 
 -- Harpoon
 keymap("n", "<C-H>", "<cmd>lua require('harpoon.ui').nav_file(1)<CR>", opts)
