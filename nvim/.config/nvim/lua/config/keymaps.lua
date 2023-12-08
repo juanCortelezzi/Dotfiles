@@ -46,13 +46,28 @@ keymap("n", "<leader>tf", "<cmd>Telescope file_browser<CR>", opts)
 keymap("n", "<leader>tz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", opts)
 
 -- Harpoon
-keymap("n", "<C-H>", "<cmd>lua require('harpoon.ui').nav_file(1)<CR>", opts)
-keymap("n", "<C-J>", "<cmd>lua require('harpoon.ui').nav_file(2)<CR>", opts)
-keymap("n", "<C-K>", "<cmd>lua require('harpoon.ui').nav_file(3)<CR>", opts)
-keymap("n", "<C-L>", "<cmd>lua require('harpoon.ui').nav_file(4)<CR>", opts)
-keymap("n", "<leader>;", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
-keymap("n", "<leader>m", "<cmd>lua require('harpoon.mark').add_file()<CR>", opts)
-keymap("n", "<leader>M", "<cmd>lua require('harpoon.mark').rm_file()<CR>", opts)
+
+--- @param fn fun(h: Harpoon): nil
+--- @return function
+local function harpoon_wrapper(fn)
+  return function()
+    local ok, harpoon = pcall(require, "harpoon")
+    if not ok then
+      vim.notify("harpoon is not loaded yet!", vim.log.levels.WARN)
+    end
+
+    fn(harpoon)
+  end
+end
+
+keymap("n", "<C-H>", harpoon_wrapper(function(h) h:list():select(1) end), opts)
+keymap("n", "<C-J>", harpoon_wrapper(function(h) h:list():select(2) end), opts)
+keymap("n", "<C-K>", harpoon_wrapper(function(h) h:list():select(3) end), opts)
+keymap("n", "<C-L>", harpoon_wrapper(function(h) h:list():select(4) end), opts)
+keymap("n", "<leader>m", harpoon_wrapper(function(h) h:list():append() end), opts)
+keymap("n", "<leader>;", harpoon_wrapper(function(h)
+  h.ui:toggle_quick_menu(h:list())
+end), opts)
 
 -- Buffer Actions
 keymap("n", "<leader>bs", "<cmd>Telescope buffers<CR>", opts)

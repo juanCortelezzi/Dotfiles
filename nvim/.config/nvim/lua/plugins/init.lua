@@ -1,4 +1,5 @@
 return {
+  { "nvim-lua/plenary.nvim",   module = true },
   {
     "folke/tokyonight.nvim",
     priority = 1000,
@@ -22,7 +23,7 @@ return {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.5',
     dependencies = {
-      'nvim-lua/plenary.nvim',
+      "plenary.nvim",
       {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make',
@@ -31,12 +32,41 @@ return {
         end,
       },
     },
-    config = function(_, opts)
+    config = function()
       local telescope = require("telescope")
-      telescope.setup(opts)
+      local actions = require("telescope.actions")
+      telescope.setup({
+        defaults = {
+          mappings = {
+            i = {
+              ["<C-n>"] = false,
+              ["<C-p>"] = false,
+              ["<C-j>"] = {
+                actions.move_selection_next,
+                type = "action",
+                opts = { nowait = true, silent = true }
+              },
+              ["<C-k>"] = {
+                actions.move_selection_previous,
+                type = "action",
+                opts = { nowait = true, silent = true }
+              }
+            },
+          }
+        }
+      })
       telescope.load_extension('fzf')
     end,
     cmd = "Telescope",
+  },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "plenary.nvim" },
+    config = function()
+      local harpoon = require("harpoon")
+      harpoon:setup()
+    end,
   },
   { "williamboman/mason.nvim", lazy = false, config = true },
   {

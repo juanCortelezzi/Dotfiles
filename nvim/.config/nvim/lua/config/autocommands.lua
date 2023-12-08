@@ -5,22 +5,21 @@ local function augroup(name)
   )
 end
 
-vim.api.nvim_create_autocmd({ "LspAttach" }, {
-  group = augroup("lsp_attach"),
-  callback = function(args)
-    vim.print("attaching lsp")
-    local bufnr = args.buf
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client.server_capabilities.completionProvider then
-      vim.print("setting omni")
-      vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-    end
-    if client.server_capabilities.definitionProvider then
-      vim.print("setting tagfunc")
-      vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
-    end
-  end
-})
+-- vim.api.nvim_create_autocmd({ "LspAttach" }, {
+-- group = augroup("lsp_attach"),
+-- callback = function(args)
+-- local bufnr = args.buf
+-- local client = vim.lsp.get_client_by_id(args.data.client_id)
+-- if client.server_capabilities.completionProvider then
+-- vim.print("setting omni")
+-- vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+-- end
+-- if client.server_capabilities.definitionProvider then
+-- vim.print("setting tagfunc")
+-- vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
+-- end
+-- end
+-- })
 
 -- Wrap text on markdown and git commits
 vim.api.nvim_create_autocmd({ "FileType" }, {
