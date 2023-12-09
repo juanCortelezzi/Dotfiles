@@ -1,7 +1,18 @@
+---@alias KeyboardType "dvorak" | "qwerty"
+
+---@type KeyboardType
+local keyboard = "qwerty"
+
 local opts = { noremap = true, silent = true }
 
 -- Shorten function name
 local keymap = vim.keymap.set
+
+---@param key string
+---@param cmd string|function
+local function nmap(key, cmd)
+  keymap("n", key, cmd, opts)
+end
 
 -- normal_mode = "n",
 -- insert_mode = "i",
@@ -11,13 +22,13 @@ local keymap = vim.keymap.set
 -- command_mode = "c",
 
 -- Resize windows with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+nmap("<C-Up>", ":resize -2<CR>")
+nmap("<C-Down>", ":resize +2<CR>")
+nmap("<C-Left>", ":vertical resize -2<CR>")
+nmap("<C-Right>", ":vertical resize +2<CR>")
 
-keymap("n", "<C-u>", "<C-u>zz", opts)
-keymap("n", "<C-d>", "<C-d>zz", opts)
+nmap("<C-u>", "<C-u>zz")
+nmap("<C-d>", "<C-d>zz")
 
 -- esc esc -> jj not proud of this, but i got used to it
 keymap("i", "jj", "<ESC>", opts)
@@ -27,23 +38,23 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Diagnostics
-keymap("n", "<leader>dd", "<cmd>TroubleToggle document_diagnostics<CR>", opts)
-keymap("n", "<leader>dp", "<cmd>TroubleToggle workspace_diagnostics<CR>", opts)
-keymap("n", "<leader>dn", "<cmd>TodoTelescope<CR>", opts)
-keymap("n", "<leader>d[", vim.diagnostic.goto_prev, opts)
-keymap("n", "<leader>d]", vim.diagnostic.goto_next, opts)
-keymap("n", "<leader>dl", vim.diagnostic.open_float, opts)
+nmap("<leader>dd", "<cmd>TroubleToggle document_diagnostics<CR>")
+nmap("<leader>dp", "<cmd>TroubleToggle workspace_diagnostics<CR>")
+nmap("<leader>dn", "<cmd>TodoTelescope<CR>")
+nmap("<leader>d[", vim.diagnostic.goto_prev)
+nmap("<leader>d]", vim.diagnostic.goto_next)
+nmap("<leader>dl", vim.diagnostic.open_float)
 
 -- NvimTree
-keymap("n", "<leader><leader>", "<cmd>Neotree toggle<CR>", opts)
+nmap("<leader><leader>", "<cmd>Neotree toggle<CR>")
 
 -- Telescope
-keymap("n", "<leader>f", "<cmd>Telescope find_files<CR>", opts)
-keymap("n", "<leader>g", "<cmd>Telescope live_grep<CR>", opts)
-keymap("n", "<leader>tt", "<cmd>Telescope<CR>", opts)
-keymap("n", "<leader>tc", "<cmd>Telescope colorscheme<CR>", opts)
-keymap("n", "<leader>tf", "<cmd>Telescope file_browser<CR>", opts)
-keymap("n", "<leader>tz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", opts)
+nmap("<leader>f", "<cmd>Telescope find_files<CR>")
+nmap("<leader>g", "<cmd>Telescope live_grep<CR>")
+nmap("<leader>tt", "<cmd>Telescope<CR>")
+nmap("<leader>tc", "<cmd>Telescope colorscheme<CR>")
+nmap("<leader>tf", "<cmd>Telescope file_browser<CR>")
+nmap("<leader>tz", "<cmd>Telescope current_buffer_fuzzy_find<CR>")
 
 -- Harpoon
 
@@ -60,66 +71,61 @@ local function harpoon_wrapper(fn)
   end
 end
 
-keymap(
-  "n",
-  "<C-H>",
+---@type Map<KeyboardType, Array<string>>
+local harpoon_buffer_keymap = {
+  qwerty = { "<C-H>", "<C-J>", "<C-K>", "<C-L>" },
+  dvorak = { "<C-H>", "<C-T>", "<C-N>", "<C-S>" },
+}
+
+nmap(
+  harpoon_buffer_keymap[keyboard][1],
   harpoon_wrapper(function(h)
     h:list():select(1)
-  end),
-  opts
+  end)
 )
-keymap(
-  "n",
-  "<C-J>",
+nmap(
+  harpoon_buffer_keymap[keyboard][2],
   harpoon_wrapper(function(h)
     h:list():select(2)
-  end),
-  opts
+  end)
 )
-keymap(
-  "n",
-  "<C-K>",
+nmap(
+  harpoon_buffer_keymap[keyboard][3],
   harpoon_wrapper(function(h)
     h:list():select(3)
-  end),
-  opts
+  end)
 )
-keymap(
-  "n",
-  "<C-L>",
+nmap(
+  harpoon_buffer_keymap[keyboard][4],
   harpoon_wrapper(function(h)
     h:list():select(4)
-  end),
-  opts
+  end)
 )
-keymap(
-  "n",
+
+nmap(
   "<leader>m",
   harpoon_wrapper(function(h)
     h:list():append()
-  end),
-  opts
+  end)
 )
-keymap(
-  "n",
+nmap(
   "<leader>;",
   harpoon_wrapper(function(h)
     h.ui:toggle_quick_menu(h:list())
-  end),
-  opts
+  end)
 )
 
 -- Buffer Actions
-keymap("n", "<leader>bs", "<cmd>Telescope buffers<CR>", opts)
-keymap("n", "<leader>bd", "<cmd>bdelete<CR>", opts)
+nmap("<leader>bs", "<cmd>Telescope buffers<CR>")
+nmap("<leader>bd", "<cmd>bdelete<CR>")
 
 -- Colorizer
-keymap("n", "<leader>bca", "<cmd>ColorizerAttachToBuffer<CR>", opts)
-keymap("n", "<leader>bcd", "<cmd>ColorizerDetachFromBuffer<CR>", opts)
-keymap("n", "<leader>bcr", "<cmd>ColorizerReloadAllBuffers<CR>", opts)
+nmap("<leader>bca", "<cmd>ColorizerAttachToBuffer<CR>")
+nmap("<leader>bcd", "<cmd>ColorizerDetachFromBuffer<CR>")
+nmap("<leader>bcr", "<cmd>ColorizerReloadAllBuffers<CR>")
 
 --Stuff
--- keymap("n", "<leader>s", "<cmd>Twilight<CR>", opts)
+-- nmap("<leader>s", "<cmd>Twilight<CR>")
 
 -- FUCK ARROW KEYS
 keymap("n", "<Up>", "<Nop>")
