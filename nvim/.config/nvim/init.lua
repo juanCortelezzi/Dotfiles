@@ -32,8 +32,8 @@ require("lazy").setup("plugins", {
         "zipPlugin",
         "nvim-treesitter-textobjects",
       },
-    }
-  }
+    },
+  },
 })
 
 vim.cmd.colorscheme("tokyonight")

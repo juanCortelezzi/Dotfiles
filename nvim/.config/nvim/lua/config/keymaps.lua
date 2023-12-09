@@ -60,14 +60,54 @@ local function harpoon_wrapper(fn)
   end
 end
 
-keymap("n", "<C-H>", harpoon_wrapper(function(h) h:list():select(1) end), opts)
-keymap("n", "<C-J>", harpoon_wrapper(function(h) h:list():select(2) end), opts)
-keymap("n", "<C-K>", harpoon_wrapper(function(h) h:list():select(3) end), opts)
-keymap("n", "<C-L>", harpoon_wrapper(function(h) h:list():select(4) end), opts)
-keymap("n", "<leader>m", harpoon_wrapper(function(h) h:list():append() end), opts)
-keymap("n", "<leader>;", harpoon_wrapper(function(h)
-  h.ui:toggle_quick_menu(h:list())
-end), opts)
+keymap(
+  "n",
+  "<C-H>",
+  harpoon_wrapper(function(h)
+    h:list():select(1)
+  end),
+  opts
+)
+keymap(
+  "n",
+  "<C-J>",
+  harpoon_wrapper(function(h)
+    h:list():select(2)
+  end),
+  opts
+)
+keymap(
+  "n",
+  "<C-K>",
+  harpoon_wrapper(function(h)
+    h:list():select(3)
+  end),
+  opts
+)
+keymap(
+  "n",
+  "<C-L>",
+  harpoon_wrapper(function(h)
+    h:list():select(4)
+  end),
+  opts
+)
+keymap(
+  "n",
+  "<leader>m",
+  harpoon_wrapper(function(h)
+    h:list():append()
+  end),
+  opts
+)
+keymap(
+  "n",
+  "<leader>;",
+  harpoon_wrapper(function(h)
+    h.ui:toggle_quick_menu(h:list())
+  end),
+  opts
+)
 
 -- Buffer Actions
 keymap("n", "<leader>bs", "<cmd>Telescope buffers<CR>", opts)
