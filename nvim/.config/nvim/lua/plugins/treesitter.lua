@@ -7,17 +7,17 @@ return {
     {
       "JoosepAlviste/nvim-ts-context-commentstring",
       event = "VeryLazy",
-      config = true,
+      opts = {},
     },
     {
       "windwp/nvim-ts-autotag",
       event = "VeryLazy",
-      config = true,
+      opts = {},
     },
     {
       "windwp/nvim-autopairs",
       event = "InsertEnter",
-      config = true,
+      opts = {},
     },
   },
   config = function()

@@ -6,13 +6,14 @@ return {
     "mason.nvim",
     { "nvimtools/none-ls.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
-    { "folke/neodev.nvim", config = true },
+    { "folke/neodev.nvim", opts = {} },
     { "simrat39/rust-tools.nvim" },
   },
   config = function()
-    -- Create an augroup that is used for managing our formatting autocmds.
-    --      We need one augroup per client to make sure that multiple clients
-    --      can attach to the same buffer without interfering with each other.
+    --- Create an augroup that is used for managing our formatting autocmds.
+    --- We need one augroup per client to make sure that multiple clients
+    --- can attach to the same buffer without interfering with each other.
+    ---@type Map<number, number>
     local _augroups = {}
     local get_augroup = function(client)
       if not _augroups[client.id] then

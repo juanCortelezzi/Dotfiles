@@ -1,23 +1,23 @@
 return {
   { "nvim-lua/plenary.nvim" },
   { "nvim-tree/nvim-web-devicons" },
-  { "williamboman/mason.nvim", lazy = false, config = true },
+  { "williamboman/mason.nvim",    lazy = false, opts = {} },
   {
     "folke/tokyonight.nvim",
     priority = 1000,
     opts = { style = "moon" },
   },
-  { "numToStr/Comment.nvim", event = "VeryLazy", config = true },
+  { "numToStr/Comment.nvim", event = "VeryLazy", opts = {} },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-web-devicons" },
-    config = true,
+    opts = {},
     cmd = "Trouble",
   },
   {
     "folke/todo-comments.nvim",
     dependencies = { "plenary.nvim" },
-    config = true,
+    opts = {},
     cmd = "TodoTelescope",
   },
   {
@@ -28,5 +28,16 @@ return {
       local harpoon = require("harpoon")
       harpoon:setup({})
     end,
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "VeryLazy",
+    main = "ibl",
+    ---@type ibl.config
+    opts = {
+      scope = {
+        show_start = false,
+      },
+    },
   },
 }
