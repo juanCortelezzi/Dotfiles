@@ -7,8 +7,8 @@ export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
 
 export LANG=en_US.UTF-8
-export TERM='xterm-256color'
-export TERMINAL="st"
+# export TERM='xterm-256color'
+export TERMINAL="alacirtty"
 export VISUAL="nvim"
 export EDITOR="nvim"
 export BROWSER="firefox"
