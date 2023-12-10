@@ -46,7 +46,7 @@ nmap("<leader>d]", vim.diagnostic.goto_next)
 nmap("<leader>dl", vim.diagnostic.open_float)
 
 -- NvimTree
-nmap("<leader><leader>", "<cmd>Neotree toggle<CR>")
+nmap("<leader><leader>", "<cmd>Neotree toggle reveal<CR>")
 
 -- Telescope
 nmap("<leader>f", "<cmd>Telescope find_files<CR>")
