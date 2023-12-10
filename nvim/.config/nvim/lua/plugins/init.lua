@@ -1,6 +1,7 @@
 return {
   { "nvim-lua/plenary.nvim" },
   { "nvim-tree/nvim-web-devicons" },
+  { "williamboman/mason.nvim", lazy = false, config = true },
   {
     "folke/tokyonight.nvim",
     priority = 1000,
@@ -14,6 +15,12 @@ return {
     cmd = "Trouble",
   },
   {
+    "folke/todo-comments.nvim",
+    dependencies = { "plenary.nvim" },
+    config = true,
+    cmd = "TodoTelescope",
+  },
+  {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = { "plenary.nvim" },
@@ -22,5 +29,4 @@ return {
       harpoon:setup({})
     end,
   },
-  { "williamboman/mason.nvim", lazy = false, config = true },
 }

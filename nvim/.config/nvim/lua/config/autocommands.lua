@@ -1,5 +1,8 @@
 local function augroup(name)
-  return vim.api.nvim_create_augroup("custom_autocommands_" .. name, { clear = true })
+  return vim.api.nvim_create_augroup(
+    "custom_autocommands_" .. name,
+    { clear = true }
+  )
 end
 
 -- vim.api.nvim_create_autocmd({ "LspAttach" }, {
@@ -17,6 +20,13 @@ end
 -- end
 -- end
 -- })
+
+-- no more q:
+vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
+  callback = function()
+    vim.cmd("quit")
+  end,
+})
 
 -- Wrap text on markdown and git commits
 vim.api.nvim_create_autocmd({ "FileType" }, {
@@ -63,7 +73,12 @@ vim.api.nvim_create_autocmd("FileType", {
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+    vim.keymap.set(
+      "n",
+      "q",
+      "<cmd>close<cr>",
+      { buffer = event.buf, silent = true }
+    )
   end,
 })
 

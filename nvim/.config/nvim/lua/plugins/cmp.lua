@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
@@ -24,7 +25,7 @@ return {
     local cmp = require("cmp")
     local luasnip = require("luasnip")
     cmp.setup({
-      preselect = cmp.PreselectMode.None,
+      -- preselect = cmp.PreselectMode.None,
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -68,7 +69,7 @@ return {
         }),
         -- Accept currently selected item. If none selected, `select` first item.
         -- Set `select` to `false` to only confirm explicitly selected items.
-        ["<CR>"] = cmp.mapping.confirm({ select = false }),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
       }),
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
