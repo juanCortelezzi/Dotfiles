@@ -17,18 +17,9 @@ return {
     require("nvim-treesitter.query_predicates")
   end,
   dependencies = {
-    {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      opts = {},
-    },
-    {
-      "windwp/nvim-ts-autotag",
-      opts = {},
-    },
-    {
-      "windwp/nvim-autopairs",
-      opts = {},
-    },
+    { "JoosepAlviste/nvim-ts-context-commentstring", opts = {} },
+    { "windwp/nvim-ts-autotag", opts = {} },
+    { "windwp/nvim-autopairs", opts = {} },
   },
   config = function()
     vim.defer_fn(function()
