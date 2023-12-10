@@ -33,7 +33,22 @@ return {
   config = function()
     vim.defer_fn(function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+        ensure_installed = {
+          "c",
+          "lua",
+          "vim",
+          "vimdoc",
+          "query",
+          "go",
+          "javascript",
+          "typescript",
+          "tsx",
+          "json",
+          "rust",
+          "zig",
+          "ocaml",
+          "python",
+        },
         highlight = { enable = true },
         indent = { enable = true },
         ts_context_commentstring = {

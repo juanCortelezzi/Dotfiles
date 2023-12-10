@@ -24,8 +24,45 @@ return {
   config = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
+    local kind_icons = {
+      Array = "",
+      Boolean = "",
+      Class = "",
+      Color = "",
+      Constant = "",
+      Constructor = "",
+      Enum = "",
+      EnumMember = "",
+      Event = "",
+      Field = "",
+      File = "",
+      Folder = "󰉋",
+      Function = "",
+      Interface = "",
+      Key = "",
+      Keyword = "",
+      Method = "",
+      Module = "",
+      Namespace = "",
+      Null = "󰟢",
+      Number = "",
+      Object = "",
+      Operator = "",
+      Package = "",
+      Property = "",
+      Reference = "",
+      Snippet = "",
+      String = "",
+      Struct = "",
+      Text = "",
+      TypeParameter = "",
+      Unit = "",
+      Value = "",
+      Variable = "",
+    }
+
     cmp.setup({
-      -- preselect = cmp.PreselectMode.None,
+      preselect = cmp.PreselectMode.None,
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -69,8 +106,27 @@ return {
         }),
         -- Accept currently selected item. If none selected, `select` first item.
         -- Set `select` to `false` to only confirm explicitly selected items.
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<CR>"] = cmp.mapping.confirm({
+          select = true,
+          behavior = cmp.ConfirmBehavior.Replace,
+        }),
       }),
+      formatting = {
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, vim_item)
+          vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+          vim_item.menu = ({
+            nvim_lsp = "[LSP]",
+            nvim_lua = "[Lua]",
+            path = "[Path]",
+            luasnip = "[Snip]",
+            buffer = "[Buff]",
+            emoji = "",
+          })[entry.source.name]
+
+          return vim_item
+        end,
+      },
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" },
