@@ -25,7 +25,10 @@ return {
     end
 
     vim.api.nvim_create_autocmd("LspAttach", {
-      group = vim.api.nvim_create_augroup("kickstart-lsp-attach-format", { clear = true }),
+      group = vim.api.nvim_create_augroup(
+        "kickstart-lsp-attach-format",
+        { clear = true }
+      ),
       -- This is where we attach the autoformatting for reasonable clients
       callback = function(args)
         local client_id = args.data.client_id
@@ -85,19 +88,24 @@ return {
     }
 
     vim.diagnostic.config(lsp_diagnostic_config)
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-      border = "rounded",
-      max_width = 80,
-    })
-    vim.lsp.handlers["textDocument/signatureHelp"] =
-      vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded", max_width = 80 })
+    vim.lsp.handlers["textDocument/hover"] =
+      vim.lsp.with(vim.lsp.handlers.hover, {
+        border = "rounded",
+        max_width = 80,
+      })
+    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+      vim.lsp.handlers.signature_help,
+      { border = "rounded", max_width = 80 }
+    )
     require("lspconfig.ui.windows").default_options.border = "rounded"
 
     local mason_lspconfig = require("mason-lspconfig")
     mason_lspconfig.setup()
 
     -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local capabilities = require("cmp_nvim_lsp").default_capabilities(
+      vim.lsp.protocol.make_client_capabilities()
+    )
 
     local function on_attach(_, bufnr)
       local opts = { buffer = bufnr }
@@ -173,7 +181,13 @@ return {
           on_attach = on_attach,
           capabilities = capabilities,
           root_dir = lspconfig.util.root_pattern("package.json"),
-          filetypes = { "typescript", "typescriptreact", "typescript.tsx", "mdx", "javascript" },
+          filetypes = {
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx",
+            "mdx",
+            "javascript",
+          },
           single_file_support = false,
         })
       end,

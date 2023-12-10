@@ -33,7 +33,9 @@ return {
               opts = { nowait = true, silent = true },
             },
             ["<c-t>"] = function(...)
-              return require("trouble.providers.telescope").open_with_trouble(...)
+              return require("trouble.providers.telescope").open_with_trouble(
+                ...
+              )
             end,
           },
           n = {

@@ -4,9 +4,21 @@ return {
   event = { "BufReadPost", "BufNewFile" },
   build = ":TSUpdate",
   dependencies = {
-    { "JoosepAlviste/nvim-ts-context-commentstring", event = "VeryLazy", config = true },
-    { "windwp/nvim-ts-autotag", event = "VeryLazy", config = true },
-    { "windwp/nvim-autopairs", event = "InsertEnter", config = true },
+    {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      event = "VeryLazy",
+      config = true,
+    },
+    {
+      "windwp/nvim-ts-autotag",
+      event = "VeryLazy",
+      config = true,
+    },
+    {
+      "windwp/nvim-autopairs",
+      event = "InsertEnter",
+      config = true,
+    },
   },
   config = function()
     vim.defer_fn(function()
