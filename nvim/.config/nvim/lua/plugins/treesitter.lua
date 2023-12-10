@@ -1,118 +1,54 @@
+---@type LazySpec
 return {
-  { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
-
-  -- TODO: check this out
-  --  {
-  --    "mfussenegger/nvim-treehopper",
-  --    keys = { { "m", mode = { "o", "x" } } },
-  --    config = function()
-  --      vim.cmd([[
-  --        omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
-  --        xnoremap <silent> m :lua require('tsht').nodes()<CR>
-  --      ]])
-  --    end,
-  --  },
-
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    event = "BufReadPost",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      { "nvim-treesitter/nvim-treesitter-context", config = true },
-    },
-    config = function()
+  "nvim-treesitter/nvim-treesitter",
+  event = { "BufReadPost", "BufNewFile" },
+  cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+  build = ":TSUpdate",
+  init = function(plugin)
+    -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
+    -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
+    -- no longer trigger the **nvim-treeitter** module to be loaded in time.
+    -- Luckily, the only thins that those plugins need are the custom queries, which we make available
+    -- during startup.
+    --
+    -- this is stolen from https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/treesitter.lua
+    -- aka folke's lazyvim
+    require("lazy.core.loader").add_to_rtp(plugin)
+    require("nvim-treesitter.query_predicates")
+  end,
+  dependencies = {
+    { "JoosepAlviste/nvim-ts-context-commentstring", opts = {} },
+    { "windwp/nvim-ts-autotag", opts = {} },
+    { "windwp/nvim-autopairs", opts = {} },
+  },
+  config = function()
+    vim.defer_fn(function()
       require("nvim-treesitter.configs").setup({
         ensure_installed = {
-          "bash",
-          "css",
-          "diff",
-          "gitignore",
-          "go",
-          "help",
-          "html",
-          "http",
-          "javascript",
-          "jsdoc",
-          "jsonc",
-          "latex",
+          "c",
           "lua",
-          "markdown",
-          "markdown_inline",
-          "norg",
-          "python",
-          "query",
-          "regex",
-          "rust",
-          "sql",
-          "toml",
-          "tsx",
-          "typescript",
           "vim",
-          "yaml",
+          "vimdoc",
+          "query",
+          "go",
+          "javascript",
+          "typescript",
+          "tsx",
           "json",
+          "rust",
+          "zig",
+          "ocaml",
+          "python",
         },
-        sync_install = false,
-        auto_install = false,
         highlight = { enable = true },
-        indent = { enable = false },
-        incremental_selection = {
+        indent = { enable = true },
+        ts_context_commentstring = {
           enable = true,
-          keymaps = {
-            init_selection = "<C-space>",
-            node_incremental = "<C-space>",
-            scope_incremental = "<C-s>",
-            node_decremental = "<C-bs>",
-          },
+          enable_autocmd = false,
         },
-        playground = {
-          enable = true,
-          disable = {},
-          updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-          persist_queries = true, -- Whether the query persists across vim sessions
-          keybindings = {
-            toggle_query_editor = "o",
-            toggle_hl_groups = "i",
-            toggle_injected_languages = "t",
-            toggle_anonymous_nodes = "a",
-            toggle_language_display = "I",
-            focus_language = "f",
-            unfocus_language = "F",
-            update = "R",
-            goto_node = "<cr>",
-            show_help = "?",
-          },
-        },
-        textobjects = {
-          select = {
-            enable = false,
-            lookahead = true,
-            keymaps = {
-              -- You can use the capture groups defined in textobjects.scm
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
-              ["ic"] = "@class.inner",
-            },
-          },
-          move = {
-            enable = false,
-            set_jumps = true, -- whether to set jumps in the jumplist
-            goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
-            goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
-            goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
-            goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
-          },
-          lsp_interop = {
-            enable = false,
-            peek_definition_code = {
-              ["gD"] = "@function.outer",
-            },
-          },
-        },
+        autotag = { enable = true },
+        autopairs = { enable = true },
       })
-      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-      parser_config.markdown.filetype_to_parsername = "octo"
-    end,
-  },
+    end, 0)
+  end,
 }
