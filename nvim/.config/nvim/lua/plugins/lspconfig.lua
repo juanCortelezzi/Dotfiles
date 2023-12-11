@@ -128,6 +128,21 @@ return {
         })
       end,
 
+      ["intelephense"] = function()
+        lspconfig.intelephense.setup({
+          -- cmd = { "intelephense", "--stdio" },
+          on_attach = on_attach,
+          capabilities = capabilities,
+          settings = {
+            intelephense = {
+              format = {
+                enable = true,
+              },
+            },
+          },
+        })
+      end,
+
       ["tsserver"] = function()
         lspconfig.tsserver.setup({
           on_attach = on_attach,

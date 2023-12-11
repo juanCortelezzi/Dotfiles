@@ -46,6 +46,7 @@ return {
       zig = { "zigfmt" },
       yaml = { "yamlfmt" },
       ocaml = { "ocamlformat" },
+      php = { "pint" },
     },
 
     -- The options you set here will be merged with the builtin formatters.
