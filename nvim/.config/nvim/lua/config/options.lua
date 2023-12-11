@@ -23,7 +23,16 @@ opt.pumblend = 10 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
 opt.relativenumber = true -- Relative line numbers
 opt.scrolloff = 4 -- Lines of context
-opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
+opt.sessionoptions = {
+  "buffers",
+  "curdir",
+  "tabpages",
+  "winsize",
+  "help",
+  "globals",
+  "skiprtp",
+  "folds",
+}
 opt.shiftround = true -- Round indent
 opt.shiftwidth = 2 -- Size of an indent
 opt.shortmess:append({ W = true, I = true, c = true, C = true })
@@ -38,7 +47,7 @@ opt.splitbelow = true -- Put new windows below current
 opt.splitkeep = "screen"
 opt.tabstop = 2 -- Number of spaces tabs count for
 opt.termguicolors = true -- True color support
-opt.timeoutlen = 300
+opt.timeoutlen = 500
 opt.undofile = true
 opt.undolevels = 10000
 opt.swapfile = false -- Disable swap files

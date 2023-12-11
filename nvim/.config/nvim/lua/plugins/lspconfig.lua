@@ -6,6 +6,7 @@ return {
     "mason.nvim",
     { "williamboman/mason-lspconfig.nvim" },
     { "folke/neodev.nvim", opts = {} },
+
     { "simrat39/rust-tools.nvim" },
   },
   config = function()
@@ -62,6 +63,8 @@ return {
       keymap("n", "gI", vim.lsp.buf.implementation, opts)
       keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
       keymap({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
+      keymap("n", "<leader>d[", vim.diagnostic.goto_prev, opts)
+      keymap("n", "<leader>d]", vim.diagnostic.goto_next, opts)
       keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
       keymap("n", "gs", vim.lsp.buf.signature_help, opts)
       keymap("n", "<space>bf", function()
@@ -119,9 +122,7 @@ return {
               telemetry = { enable = false },
               -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
               diagnostics = { disable = { "missing-fields" } },
-              completion = {
-                callSnippet = "Replace",
-              },
+              completion = { callSnippet = "Replace" },
             },
           },
         })
