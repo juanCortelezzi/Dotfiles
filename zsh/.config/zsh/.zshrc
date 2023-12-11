@@ -1,5 +1,5 @@
 USE_PROMPT="wiz" # spaceship, typewritten or wiz
-HISTFILE=~/.cache/zsh/zhistory
+HISTFILE="$XDG_CACHE_HOME/zsh/zhistory"
 HISTSIZE=5000
 SAVEHIST=5000
 WORDCHARS=${WORDCHARS//\/[&.;]} # Don't consider certain characters part of the word
@@ -17,7 +17,7 @@ setopt histignorealldups      # If a new command is a duplicate, remove the olde
 setopt inc_append_history     # save commands are added to the history immediately, otherwise only when shell exits.
 
 # Theming section
-autoload -U compinit && compinit -d ~/.config/zsh/zcompdump
+autoload -U compinit && compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
 # autoload -U colors && colors
 # autoload -U zcalc
 

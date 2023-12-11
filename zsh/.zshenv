@@ -1,10 +1,11 @@
-# zsh config
-ZDOTDIR="$HOME/.config/zsh"
-
+# XDG Base Directory Specification
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
+
+# zsh config
+ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 export LANG=en_US.UTF-8
 # export TERM='xterm-256color'
@@ -43,6 +44,10 @@ export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/pass-store"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 # gnupg to .config
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+export PARALLEL_HOME="$XDG_CONFIG_HOME/parallel"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+# No hist file
+export LESSHISTFILE="-"
 # Color man pages
 export LESS_TERMCAP_mb=$'\E[01;32m'
 export LESS_TERMCAP_md=$'\E[01;32m'
@@ -52,7 +57,3 @@ export LESS_TERMCAP_so=$'\E[01;47;34m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-R
-# No hist file
-export LESSHISTFILE="-"
-export PARALLEL_HOME="$XDG_CONFIG_HOME/parallel"
-export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
