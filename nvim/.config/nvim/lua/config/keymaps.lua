@@ -123,20 +123,3 @@ nmap("<leader>bd", "<cmd>bdelete<CR>")
 nmap("<leader>bca", "<cmd>ColorizerAttachToBuffer<CR>")
 nmap("<leader>bcd", "<cmd>ColorizerDetachFromBuffer<CR>")
 nmap("<leader>bcr", "<cmd>ColorizerReloadAllBuffers<CR>")
-
---Stuff
--- nmap("<leader>s", "<cmd>Twilight<CR>")
-
--- FUCK ARROW KEYS
-keymap("n", "<Up>", "<Nop>")
-keymap("n", "<Down>", "<Nop>")
-keymap("n", "<Left>", "<Nop>")
-keymap("n", "<Right>", "<Nop>")
-keymap("i", "<Up>", "<Nop>")
-keymap("i", "<Down>", "<Nop>")
-keymap("i", "<Left>", "<Nop>")
-keymap("i", "<Right>", "<Nop>")
-keymap("v", "<Up>", "<Nop>")
-keymap("v", "<Down>", "<Nop>")
-keymap("v", "<Left>", "<Nop>")
-keymap("v", "<Right>", "<Nop>")
