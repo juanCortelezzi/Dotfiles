@@ -11,7 +11,7 @@ return {
   config = function(_, opts)
     local conform = require("conform")
 
-    local prettier_fts = {
+    local shitty_fts = {
       "javascript",
       "javascriptreact",
       "typescript",
@@ -22,8 +22,8 @@ return {
       "svelte",
     }
 
-    for _, ft in ipairs(prettier_fts) do
-      conform.formatters_by_ft[ft] = { "prettier" }
+    for _, ft in ipairs(shitty_fts) do
+      conform.formatters_by_ft[ft] = { "prettier", "biome" }
     end
 
     conform.setup(opts)
