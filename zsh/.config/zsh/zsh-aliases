@@ -6,45 +6,21 @@ alias ls="ls -lhG --color --group-directories-first -A -v"
 alias cp="cp -i"    
 alias mv="mv -i"    
 alias df='df -h'    
+alias du='du -hs'
 alias free='free -hm'
 alias path="echo $PATH | sed -e 's/:/\n/g' | sort"
-# alias t="tmux"
 # alias sucklessinstall="rm -rf config.h && sudo make clean install"
 # alias getkc="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", \$5, \$8 }'"
 # alias pan="pandoc --pdf-engine=xelatex --highlight-style=zenburn --filter pandoc-crossref --template=eisvogel -s"
 alias wget="wget --hsts-file=\"$XDG_DATA_HOME/wget-hsts\""
 alias pn="pnpm"
-
-# keyboard stuff
 alias asdf="setxkbmap dvorak"
 alias aoeu="setxkbmap us"
-
-#git aliases
 alias g='git'
-# alias gp='git push'
-# alias gs='git status'
-# alias ga='git add'
-# alias gaa='git add --all'
-# alias gc='git commit'
-# alias gcm="git checkout main"
-# alias gco="git checkout"
-# alias gcb="git checkout -b"
-
 alias parrot="curl parrot.live"
 
-###################################################################################################
-# FUNCTIONS
-###################################################################################################
-
 function jf {
-  local PROGRAMMING="~/Documents/programming"
-  local NEXTDIR=$(fd \
-    -t d \
-    --color never \
-    -d 2 \
-    . \
-    ~/Documents/programming | fzf
-  )
+  local NEXTDIR=$(fd --type d --color never --max-depth 2 . ~/Documents/programming | fzf)
 
   if [[ ! -z $NEXTDIR ]]; then
     cd $NEXTDIR
@@ -52,37 +28,38 @@ function jf {
 }
 
 function extract {
- if [ -z "$1" ]; then
-    # display usage if no parameters given
-    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
-    echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
-    return 1
- else
-    for n in $@
-    do
-      if [ -f "$n" ] ; then
-          case "${n%,}" in
-            *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar) 
-                         tar xvf "$n"       ;;
-            *.lzma)      unlzma ./"$n"      ;;
-            *.bz2)       bunzip2 ./"$n"     ;;
-            *.rar)       unrar x -ad ./"$n" ;;
-            *.gz)        gunzip ./"$n"      ;;
-            *.zip)       unzip ./"$n"       ;;
-            *.z)         uncompress ./"$n"  ;;
-            *.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar)
-                         7z x ./"$n"        ;;
-            *.xz)        unxz ./"$n"        ;;
-            *.exe)       cabextract ./"$n"  ;;
-            *)
-                         echo "extract: '$n' - unknown archive method"
-                         return 1
-                         ;;
-          esac
-      else
-          echo "'$n' - file does not exist"
-          return 1
-      fi
-    done
- fi
+  if [ -z "$1" ]; then
+      # display usage if no parameters given
+      echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+      echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
+      return 1
+  fi
+
+  for n in $@
+  do
+    if [ ! -f "$n" ] ; then
+        echo "'$n' - file does not exist"
+        return 1
+    fi
+  done
+
+  for n in $@
+  do
+    case "${n%,}" in
+      *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar) tar xvf "$n" ;;
+      *.lzma) unlzma ./"$n" ;;
+      *.bz2) bunzip2 ./"$n" ;;
+      *.rar) unrar x -ad ./"$n" ;;
+      *.gz) gunzip ./"$n" ;;
+      *.zip) unzip ./"$n" ;;
+      *.z) uncompress ./"$n" ;;
+      *.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar) 7z x ./"$n" ;;
+      *.xz) unxz ./"$n" ;;
+      *.exe) cabextract ./"$n" ;;
+      *)
+        echo "extract: '$n' - unknown archive method"
+        return 1
+      ;;
+    esac
+  done
 }

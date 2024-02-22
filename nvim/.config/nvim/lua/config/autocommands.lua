@@ -12,16 +12,6 @@ vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
   end,
 })
 
--- Wrap text on markdown and git commits
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = augroup("wrap_text"),
-  pattern = { "gitcommit", "markdown" },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-  end,
-})
-
 -- Highlight on yank
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   group = augroup("highlight_yank"),
@@ -63,15 +53,5 @@ vim.api.nvim_create_autocmd("FileType", {
       "<cmd>close<cr>",
       { buffer = event.buf, silent = true }
     )
-  end,
-})
-
--- wrap and check for spell in text filetypes
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("wrap_spell"),
-  pattern = { "gitcommit", "markdown" },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
   end,
 })

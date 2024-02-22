@@ -21,7 +21,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export VOLTA_HOME="$XDG_CONFIG_HOME/volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 # Ansible
-export ANSIBLE_HOME="$XDG_CONFIG_HOME/ansible"
+# export ANSIBLE_HOME="$XDG_CONFIG_HOME/ansible"
 # add haskell to path
 # export CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
 # export GHCUP_USE_XDG_DIRS=true # set to anything
@@ -45,6 +45,9 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 # gnupg to .config
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export PARALLEL_HOME="$XDG_CONFIG_HOME/parallel"
+# remove docker from home dir
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+# remove android from home dir
+export ANDROID_USER_HOME="$XDG_DATA_HOME"/android
 # No hist file
 export LESSHISTFILE="-"
