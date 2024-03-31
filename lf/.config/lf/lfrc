@@ -7,13 +7,14 @@ set hidden
 
 # Custom Functions
 cmd open ${{
-    case $(file --mime-type "$f" -bL) in
-        text/*|application/json) $EDITOR "$f";;
-        video/*|image/*/application/pdf) xdg-open "$f";;
-        *) xdg-open "$f" ;;
-    esac
+  case $(file --mime-type "$f" -bL) in
+      text/*|application/json) $EDITOR "$f";;
+      application/pdf) zathura "$f";;
+      image/*) imv "$f";;
+      video/*) mpv "$f";;
+      *) xdg-open "$f";;
+  esac
 }}
-
 
 cmd mkdir ${{
   printf "Directory Name: "
