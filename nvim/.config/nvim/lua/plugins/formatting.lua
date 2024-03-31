@@ -41,6 +41,7 @@ return {
       python = { "black" },
       lua = { "stylua" },
       go = { "gofmt" },
+      templ = { "gofmt" },
       rust = { "rustfmt" },
       bash = { "shfmt" },
       zig = { "zigfmt" },

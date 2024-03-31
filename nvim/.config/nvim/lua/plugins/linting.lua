@@ -21,7 +21,7 @@ return {
         lua = { "luacheck" },
         php = { "phpstan" },
         python = { "pylint" },
-        bash = { "shellcheck" },
+        -- bash = { "shellcheck" },
         zsh = { "zsh" },
       },
     }

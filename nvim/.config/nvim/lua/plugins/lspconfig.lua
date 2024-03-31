@@ -35,16 +35,21 @@ return {
     }
 
     vim.diagnostic.config(lsp_diagnostic_config)
-    vim.lsp.handlers["textDocument/hover"] =
-      vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "rounded",
-        max_width = 80,
-      })
+
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+      vim.lsp.handlers.hover,
+      { border = "rounded", max_width = 80 }
+    )
+
     vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
       vim.lsp.handlers.signature_help,
       { border = "rounded", max_width = 80 }
     )
+
     require("lspconfig.ui.windows").default_options.border = "rounded"
+
+    -- set filetype for templ
+    vim.filetype.add({ extension = { templ = "templ" } })
 
     local mason_lspconfig = require("mason-lspconfig")
     mason_lspconfig.setup()
