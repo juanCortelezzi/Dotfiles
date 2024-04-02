@@ -4,10 +4,10 @@
   `date +"%a %b %d %H:%M"`)
 
 (defpoll wifi :interval "1m" 
-  `$HOME/.config/eww/python-scripts/wifi.py`)
+  `$XDG_CONFIG_HOME/eww/python-scripts/wifi.py`)
 
 (deflisten workspaces :initial "[]"
-	`$HOME/.config/eww/scripts/target/release/workspaces`)
+	`$XDG_CONFIG_HOME/eww/scripts/target/release/workspaces`)
 
 
 (defwidget workspaces []
