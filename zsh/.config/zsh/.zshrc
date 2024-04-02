@@ -49,9 +49,9 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcache"
 source "$ZDOTDIR/zsh-functions"
 
 # Load aliases and shortcuts if existent.
-zsh_add_file "zsh-aliases"
-zsh_add_file "promptConfig/zsh-prompt"
-zsh_add_file "zsh-vim-mode"
+zsh_add_file "$ZDOTDIR/zsh-aliases"
+zsh_add_file "$ZDOTDIR/promptConfig/zsh-prompt"
+zsh_add_file "$ZDOTDIR/zsh-vim-mode"
 
 # Load pluggins
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern regexp)
