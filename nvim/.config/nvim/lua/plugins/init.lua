@@ -1,11 +1,12 @@
 return {
   { "nvim-lua/plenary.nvim" },
-  { "nvim-tree/nvim-web-devicons" },
   { "williamboman/mason.nvim", lazy = false, opts = {} },
   { "numToStr/Comment.nvim", event = "VeryLazy", opts = {} },
   {
     "folke/trouble.nvim",
-    dependencies = { "nvim-web-devicons" },
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+    },
     opts = {},
     cmd = "Trouble",
   },

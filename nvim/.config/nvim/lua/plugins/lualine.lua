@@ -2,7 +2,9 @@
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
-  dependencies = { "nvim-web-devicons" },
+  dependencies = {
+    { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+  },
   init = function()
     vim.g.lualine_laststatus = vim.o.laststatus
     if vim.fn.argc(-1) > 0 then

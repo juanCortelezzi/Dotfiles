@@ -12,6 +12,7 @@ return {
         return vim.fn.executable("make") == 1
       end,
     },
+    { 'nvim-telescope/telescope-ui-select.nvim' },
   },
   config = function()
     local telescope = require("telescope")
@@ -46,6 +47,9 @@ return {
           },
         },
         extensions = {
+          ['ui-select'] = {
+            require('telescope.themes').get_dropdown(),
+          },
           fzf = {
             fuzzy = true, -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
@@ -56,5 +60,6 @@ return {
       },
     })
     telescope.load_extension("fzf")
+    telescope.load_extension("ui-select")
   end,
 }

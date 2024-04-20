@@ -55,11 +55,14 @@ return {
     mason_lspconfig.setup()
 
     -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-    local capabilities = require("cmp_nvim_lsp").default_capabilities(
-      vim.lsp.protocol.make_client_capabilities()
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = vim.tbl_deep_extend(
+      "force",
+      capabilities,
+      require("cmp_nvim_lsp").default_capabilities()
     )
 
-    local function on_attach(_, bufnr)
+    local function on_attach(client, bufnr)
       local opts = { buffer = bufnr }
       local keymap = vim.keymap.set
       keymap("n", "gD", vim.lsp.buf.declaration, opts)
@@ -72,14 +75,25 @@ return {
       keymap("n", "<leader>d]", vim.diagnostic.goto_next, opts)
       keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
       keymap("n", "gs", vim.lsp.buf.signature_help, opts)
-      keymap("n", "<space>bf", function()
+      keymap("n", "<leader>bf", function()
         local ok, conform = pcall(require, "conform")
         if not ok then
           vim.notify("Conform is not loaded", vim.log.levels.WARN)
           vim.lsp.buf.format({ async = true })
+          return
         end
-        conform.format()
+        conform.format({ async = true, lsp_fallback = true })
       end, opts)
+
+      if
+        client
+        and client.server_capabilities.inlayHintProvider
+        and vim.lsp.inlay_hint
+      then
+        keymap("n", "<leader>i", function()
+          vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+        end)
+      end
     end
 
     local lspconfig = require("lspconfig")
