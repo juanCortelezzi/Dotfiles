@@ -105,7 +105,7 @@ nmap(
 nmap(
   "<leader>m",
   harpoon_wrapper(function(h)
-    h:list():append()
+    h:list():add()
   end)
 )
 nmap(
