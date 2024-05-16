@@ -20,6 +20,7 @@ return {
       "toml",
       "astro",
       "svelte",
+      "yaml",
     }
 
     for _, ft in ipairs(shitty_fts) do
@@ -45,7 +46,6 @@ return {
       rust = { "rustfmt" },
       bash = { "shfmt" },
       zig = { "zigfmt" },
-      yaml = { "yamlfmt" },
       ocaml = { "ocamlformat" },
       php = { "pint" },
     },
