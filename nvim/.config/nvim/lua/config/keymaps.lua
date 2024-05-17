@@ -60,6 +60,9 @@ nmap("<leader>tc", "<cmd>Telescope colorscheme<CR>")
 nmap("<leader>tf", "<cmd>Telescope file_browser<CR>")
 nmap("<leader>tz", "<cmd>Telescope current_buffer_fuzzy_find<CR>")
 
+-- Open parent directory in current window
+nmap("<leader>o", "<cmd>Oil<CR>")
+
 -- Harpoon
 
 --- @param fn fun(h: Harpoon): nil
