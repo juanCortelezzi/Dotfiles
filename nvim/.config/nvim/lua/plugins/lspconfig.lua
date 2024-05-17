@@ -4,12 +4,14 @@ return {
   event = "BufReadPre",
   dependencies = {
     "mason.nvim",
-    { "williamboman/mason-lspconfig.nvim" },
+    "williamboman/mason-lspconfig.nvim",
+    "simrat39/rust-tools.nvim",
     { "folke/neodev.nvim", opts = {} },
-
-    { "simrat39/rust-tools.nvim" },
+    { "j-hui/fidget.nvim", opts = {} },
   },
   config = function()
+    -- probably should set this up:
+    -- https://github.com/b0o/SchemaStore.nvim
     local lsp_diagnostic_config = {
       signs = {
         active = true,
@@ -82,7 +84,7 @@ return {
           vim.lsp.buf.format({ async = true })
           return
         end
-        conform.format({ async = true, lsp_fallback = true })
+        conform.format({ bufnr = bufnr, lsp_fallback = true })
       end, opts)
 
       if
@@ -91,7 +93,9 @@ return {
         and vim.lsp.inlay_hint
       then
         keymap("n", "<leader>i", function()
-          vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+          vim.lsp.inlay_hint.enable(
+            not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })
+          )
         end)
       end
     end
