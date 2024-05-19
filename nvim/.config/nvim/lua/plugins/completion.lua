@@ -1,7 +1,8 @@
 ---@type LazySpec
 return {
   "hrsh7th/nvim-cmp",
-  event = "InsertEnter",
+  lazy = false,
+  priority = 100,
   dependencies = {
     "nvim-autopairs",
     "onsails/lspkind.nvim",
@@ -57,6 +58,7 @@ return {
       },
 
       mapping = cmp.mapping.preset.insert({
+        ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-n>"] = cmp.mapping.select_next_item({
           behavior = cmp.SelectBehavior.Insert,
         }),
@@ -94,12 +96,15 @@ return {
         -- }),
       }),
       formatting = {
-        -- fields = { "kind", "abbr", "menu" },
+        fields = { "kind", "abbr" },
         format = lspkind.cmp_format({
           mode = "symbol",
           maxwidth = 50,
           ellipsis_char = "...",
-          show_labelDetails = true,
+          before = function(_, vim_item)
+            vim_item.menu = ""
+            return vim_item
+          end,
         }),
       },
     })

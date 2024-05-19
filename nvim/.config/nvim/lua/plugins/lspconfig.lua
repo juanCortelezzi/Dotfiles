@@ -81,11 +81,16 @@ return {
         local ok, conform = pcall(require, "conform")
         if not ok then
           vim.notify("Conform is not loaded", vim.log.levels.WARN)
-          vim.lsp.buf.format({ async = true })
+          vim.lsp.buf.format({ async = false })
           return
         end
         conform.format({ bufnr = bufnr, lsp_fallback = true })
       end, opts)
+
+      local filetype = vim.bo[bufnr].filetype
+      if filetype == "lua" then
+        client.server_capabilities.semanticTokensProvider = nil
+      end
 
       if
         client
@@ -104,6 +109,16 @@ return {
     mason_lspconfig.setup_handlers({
       function(server_name) -- default handler (optional)
         lspconfig[server_name].setup({
+          on_attach = on_attach,
+          capabilities = capabilities,
+        })
+      end,
+
+      ["lexical"] = function()
+        local path = vim.fn.expand("~/.local/share/nvim/mason/bin/lexical")
+        lspconfig["lexical"].setup({
+          cmd = { path, "server" },
+          root_dir = lspconfig.util.root_pattern({ "mix.exs" }),
           on_attach = on_attach,
           capabilities = capabilities,
         })

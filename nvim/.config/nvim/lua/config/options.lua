@@ -10,7 +10,7 @@ local opt = vim.opt
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.completeopt = { "menuone", "noselect" }
 opt.complete = "" -- disabe omni stuff
-opt.conceallevel = 0 -- Hide * markup for bold and italic
+opt.conceallevel = 0
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.cursorline = true -- Enable highlighting of the current line
 opt.expandtab = true -- Use spaces instead of tabs
@@ -22,13 +22,13 @@ opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 opt.inccommand = "split" -- preview incremental substitution
 opt.laststatus = 3 -- global statusline
-opt.list = false -- Show some invisible characters (tabs...
+-- opt.list = false -- Show some invisible characters (tabs...
 -- opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 opt.mouse = "a" -- Enable mouse mode
 opt.number = true -- Print line number
+opt.relativenumber = true -- Relative line numbers
 opt.pumblend = 10 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
-opt.relativenumber = true -- Relative line numbers
 opt.scrolloff = 4 -- Lines of context
 opt.sessionoptions = {
   "buffers",
@@ -41,7 +41,6 @@ opt.sessionoptions = {
   "folds",
 }
 opt.shiftround = true -- Round indent
-opt.shiftwidth = 2 -- Size of an indent
 opt.shortmess:append({ W = true, I = true, c = true, C = true })
 opt.showmode = false -- Dont show mode since we have a statusline
 opt.sidescrolloff = 8 -- Columns of context
@@ -52,6 +51,7 @@ opt.splitright = true -- Put new windows right of current
 opt.splitbelow = true -- Put new windows below current
 opt.splitkeep = "screen"
 opt.tabstop = 2 -- Number of spaces tabs count for
+opt.shiftwidth = 2 -- Size of an indent
 opt.termguicolors = true -- True color support
 opt.timeoutlen = 300
 opt.undofile = true
@@ -75,4 +75,3 @@ opt.fillchars = {
 if vim.fn.has("nvim-0.10") == 1 then
   opt.smoothscroll = true
 end
-
