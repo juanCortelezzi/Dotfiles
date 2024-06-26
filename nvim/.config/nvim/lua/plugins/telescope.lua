@@ -12,7 +12,7 @@ return {
         return vim.fn.executable("make") == 1
       end,
     },
-    { 'nvim-telescope/telescope-ui-select.nvim' },
+    { "nvim-telescope/telescope-ui-select.nvim" },
   },
   config = function()
     local telescope = require("telescope")
@@ -34,9 +34,7 @@ return {
               opts = { nowait = true, silent = true },
             },
             ["<c-t>"] = function(...)
-              return require("trouble.providers.telescope").open_with_trouble(
-                ...
-              )
+              return require("trouble.sources.telescope").open(...)
             end,
           },
           n = {
@@ -47,8 +45,8 @@ return {
           },
         },
         extensions = {
-          ['ui-select'] = {
-            require('telescope.themes').get_dropdown(),
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown(),
           },
           fzf = {
             fuzzy = true, -- false will only do exact matching

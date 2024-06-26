@@ -46,7 +46,6 @@ return {
           enable = true,
           enable_autocmd = false,
         },
-        autotag = { enable = true },
         autopairs = { enable = true },
       })
     end, 0)

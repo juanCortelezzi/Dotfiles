@@ -57,12 +57,10 @@ return {
     mason_lspconfig.setup()
 
     -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+    local cmp = require("cmp_nvim_lsp")
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend(
-      "force",
-      capabilities,
-      require("cmp_nvim_lsp").default_capabilities()
-    )
+    capabilities =
+      vim.tbl_deep_extend("force", capabilities, cmp.default_capabilities())
 
     local function on_attach(client, bufnr)
       local opts = { buffer = bufnr }
@@ -106,6 +104,9 @@ return {
     end
 
     local lspconfig = require("lspconfig")
+
+    -- Mason LSP Servers
+
     mason_lspconfig.setup_handlers({
       function(server_name) -- default handler (optional)
         lspconfig[server_name].setup({
@@ -120,7 +121,25 @@ return {
           cmd = { path, "server" },
           root_dir = lspconfig.util.root_pattern({ "mix.exs" }),
           on_attach = on_attach,
-          capabilities = capabilities,
+          capabilities = vim.tbl_deep_extend("force", capabilities, {
+            textDocument = {
+              hover = nil,
+            },
+          }),
+        })
+      end,
+
+      ["elixirls"] = function()
+        lspconfig["lexical"].setup({
+          on_attach = on_attach,
+          capabilities = {
+            textDocument = {
+              hover = {
+                dynamicRegistration = true,
+                contentFormat = { "markdown", "plaintext" },
+              },
+            },
+          },
         })
       end,
 
