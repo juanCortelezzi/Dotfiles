@@ -1,3 +1,7 @@
+[shell]
+program = "/usr/bin/tmux"
+args = ["new", "-ADs", "dev"]
+
 [window]
 padding = { x = 2, y = 2 }
 
