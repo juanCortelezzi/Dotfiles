@@ -83,10 +83,10 @@ return {
         local ok, conform = pcall(require, "conform")
         if not ok then
           vim.notify("Conform is not loaded", vim.log.levels.WARN)
-          vim.lsp.buf.format({ async = false })
+          vim.lsp.buf.format({ async = false, timeout_ms = 2000 })
           return
         end
-        conform.format({ bufnr = bufnr, lsp_fallback = true })
+        conform.format({ bufnr = bufnr, lsp_fallback = true, timeout_ms = 2000 })
       end, opts)
 
       local filetype = vim.bo[bufnr].filetype
