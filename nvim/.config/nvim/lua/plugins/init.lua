@@ -63,8 +63,10 @@ return {
     },
   },
   {
-    "github/copilot.vim",
-    cmd = "Copilot",
+    "supermaven-inc/supermaven-nvim",
+    config = function()
+      require("supermaven-nvim").setup({})
+    end,
     event = "InsertEnter",
   },
   {
