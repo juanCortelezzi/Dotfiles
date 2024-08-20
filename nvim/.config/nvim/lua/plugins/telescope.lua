@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
   "nvim-telescope/telescope.nvim",
-  tag = "0.1.5",
+  tag = "0.1.8",
   cmd = "Telescope",
   dependencies = {
     "plenary.nvim",
@@ -19,6 +19,7 @@ return {
     local actions = require("telescope.actions")
     telescope.setup({
       defaults = {
+        path_display = { "smart" },
         mappings = {
           i = {
             ["<C-n>"] = false,
