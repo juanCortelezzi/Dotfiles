@@ -45,8 +45,6 @@ nmap("<leader>dp", function()
   require("trouble").toggle("workspace_diagnostics")
 end)
 nmap("<leader>dn", "<cmd>TodoTelescope<CR>")
-nmap("<leader>d[", vim.diagnostic.goto_prev)
-nmap("<leader>d]", vim.diagnostic.goto_next)
 nmap("<leader>dl", vim.diagnostic.open_float)
 
 -- NvimTree
