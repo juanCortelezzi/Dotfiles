@@ -1,4 +1,25 @@
+"query:Unread Articles:unread = \"yes\""
+
+# Blogs:
+
+https://planetscale.com/blog/rss.xml "~PlanetScale Blog" blog
+https://hacker.news/rss "~Hacker News" blog
+https://blog.zsa.io/posts.rss "~ZSA Blog" blog
+https://tailscale.com/blog/index.xml "~Tailsca blogle Blog"
+https://samwho.dev/rss.xml "~Sam Who Blog" blog
+https://drewdevault.com/blog/index.xml "~Drew DeVault Blog" blog
+https://andrewkelley.me/rss.xml "~Andrew Kelley Blog" blog
+https://kristoff.it/index.xml "~Loris Cro Blog" blog
+https://zig.news/feed "~Zig News" news
+https://archlinux.org/feeds/news "~Arch Linux News" news
+# Encore engineering blog (not an actual rss)
+# https://encore.dev/blog/queueing
+# Tigerbeetle blog (not an actual rss)
+# https://tigerbeetle.com/blog
+
+# Youtube:
+
 # Luke kidgel
-https://www.youtube.com/feeds/videos.xml?channel_id=UCcKvm2VL8xTInRggo8A3alA
+# https://www.youtube.com/feeds/videos.xml?channel_id=UCcKvm2VL8xTInRggo8A3alA
 # The Primeagen
-https://www.youtube.com/feeds/videos.xml?channel_id=UC8ENHE5xdFSwx71u3fDH5Xw
+# https://www.youtube.com/feeds/videos.xml?channel_id=UC8ENHE5xdFSwx71u3fDH5Xw
