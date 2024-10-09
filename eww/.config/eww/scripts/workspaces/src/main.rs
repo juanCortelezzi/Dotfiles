@@ -54,7 +54,8 @@ fn hyprctl_monitors() -> Vec<HyprctlMonitor> {
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     let hypr_instance = std::env::var("HYPRLAND_INSTANCE_SIGNATURE")?;
-    let socket_path = format!("/tmp/hypr/{}/.socket2.sock", hypr_instance);
+    let xdg_runtime_dir = std::env::var("XDG_RUNTIME_DIR")?;
+    let socket_path = format!("{}/hypr/{}/.socket2.sock", xdg_runtime_dir, hypr_instance);
     let stream = UnixStream::connect(socket_path).await?;
 
     let mut active_workspace_name = hyprctl_monitors()
