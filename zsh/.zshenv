@@ -17,6 +17,7 @@ export BROWSER="firefox"
 # add npm globals to path
 # export NPM_CONFIG_PREFIX="$XDG_CONFIG_HOME/npm/npm-global"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
 # export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
 export VOLTA_HOME="$XDG_CONFIG_HOME/volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
@@ -40,6 +41,8 @@ export PATH="$GOPATH/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 # pass password storage
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/pass-store"
+# mix
+export MIX_XDG=1
 # gtk2rc to .config for ancient applications
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 # gnupg to .config
