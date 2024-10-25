@@ -1,4 +1,4 @@
-[shell]
+[terminal.shell]
 program = "/usr/bin/tmux"
 args = ["new", "-ADs", "dev"]
 
@@ -59,4 +59,3 @@ bindings = [
   {key = "Equals", mods = "Control", action = "IncreaseFontSize"},
   {key = "Minus", mods = "Control", action = "DecreaseFontSize"},
 ]
-
