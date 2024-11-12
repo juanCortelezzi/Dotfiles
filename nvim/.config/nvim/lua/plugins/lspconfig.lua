@@ -204,8 +204,8 @@ return {
         })
       end,
 
-      ["tsserver"] = function()
-        lspconfig.tsserver.setup({
+      ["ts_ls"] = function()
+        lspconfig.ts_ls.setup({
           on_attach = on_attach,
           capabilities = capabilities,
           root_dir = lspconfig.util.root_pattern("package.json"),
