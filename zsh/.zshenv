@@ -54,3 +54,5 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export ANDROID_USER_HOME="$XDG_DATA_HOME"/android
 # No hist file
 export LESSHISTFILE="-"
+# move sqlite history
+export SQLITE_HISTORY="$XDG_CACHE_HOME"/sqlite_history
