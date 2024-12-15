@@ -2,9 +2,7 @@
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
-  dependencies = {
-    { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
-  },
+  dependencies = { "nvim-tree/nvim-web-devicons", optional = true },
   init = function()
     vim.g.lualine_laststatus = vim.o.laststatus
     if vim.fn.argc(-1) > 0 then
@@ -17,7 +15,6 @@ return {
   end,
   opts = {
     options = {
-      theme = "auto",
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
       disabled_filetypes = { "NvimTree", "Trouble" },
@@ -26,10 +23,8 @@ return {
     },
     sections = {
       lualine_a = { "mode" },
-      lualine_b = {
-        "branch",
-        { "diagnostics", sources = { "nvim_diagnostic" } },
-      },
+      lualine_b = { "branch", { "diagnostics" } },
+
       lualine_c = {
         { "%=" },
         { "filetype", icon_only = true },

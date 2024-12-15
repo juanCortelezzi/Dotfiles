@@ -1,10 +1,11 @@
 ---@type LazySpec
 return {
   "hrsh7th/nvim-cmp",
-  lazy = false,
-  priority = 100,
+  version = false,
+  event = "InsertEnter",
+  enabled = false,
   dependencies = {
-    "nvim-autopairs",
+    { "nvim-autopairs", optional = true },
     "onsails/lspkind.nvim",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
@@ -12,11 +13,9 @@ return {
     "hrsh7th/cmp-cmdline",
     {
       "L3MON4D3/LuaSnip",
-      run = "make install_jsregexp",
-      dependencies = {
-        { "rafamadriz/friendly-snippets" },
-        { "saadparwaiz1/cmp_luasnip" },
-      },
+      version = "v2.*",
+      -- install jsregexp (optional!).
+      build = "make install_jsregexp",
       config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
       end,
@@ -26,31 +25,29 @@ return {
     local cmp = require("cmp")
     local luasnip = require("luasnip")
     local lspkind = require("lspkind")
-
-    luasnip.config.set_config({
-      history = false,
-      updateevents = "TextChanged,TextChangedI",
-    })
+    local auto_select = false
 
     cmp.setup({
-      preselect = cmp.PreselectMode.None,
+      completion = {
+        completeopt = "menu,menuone,noinsert"
+          .. (auto_select and "" or ",noselect"),
+      },
+      preselect = auto_select and cmp.PreselectMode.Item
+        or cmp.PreselectMode.None,
 
       sources = cmp.config.sources({
+        { name = "lazydev", group_index = 0 },
         { name = "nvim_lsp" },
         { name = "luasnip" },
-      }, { name = "nvim_lua" }, {
-        { name = "buffer", keyword_length = 5, max_item_count = 3 },
         { name = "path" },
+      }, {
+        { name = "buffer", keyword_length = 5, max_item_count = 3 },
       }),
 
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
-      },
-
-      completion = {
-        completeopt = "menu,menuone,noinsert,noselect",
       },
 
       window = {
@@ -83,10 +80,7 @@ return {
           end
         end, { "i", "s" }),
         ["<C-y>"] = cmp.mapping(
-          cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-          }),
+          cmp.mapping.confirm({ select = true }),
           { "i", "c" }
         ),
         -- -- Accept currently selected item. If none selected, `select` first item.
@@ -98,20 +92,28 @@ return {
       }),
       formatting = {
         fields = { "kind", "abbr" },
+        expandable_indicator = true,
         format = lspkind.cmp_format({
           mode = "symbol",
-          maxwidth = 50,
+          maxwidth = {
+            -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            -- can also be a function to dynamically calculate max width such as
+            -- menu = function() return math.floor(0.45 * vim.o.columns) end,
+            menu = 50, -- leading text (labelDetails)
+            abbr = 50, -- actual suggestion item
+          },
           ellipsis_char = "...",
-          before = function(_, vim_item)
-            vim_item.menu = ""
-            return vim_item
-          end,
+          show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+          -- before = function(_, vim_item)
+          --   vim_item.menu = ""
+          --   return vim_item
+          -- end,
         }),
       },
     })
 
     -- `/` cmdline setup.
-    cmp.setup.cmdline("/", {
+    cmp.setup.cmdline({ "/", "?" }, {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
         { name = "buffer" },
@@ -126,11 +128,16 @@ return {
       }, {
         { name = "cmdline" },
       }),
+      ---@diagnostic disable-next-line
+      matching = { disallow_symbol_nonprefix_matching = false },
     })
 
-    cmp.event:on(
-      "confirm_done",
-      require("nvim-autopairs.completion.cmp").on_confirm_done()
-    )
+    cmp.event:on("confirm_done", function()
+      local ok, autopairs = pcall(require, "nvim-autopairs.completion.cmp")
+      if not ok then
+        return nil
+      end
+      return autopairs.on_confirm_done()
+    end)
   end,
 }

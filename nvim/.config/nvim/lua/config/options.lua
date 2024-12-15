@@ -1,77 +1,64 @@
-vim.g.mapleader = " "
-vim.g.have_nerd_font = true
-
--- disable stupid plugins
-vim.g.markdown_recommended_style = 0
-vim.g.no_plugin_maps = 1
-
 local opt = vim.opt
 
-opt.clipboard = "unnamedplus" -- Sync with system clipboard
-opt.completeopt = { "menuone", "noselect" }
-opt.complete = "" -- disabe omni stuff
-opt.conceallevel = 0
-opt.confirm = true -- Confirm to save changes before exiting modified buffer
-opt.cursorline = true -- Enable highlighting of the current line
-opt.expandtab = true -- Use spaces instead of tabs
-opt.hlsearch = false -- highlight all matches on previous search pattern
-opt.ignorecase = true -- Ignore case
-opt.smartcase = true -- Don't ignore case with capitals
-opt.formatoptions = "jcroqlnt" -- tcqj
-opt.grepformat = "%f:%l:%c:%m"
-opt.grepprg = "rg --vimgrep"
-opt.inccommand = "split" -- preview incremental substitution
-opt.laststatus = 3 -- global statusline
--- opt.list = false -- Show some invisible characters (tabs...
--- opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+opt.confirm = true -- Confirm to save changes before closing modified buffer.
+opt.wrap = false
+opt.number = true
+opt.relativenumber = true
+opt.clipboard = "unnamedplus" -- Use system clipboard
+opt.splitright = true -- New window is put rigt of the current one.
+opt.splitbelow = true -- New window from split is belaw the current one.
 opt.mouse = "a" -- Enable mouse mode
-opt.number = true -- Print line number
-opt.relativenumber = true -- Relative line numbers
-opt.pumblend = 10 -- Popup blend
-opt.pumheight = 10 -- Maximum number of entries in a popup
-opt.scrolloff = 4 -- Lines of context
-opt.sessionoptions = {
-  "buffers",
-  "curdir",
-  "tabpages",
-  "winsize",
-  "help",
-  "globals",
-  "skiprtp",
-  "folds",
-}
-opt.shiftround = true -- Round indent
-opt.shortmess:append({ W = true, I = true, c = true, C = true })
-opt.showmode = false -- Dont show mode since we have a statusline
-opt.sidescrolloff = 8 -- Columns of context
-opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
-opt.smartindent = true -- Insert indents automatically
-opt.spelllang = { "en" }
-opt.splitright = true -- Put new windows right of current
-opt.splitbelow = true -- Put new windows below current
-opt.splitkeep = "screen"
-opt.tabstop = 2 -- Number of spaces tabs count for
-opt.shiftwidth = 2 -- Size of an indent
-opt.termguicolors = true -- True color support
-opt.timeoutlen = 300
+opt.pumblend = 10 -- Enable popup pseudo-transparency
+opt.pumheight = 10 -- Max number of entries in a popup
+opt.smartindent = true
+opt.termguicolors = true -- Enable true color support
+opt.timeoutlen = 300 -- Timeout for keymaps
 opt.undofile = true
 opt.undolevels = 10000
-opt.swapfile = false -- Disable swap files
-opt.updatetime = 250 -- Save swap file and trigger CursorHold
-opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
-opt.wildmode = "longest:full,full" -- Command-line completion mode
-opt.winminwidth = 5 -- Minimum window width
-opt.wrap = false -- Disable line wrap
-opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  -- fold = "⸱",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
+opt.winminwidth = 5 -- Minimum width for windows
+
+opt.list = true -- Shows hidden characters (whitespace and stuff...)
+opt.listchars = {
+  tab = "│ ",
+  extends = "",
+  precedes = "",
+  trail = "",
 }
 
-if vim.fn.has("nvim-0.10") == 1 then
-  opt.smoothscroll = true
-end
+-- Set cursorline
+opt.cursorline = true -- Enable highlighting of the current line.
+opt.scrolloff = 4 -- Padding between top/bottom of the screen and cursorline
+opt.sidescrolloff = 4 -- Padding between left/right of the screen and cursorline
+
+-- Set bottom UI
+opt.laststatus = 0 -- Remove the default statusline
+opt.showmode = false -- Do not show mode in message line since we have a statusline
+opt.splitkeep = "screen"
+opt.shortmess:append({ -- Message line settings
+  W = true,
+  I = true,
+  c = true,
+  C = true,
+})
+
+-- Set spacing
+opt.shiftwidth = 2
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftround = true -- Round < and > to shiftwidth
+opt.expandtab = true -- Use spaces instead of tabs.
+
+-- Set ripgrep
+opt.grepformat = "%f:%l:%c:%m"
+opt.grepprg = "rg --vimgrep"
+
+-- Set search
+opt.ignorecase = true
+opt.smartcase = true
+
+-- Not sure what this is but LazyVim has it...
+opt.inccommand = "nosplit"
+-- opt.updatetime = 200 -- Save to disk after timeout of no writing
+opt.wildmode = "longest:full,full" -- Command-line completion mode
+opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
+opt.formatoptions = "jcroqlnt" -- tcqj
