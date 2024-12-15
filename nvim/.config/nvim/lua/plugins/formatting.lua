@@ -2,77 +2,80 @@
 return {
   "stevearc/conform.nvim",
   event = { "BufWritePre" },
-  cmd = "ConformInfo",
-  dependencies = { "mason.nvim" },
-  init = function()
-    -- If you want the formatexpr, here is the place to set it
-    vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-  end,
-  config = function(_, opts)
-    local conform = require("conform")
+  cmd = { "ConformInfo" },
+  ---@module "conform"
+  ---@param opts conform.setupOpts
+  opts = function(_, opts)
+    local util = require("conform.util")
 
-    local shitty_fts = {
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "json",
-      "toml",
-      "astro",
-      "svelte",
-      "yaml",
-    }
-
-    for _, ft in ipairs(shitty_fts) do
-      conform.formatters_by_ft[ft] = { "prettier", "biome" }
-    end
-
-    conform.setup(opts)
-  end,
-  ---@class ConformOpts
-  opts = {
-    format = {
-      timeout = 3000,
-      -- not recommended to change
-      async = false,
-      quiet = false,
-    },
-    ---@type table<string, conform.FormatterUnit[]>
-    formatters_by_ft = {
-      python = { "black" },
+    opts.formatters_by_ft = {
       lua = { "stylua" },
+      python = { "isort", "black" },
       go = { "gofmt" },
       templ = { "gofmt" },
       rust = { "rustfmt" },
       bash = { "shfmt" },
       zig = { "zigfmt" },
       ocaml = { "ocamlformat" },
-      php = { "pint" },
-    },
+    }
 
-    -- The options you set here will be merged with the builtin formatters.
-    -- You can also define any custom formatters here.
-    ---@type table<string, conform.FormatterConfigOverride|fun(bufnr: integer): nil|conform.FormatterConfigOverride>
-    formatters = {
+    opts.default_format_opts = {
+      timeout_ms = 3000,
+      async = false, -- not recommended to change
+      quiet = false, -- not recommended to change
+      lsp_format = "fallback", -- not recommended to change
+    }
+
+    -- enable format on save
+    opts.format_on_save = {}
+
+    opts.formatters = {
+      -- LazyVim has this so I have to have it too.
       injected = { options = { ignore_errors = true } },
-      stylua = {
-        prepend_args = {
-          "--config-path",
-          vim.fn.stdpath("config") .. "/stylua.toml",
-        },
+      shfmt = {
+        prepend_args = { "-i", "2" },
       },
-      black = {
-        extra_args = { "--fast" },
-      },
-      rustfmt = {
-        extra_args = { "--edition", 2023 },
-      },
-    },
-    --- will pass the table to conform.format({opts})
-    format_on_save = {
-      -- I recommend these options. See :help conform.format for details.
-      lsp_fallback = true,
-      timeout_ms = 500,
+    }
+
+    local shitty_fts = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "astro",
+      "svelte",
+      "vue",
+      "toml",
+      "html",
+      "css",
+      "scss",
+      "markdown",
+      "mdx",
+      "json",
+      "jsonc",
+      "yaml",
+    }
+
+    for _, ft in ipairs(shitty_fts) do
+      opts.formatters_by_ft[ft] = {
+        "prettier",
+        "biome",
+        stop_after_first = true,
+      }
+    end
+  end,
+  init = function()
+    -- If you want the formatexpr, here is the place to set it
+    vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+  end,
+  keys = {
+    {
+      "<leader>bf",
+      function()
+        require("conform").format({ async = false, timeout_ms = 3000 })
+      end,
+      mode = "n",
+      desc = "Format buffer",
     },
   },
 }

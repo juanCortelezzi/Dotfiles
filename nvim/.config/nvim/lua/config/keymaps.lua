@@ -1,130 +1,88 @@
----@alias KeyboardType "dvorak" | "qwerty"
-
----@type KeyboardType
-local keyboard = "qwerty"
-
-local opts = { noremap = true, silent = true }
-
--- Shorten function name
-local keymap = vim.keymap.set
-
----@param key string
----@param cmd string|function
-local function nmap(key, cmd)
-  keymap("n", key, cmd, opts)
-end
-
--- normal_mode = "n",
--- insert_mode = "i",
--- visual_mode = "v",
--- visual_block_mode = "x",
--- term_mode = "t",
--- command_mode = "c",
-
--- Resize windows with arrows
-nmap("<C-Up>", ":resize -2<CR>")
-nmap("<C-Down>", ":resize +2<CR>")
-nmap("<C-Left>", ":vertical resize -2<CR>")
-nmap("<C-Right>", ":vertical resize +2<CR>")
-
-nmap("<C-u>", "<C-u>zz")
-nmap("<C-d>", "<C-d>zz")
-
--- esc esc -> jj not proud of this, but i got used to it
-keymap("i", "jj", "<ESC>", opts)
-
--- Stay in indent mode
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
-
--- Diagnostics
-nmap("<leader>dd", function()
-  require("trouble").toggle("document_diagnostics")
-end)
-nmap("<leader>dp", function()
-  require("trouble").toggle("workspace_diagnostics")
-end)
-nmap("<leader>dn", "<cmd>TodoTelescope<CR>")
-nmap("<leader>dl", vim.diagnostic.open_float)
-
--- NvimTree
-nmap("<leader><leader>", "<cmd>Neotree toggle reveal<CR>")
-
--- Telescope
-nmap("<leader>f", "<cmd>Telescope find_files<CR>")
-nmap("<leader>g", "<cmd>Telescope live_grep<CR>")
-nmap("<leader>tt", "<cmd>Telescope<CR>")
-nmap("<leader>tc", "<cmd>Telescope colorscheme<CR>")
-nmap("<leader>tf", "<cmd>Telescope file_browser<CR>")
-nmap("<leader>tz", "<cmd>Telescope current_buffer_fuzzy_find<CR>")
-
--- Open parent directory in current window
-nmap("<leader>o", "<cmd>Oil<CR>")
-
--- Harpoon
-
---- @param fn fun(h: Harpoon): nil
---- @return function
-local function harpoon_wrapper(fn)
-  return function()
-    local ok, harpoon = pcall(require, "harpoon")
-    if not ok then
-      vim.notify("harpoon is not loaded yet!", vim.log.levels.WARN)
-    end
-
-    fn(harpoon)
+---@param mode string|string[]
+---@param lhs string
+---@param rhs string|function
+---@param opts? vim.keymap.set.Opts
+local function map(mode, lhs, rhs, opts)
+  local keys = require("lazy.core.handler").handlers.keys
+  ---@cast keys LazyKeysHandler
+  -- do not create the keymap if a lazy keys handler exists
+  local lazyKey = keys.parse({ lhs, mode = mode })
+  if keys.active[lazyKey.id] then
+    vim.print("keymap '" .. lazyKey.id .. "' is already in use!!")
+    return
   end
+
+  opts = opts or {}
+  opts.silent = opts.silent ~= false
+  if opts.remap then
+    opts.remap = nil
+  end
+  vim.keymap.set(mode, lhs, rhs, opts)
 end
 
----@type Map<KeyboardType, Array<string>>
-local harpoon_buffer_keymap = {
-  qwerty = { "<C-H>", "<C-J>", "<C-K>", "<C-L>" },
-  dvorak = { "<C-H>", "<C-T>", "<C-N>", "<C-S>" },
-}
-
-nmap(
-  harpoon_buffer_keymap[keyboard][1],
-  harpoon_wrapper(function(h)
-    h:list():select(1)
-  end)
+-- Resize window using <ctrl> arrow keys
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+map(
+  "n",
+  "<C-Left>",
+  "<cmd>vertical resize -2<cr>",
+  { desc = "Decrease window width" }
 )
-nmap(
-  harpoon_buffer_keymap[keyboard][2],
-  harpoon_wrapper(function(h)
-    h:list():select(2)
-  end)
-)
-nmap(
-  harpoon_buffer_keymap[keyboard][3],
-  harpoon_wrapper(function(h)
-    h:list():select(3)
-  end)
-)
-nmap(
-  harpoon_buffer_keymap[keyboard][4],
-  harpoon_wrapper(function(h)
-    h:list():select(4)
-  end)
+map(
+  "n",
+  "<C-Right>",
+  "<cmd>vertical resize +2<cr>",
+  { desc = "Increase window width" }
 )
 
-nmap(
-  "<leader>m",
-  harpoon_wrapper(function(h)
-    h:list():add()
-  end)
-)
-nmap(
-  "<leader>;",
-  harpoon_wrapper(function(h)
-    h.ui:toggle_quick_menu(h:list())
-  end)
+map(
+  { "i", "n" },
+  "<esc>",
+  "<cmd>noh<cr><esc>",
+  { desc = "Escape and clear hlsearch" }
 )
 
--- Buffer Actions
-nmap("<leader>bs", "<cmd>Telescope buffers<CR>")
-nmap("<leader>bd", "<cmd>bdelete<CR>")
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+map(
+  "n",
+  "n",
+  "'Nn'[v:searchforward]",
+  { expr = true, desc = "Next search result" }
+)
+map(
+  "x",
+  "n",
+  "'Nn'[v:searchforward]",
+  { expr = true, desc = "Next search result" }
+)
+map(
+  "o",
+  "n",
+  "'Nn'[v:searchforward]",
+  { expr = true, desc = "Next search result" }
+)
+map(
+  "n",
+  "N",
+  "'nN'[v:searchforward]",
+  { expr = true, desc = "Prev search result" }
+)
+map(
+  "x",
+  "N",
+  "'nN'[v:searchforward]",
+  { expr = true, desc = "Prev search result" }
+)
+map(
+  "o",
+  "N",
+  "'nN'[v:searchforward]",
+  { expr = true, desc = "Prev search result" }
+)
 
--- Colorizer
-nmap("<leader>bca", "<cmd>ColorizerAttachToBuffer<CR>")
-nmap("<leader>bcd", "<cmd>ColorizerDetachFromBuffer<CR>")
-nmap("<leader>bcr", "<cmd>ColorizerReloadAllBuffers<CR>")
+-- better indenting
+map("v", "<", "<gv")
+map("v", ">", ">gv")
+
+map("n", "<leader>x", ":source %<CR>")

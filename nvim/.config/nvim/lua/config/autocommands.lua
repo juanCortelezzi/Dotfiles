@@ -1,37 +1,32 @@
+---@param name string
 local function augroup(name)
-  return vim.api.nvim_create_augroup(
-    "custom_autocommands_" .. name,
-    { clear = true }
-  )
+  return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
 
--- no more q:
-vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
+vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+  desc = "Check if we need to reload the file when it changed",
+  group = augroup("checktime"),
+  command = "checktime",
+})
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Hightlight when yanking text",
+  group = augroup("kickstart_highlight_yank"),
   callback = function()
-    vim.cmd("quit")
+    vim.highlight.on_yank()
   end,
 })
 
--- Highlight on yank
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-  group = augroup("highlight_yank"),
-  callback = function()
-    vim.highlight.on_yank({ higroup = "Visual", timeout = 100 })
-  end,
-})
-
--- resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
+  desc = "Resize split if window is resized",
   group = augroup("resize_splits"),
   callback = function()
-    local current_tab = vim.fn.tabpagenr()
     vim.cmd("tabdo wincmd =")
-    vim.cmd("tabnext " .. current_tab)
   end,
 })
 
--- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
+  desc = "close some filetypes with <q>",
   group = augroup("close_with_q"),
   pattern = {
     "PlenaryTestPopup",
@@ -40,10 +35,13 @@ vim.api.nvim_create_autocmd("FileType", {
     "man",
     "notify",
     "qf",
-    "query",
+    "spectre_panel",
     "startuptime",
     "tsplayground",
+    "neotest-output",
     "checkhealth",
+    "neotest-summary",
+    "neotest-output-panel",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

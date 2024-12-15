@@ -2,63 +2,58 @@
 return {
   "nvim-telescope/telescope.nvim",
   tag = "0.1.8",
-  cmd = "Telescope",
   dependencies = {
-    "plenary.nvim",
-    {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      cond = function()
-        return vim.fn.executable("make") == 1
-      end,
-    },
-    { "nvim-telescope/telescope-ui-select.nvim" },
+    "nvim-lua/plenary.nvim",
+    { "nvim-tree/nvim-web-devicons", optional = true },
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
-  config = function()
+  opts = {
+    extensions = {
+      fzf = {},
+    },
+  },
+  config = function(_, opts)
     local telescope = require("telescope")
-    local actions = require("telescope.actions")
-    telescope.setup({
-      defaults = {
-        path_display = { "smart" },
-        mappings = {
-          i = {
-            ["<C-n>"] = false,
-            ["<C-p>"] = false,
-            ["<C-j>"] = {
-              actions.move_selection_next,
-              type = "action",
-              opts = { nowait = true, silent = true },
-            },
-            ["<C-k>"] = {
-              actions.move_selection_previous,
-              type = "action",
-              opts = { nowait = true, silent = true },
-            },
-            ["<c-t>"] = function(...)
-              return require("trouble.sources.telescope").open(...)
-            end,
-          },
-          n = {
-            ["<esc>"] = actions.close,
-            ["j"] = actions.move_selection_next,
-            ["k"] = actions.move_selection_previous,
-            ["q"] = actions.close,
-          },
-        },
-        extensions = {
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown(),
-          },
-          fzf = {
-            fuzzy = true, -- false will only do exact matching
-            override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true, -- override the file sorter
-            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-          },
-        },
-      },
-    })
+    telescope.setup(opts)
     telescope.load_extension("fzf")
-    telescope.load_extension("ui-select")
   end,
+  keys = {
+    {
+      "<leader>f",
+      function()
+        require("telescope.builtin").find_files()
+      end,
+      desc = "Telescope find files",
+    },
+    {
+      "<leader>g",
+      function()
+        require("telescope.builtin").live_grep()
+      end,
+      desc = "Telescope live grep",
+    },
+    {
+      "<leader>h",
+      function()
+        require("telescope.builtin").help_tags()
+      end,
+      desc = "Telescope help tags",
+    },
+    {
+      "<leader>tt",
+      function()
+        require("telescope.builtin").builtin()
+      end,
+      desc = "Telescope builtins",
+    },
+    {
+      "<leader>en",
+      function()
+        require("telescope.builtin").find_files({
+          cwd = vim.fn.stdpath("config"),
+        })
+      end,
+      desc = "Telescope edit neovim files",
+    },
+  },
 }
