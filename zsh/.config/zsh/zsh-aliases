@@ -9,13 +9,9 @@ alias df='df -h'
 alias du='du -hs'
 alias free='free -hm'
 alias path="echo $PATH | sed -e 's/:/\n/g' | sort"
-# alias sucklessinstall="rm -rf config.h && sudo make clean install"
-# alias getkc="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", \$5, \$8 }'"
 # alias pan="pandoc --pdf-engine=xelatex --highlight-style=zenburn --filter pandoc-crossref --template=eisvogel -s"
 alias wget="wget --hsts-file=\"$XDG_DATA_HOME/wget-hsts\""
 alias pn="pnpm"
-alias asdf="setxkbmap dvorak"
-alias aoeu="setxkbmap us"
 alias g='git'
 alias parrot="curl parrot.live"
 
