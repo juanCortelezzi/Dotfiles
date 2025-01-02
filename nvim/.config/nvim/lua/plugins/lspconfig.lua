@@ -16,9 +16,9 @@ local function on_attach(client, bufnr)
   })
 
   local is_normal_buffer = vim.bo[bufnr].buftype == ""
-  if client.supports_method("textDocument/inlayHint") and is_normal_buffer then
-    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-  end
+  -- if client.supports_method("textDocument/inlayHint") and is_normal_buffer then
+  --   vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+  -- end
 
   if client.supports_method("textDocument/codeLens") and is_normal_buffer then
     vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
