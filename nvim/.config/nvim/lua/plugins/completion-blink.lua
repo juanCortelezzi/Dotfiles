@@ -2,35 +2,42 @@
 return {
   {
     "saghen/blink.cmp",
-    version = "*",
+    version = "v0.10.0",
     enabled = true,
-    opts_extend = {
-      "sources.default",
-      "sources.compat",
-    },
     dependencies = {
       "rafamadriz/friendly-snippets",
       {
+        "folke/lazydev.nvim",
+        optional = true,
+      },
+      {
         "saghen/blink.compat",
-        optional = true, -- make optional so it's only enabled if any extras need it
         opts = {},
+        optional = true,
         version = "*",
       },
     },
+    opts_extend = { "sources.default" },
     opts = {
-      keymap = { preset = "default" },
-      appearance = {
-        -- sets the fallback highlight groups to nvim-cmp's highlight groups
-        -- useful for when your theme doesn't support blink.cmp
-        -- will be removed in a future release, assuming themes add support
-        use_nvim_cmp_as_default = true,
-        -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-        -- adjusts spacing to ensure icons are aligned
-        nerd_font_variant = "mono",
+      -- signature = { enabled = true },
+      completion = {
+        menu = { border = "rounded" },
+        documentation = { window = { border = "rounded" } },
       },
-
-      -- experimental signature help support
-      signature = { enabled = true },
+      sources = {
+        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+        providers = {
+          buffer = {
+            min_keyword_length = 5,
+          },
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
+          },
+        },
+      },
     },
     config = function(_, opts)
       -- setup compat sources
@@ -66,24 +73,5 @@ return {
 
       require("blink.cmp").setup(opts)
     end,
-  },
-
-  -- lazydev
-  {
-    "saghen/blink.cmp",
-    dependencies = { "folke/lazydev.nvim" },
-    opts = {
-      sources = {
-        default = { "lazydev" },
-        providers = {
-          lazydev = {
-            name = "LazyDev",
-            module = "lazydev.integrations.blink",
-            -- dont show LuaLS require statements when lazydev has items
-            fallbacks = { "lsp" },
-          },
-        },
-      },
-    },
   },
 }

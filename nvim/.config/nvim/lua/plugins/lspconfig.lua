@@ -132,6 +132,7 @@ return {
       "neovim/nvim-lspconfig",
       "williamboman/mason.nvim",
       { "saghen/blink.cmp", optional = true },
+      { "hrsh7th/nvim-cmp", optional = true },
     },
     opts = {
       handlers = {
