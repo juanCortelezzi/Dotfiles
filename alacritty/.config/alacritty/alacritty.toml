@@ -37,9 +37,10 @@ white = "#ebdbb2"
 size = 11
 
 [font.normal]
-family = "Hack Nerd Font Mono"
+# family = "Hack Nerd Font Mono"
 # family = "Iosevka Nerd Font Mono"
-# family = "JetBrains Mono Nerd Font Mono"
+# family = "GeistMono Nerd Font Mono"
+family = "JetBrainsMonoNL Nerd Font Mono"
 style = "Regular"
 
 
