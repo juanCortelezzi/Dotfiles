@@ -1,11 +1,10 @@
 alias ..="cd .."
-alias j="cd"
 alias v="nvim"
 alias l="royallist"
 alias ls="ls -lhG --color --group-directories-first -A -v"
-alias cp="cp -i"    
-alias mv="mv -i"    
-alias df='df -h'    
+alias cp="cp -i"
+alias mv="mv -i"
+alias df='df -h'
 alias du='du -hs'
 alias free='free -hm'
 alias path="echo $PATH | sed -e 's/:/\n/g' | sort"
@@ -14,14 +13,6 @@ alias wget="wget --hsts-file=\"$XDG_DATA_HOME/wget-hsts\""
 alias pn="pnpm"
 alias g='git'
 alias parrot="curl parrot.live"
-
-function jf {
-  local NEXTDIR=$(fd --type d --color never --max-depth 2 . ~/Documents/programming | fzf)
-
-  if [[ ! -z $NEXTDIR ]]; then
-    cd $NEXTDIR
-  fi
-}
 
 function extract {
   if [ -z "$1" ]; then
