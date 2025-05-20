@@ -9,6 +9,7 @@ alias du='du -hs'
 alias free='free -hm'
 alias path="echo $PATH | sed -e 's/:/\n/g' | sort"
 # alias pan="pandoc --pdf-engine=xelatex --highlight-style=zenburn --filter pandoc-crossref --template=eisvogel -s"
+alias k="kubectl"
 alias wget="wget --hsts-file=\"$XDG_DATA_HOME/wget-hsts\""
 alias pn="pnpm"
 alias g='git'

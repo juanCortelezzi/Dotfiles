@@ -60,3 +60,4 @@ export ANDROID_USER_HOME="$XDG_DATA_HOME/android"
 export LESSHISTFILE="-"
 # move sqlite history
 export SQLITE_HISTORY="$XDG_CACHE_HOME/sqlite_history"
+export KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
