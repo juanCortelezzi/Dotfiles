@@ -1,10 +1,5 @@
 return {
   {
-    "supermaven-inc/supermaven-nvim",
-    event = "InsertEnter",
-    opts = {},
-  },
-  {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     event = { "BufReadPost", "BufNewFile" },
