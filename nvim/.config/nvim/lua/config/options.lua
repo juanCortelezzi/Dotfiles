@@ -31,7 +31,7 @@ opt.scrolloff = 4 -- Padding between top/bottom of the screen and cursorline
 opt.sidescrolloff = 4 -- Padding between left/right of the screen and cursorline
 
 -- Set bottom UI
-opt.laststatus = 0 -- Remove the default statusline
+opt.laststatus = 3
 opt.showmode = false -- Do not show mode in message line since we have a statusline
 opt.splitkeep = "screen"
 opt.shortmess:append({ -- Message line settings
