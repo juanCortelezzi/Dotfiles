@@ -62,6 +62,3 @@ export LESSHISTFILE="-"
 export SQLITE_HISTORY="$XDG_CACHE_HOME/sqlite_history"
 export KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
 
-# bun completions
-[ -s "/home/wiz/.config/bun/_bun" ] && source "/home/wiz/.config/bun/_bun"
-
