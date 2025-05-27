@@ -20,7 +20,9 @@ local function on_attach(client, bufnr)
   --   vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
   -- end
 
-  if client.supports_method("textDocument/codeLens") and is_normal_buffer then
+  if
+    client:supports_method("textDocument/codeLens", bufnr) and is_normal_buffer
+  then
     vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
       desc = "Refresh codelens",
       buffer = bufnr,
@@ -97,13 +99,6 @@ end
 
 ---@type LazySpec
 return {
-  -- order of requires:
-  --
-  -- this one will be lazy loaded but it needs to be in the rtp:
-  -- require("lspconfig").<lsp>.setup({})
-  --
-  -- require("mason").setup({})
-  -- require("mason-lspconfig").setup({})
   { "neovim/nvim-lspconfig", lazy = true },
   {
     "folke/lazydev.nvim",
@@ -120,13 +115,13 @@ return {
     },
   },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     build = ":MasonUpdate",
     cmd = "Mason",
     opts = {},
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "neovim/nvim-lspconfig",
@@ -135,111 +130,100 @@ return {
       { "hrsh7th/nvim-cmp", optional = true },
     },
     opts = {
-      handlers = {
-        -- default handler
-        function(server_name)
-          require("lspconfig")[server_name].setup({
-            capabilities = get_capabilities(),
-            on_attach = on_attach,
-          })
-        end,
 
-        ["elixirls"] = function()
-          local lspconfig = require("lspconfig")
-          lspconfig["lexical"].setup({
-            on_attach = on_attach,
-            capabilities = {
-              textDocument = {
-                hover = {
-                  dynamicRegistration = true,
-                  contentFormat = { "markdown", "plaintext" },
-                },
-              },
-            },
-          })
-        end,
-        ["lexical"] = function()
-          local lspconfig = require("lspconfig")
-          local path = vim.fn.expand("~/.local/share/nvim/mason/bin/lexical")
-          lspconfig["lexical"].setup({
-            cmd = { path, "server" },
-            root_dir = lspconfig.util.root_pattern({ "mix.exs" }),
-            on_attach = on_attach,
-            capabilities = vim.tbl_deep_extend("force", get_capabilities(), {
-              textDocument = {
-                hover = nil,
-              },
-            }),
-          })
-        end,
-
-        ["ts_ls"] = function()
-          local lspconfig = require("lspconfig")
-          lspconfig.ts_ls.setup({
-            on_attach = on_attach,
-            capabilities = get_capabilities(),
-            root_dir = lspconfig.util.root_pattern("package.json"),
-            filetypes = {
-              "typescript",
-              "typescriptreact",
-              "typescript.tsx",
-              "mdx",
-              "javascript",
-            },
-            single_file_support = false,
-          })
-        end,
-
-        ["denols"] = function()
-          local lspconfig = require("lspconfig")
-          lspconfig.denols.setup({
-            on_attach = on_attach,
-            capabilities = get_capabilities(),
-            root_dir = lspconfig.util.root_pattern("deno.json", "deno.cjson"),
-            filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-          })
-        end,
-
-        ["tailwindcss"] = function()
-          local lspconfig = require("lspconfig")
-          lspconfig.tailwindcss.setup({
-            on_attach = on_attach,
-            capabilities = get_capabilities(),
-            filetypes = {
-              "typescript",
-              "typescriptreact",
-              "typescript.tsx",
-              "astro",
-              "javascript",
-              "svelte",
-            },
-            settings = {
-              tailwindCSS = {
-                experimental = {
-                  classRegex = {
-                    { "tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-                  },
-                },
-              },
-            },
-          })
-        end,
-
-        ["pyright"] = function()
-          local lspconfig = require("lspconfig")
-          lspconfig.pyright.setup({
-            on_attach = on_attach,
-            capabilities = get_capabilities(),
-            settings = {
-              python = {
-                analysis = {
-                  typeCheckingMode = "basic",
-                },
-              },
-            },
-          })
-        end,
-      },
+      automatic_enable = true,
+      -- handlers = {
+      --   ["elixirls"] = function()
+      --     local lspconfig = require("lspconfig")
+      --     lspconfig["lexical"].setup({
+      --       on_attach = on_attach,
+      --       capabilities = {
+      --         textDocument = {
+      --           hover = {
+      --             dynamicRegistration = true,
+      --             contentFormat = { "markdown", "plaintext" },
+      --           },
+      --         },
+      --       },
+      --     })
+      --   end,
+      --   ["lexical"] = function()
+      --     local lspconfig = require("lspconfig")
+      --     local path = vim.fn.expand("~/.local/share/nvim/mason/bin/lexical")
+      --     lspconfig["lexical"].setup({
+      --       cmd = { path, "server" },
+      --       root_dir = lspconfig.util.root_pattern({ "mix.exs" }),
+      --       on_attach = on_attach,
+      --       capabilities = vim.tbl_deep_extend("force", get_capabilities(), {
+      --         textDocument = {
+      --           hover = nil,
+      --         },
+      --       }),
+      --     })
+      --   end,
+      --
+      --   ["denols"] = function()
+      --     local lspconfig = require("lspconfig")
+      --     lspconfig.denols.setup({
+      --       on_attach = on_attach,
+      --       capabilities = get_capabilities(),
+      --       root_dir = lspconfig.util.root_pattern("deno.json", "deno.cjson"),
+      --       filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+      --     })
+      --   end,
+      --
+      --   ["pyright"] = function()
+      --     local lspconfig = require("lspconfig")
+      --     lspconfig.pyright.setup({
+      --       on_attach = on_attach,
+      --       capabilities = get_capabilities(),
+      --       settings = {
+      --         python = {
+      --           analysis = {
+      --             typeCheckingMode = "basic",
+      --           },
+      --         },
+      --       },
+      --     })
+      --   end,
+      -- },
     },
+
+    init = function()
+      vim.lsp.config("*", {
+        on_attach = on_attach,
+        capabilities = get_capabilities(),
+      })
+
+      vim.lsp.config.ts_ls = {
+        filetypes = {
+          "typescript",
+          "typescriptreact",
+          "typescript.tsx",
+          "mdx",
+          "javascript",
+        },
+      }
+
+      vim.lsp.config.tailwindcss = {
+        filetypes = {
+          "typescript",
+          "typescriptreact",
+          "typescript.tsx",
+          "astro",
+          "javascript",
+          "svelte",
+        },
+        settings = {
+          tailwindCSS = {
+            experimental = {
+              classRegex = {
+                { "tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+              },
+            },
+          },
+        },
+      }
+    end,
   },
 }
